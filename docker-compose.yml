@@ -1,21 +1,69 @@
+name: litlens
+x-app: &app
+  build: .
+  environment:
+    DATABASE_URL: postgresql+psycopg://litlens:litlens@postgres:5432/litlens
+    REDIS_URL: redis://redis:6379/0
+    DATA_DIR: /app/data
+    API_TOKENS: '${API_TOKENS:-{"local-dev-token":"local"}}'
+    LLM_PROVIDER: ${LLM_PROVIDER:-extractive}
+    EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-hash}
+    EMBEDDING_MODEL: ${EMBEDDING_MODEL:-nomic-embed-text}
+    EMBEDDING_DIMENSIONS: ${EMBEDDING_DIMENSIONS:-384}
+    MODEL_BASE_URL: ${MODEL_BASE_URL:-http://host.docker.internal:11434}
+    MODEL_API_KEY: ${MODEL_API_KEY:-}
+    MODEL_NAME: ${MODEL_NAME:-llama3.2}
+  volumes: ["uploads:/app/data"]
+  extra_hosts: ["host.docker.internal:host-gateway"]
+  depends_on:
+    postgres: {condition: service_healthy}
+    redis: {condition: service_healthy}
 services:
   postgres:
-    image: pgvector/pgvector:pg16
+    image: pgvector/pgvector:pg17
     environment:
-      POSTGRES_DB: litlens
       POSTGRES_USER: litlens
       POSTGRES_PASSWORD: litlens
-    ports: ["5432:5432"]
-    volumes: ["litlens_pgdata:/var/lib/postgresql/data"]
+      POSTGRES_DB: litlens
+    ports: ["127.0.0.1:55432:5432"]
+    volumes: ["postgres:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U litlens"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
   redis:
     image: redis:7-alpine
-    ports: ["6379:6379"]
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: ["127.0.0.1:56379:6379"]
+    volumes: ["redis:/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  migrate:
+    <<: *app
+    command: ["alembic", "upgrade", "head"]
   api:
-    build: .
-    env_file: .env
-    depends_on: [postgres, redis]
-    ports: ["8000:8000"]
-    command: uvicorn litlens.main:app --host 0.0.0.0 --port 8000
+    <<: *app
+    command: ["uvicorn", "litlens.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+  worker:
+    <<: *app
+    command: ["python", "-m", "litlens.worker"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
 volumes:
-  litlens_pgdata:
-
+  postgres:
+  redis:
+  uploads:
