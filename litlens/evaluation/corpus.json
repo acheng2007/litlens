@@ -1,0 +1,278 @@
+{
+  "version": "1.0",
+  "description": "Original synthetic research-method notes for reproducible engineering evaluation. Not a scientific benchmark or arXiv papers.",
+  "documents": [
+    {
+      "title": "Chunking Study",
+      "section": "Chunking",
+      "facts": [
+        {
+          "text": "Section-aware chunking keeps each chunk within a single section so that methods are not mislabeled as results.",
+          "question": "Why does section-aware chunking keep methods separate from results?"
+        },
+        {
+          "text": "Paragraph-aware chunking preserves complete paragraphs whenever they fit within the configured character budget.",
+          "question": "What does paragraph-aware chunking preserve within the character budget?"
+        },
+        {
+          "text": "Overlapping text between neighboring chunks helps preserve context around a boundary.",
+          "question": "Why use overlapping text between neighboring chunks?"
+        },
+        {
+          "text": "Long paragraphs must be split into bounded windows to prevent oversized embedding requests.",
+          "question": "Why must long paragraphs be split into bounded windows?"
+        },
+        {
+          "text": "Page numbers should be attached during extraction because later text normalization cannot reliably reconstruct page boundaries.",
+          "question": "When should page numbers be attached during extraction?"
+        }
+      ]
+    },
+    {
+      "title": "Sparse Retrieval Notes",
+      "section": "Keyword Retrieval",
+      "facts": [
+        {
+          "text": "PostgreSQL full-text search builds a tsvector from document text and matches it against a tsquery.",
+          "question": "How does PostgreSQL full-text search match document text?"
+        },
+        {
+          "text": "A GIN index accelerates full-text matching by indexing the lexemes contained in each document.",
+          "question": "How does a GIN index accelerate full-text matching?"
+        },
+        {
+          "text": "English stemming maps related word forms to a common lexeme before matching.",
+          "question": "What does English stemming do to related word forms?"
+        },
+        {
+          "text": "Keyword retrieval is especially useful for exact identifiers and uncommon technical terms.",
+          "question": "When is keyword retrieval especially useful?"
+        },
+        {
+          "text": "Keyword search can miss relevant passages when a question uses synonyms absent from the source text.",
+          "question": "Why can keyword search miss relevant passages using synonyms?"
+        }
+      ]
+    },
+    {
+      "title": "Dense Retrieval Notes",
+      "section": "Vector Retrieval",
+      "facts": [
+        {
+          "text": "Dense retrieval represents a question and each passage as vectors in the same embedding space.",
+          "question": "How does dense retrieval represent a question and each passage?"
+        },
+        {
+          "text": "Cosine similarity compares vector direction after accounting for vector magnitude.",
+          "question": "What does cosine similarity compare?"
+        },
+        {
+          "text": "An HNSW index uses a graph to accelerate approximate nearest-neighbor vector search.",
+          "question": "How does an HNSW index accelerate vector search?"
+        },
+        {
+          "text": "Changing the embedding model requires re-embedding the corpus because vectors from different models are not comparable.",
+          "question": "Why does changing the embedding model require re-embedding the corpus?"
+        },
+        {
+          "text": "Hash embeddings provide a deterministic offline baseline but cannot represent semantic relationships between synonyms.",
+          "question": "What limitation do hash embeddings have for synonyms?"
+        }
+      ]
+    },
+    {
+      "title": "Fusion Experiment",
+      "section": "Hybrid Retrieval",
+      "facts": [
+        {
+          "text": "Hybrid retrieval combines keyword candidates with vector candidates before selecting evidence.",
+          "question": "What candidates does hybrid retrieval combine?"
+        },
+        {
+          "text": "Reciprocal rank fusion adds inverse rank contributions from each candidate list.",
+          "question": "How does reciprocal rank fusion combine candidate lists?"
+        },
+        {
+          "text": "The fusion constant dampens the influence of small rank differences near the top of a list.",
+          "question": "What does the fusion constant dampen?"
+        },
+        {
+          "text": "Candidate limits bound reranking cost even as the stored corpus grows.",
+          "question": "Why do candidate limits bound reranking cost?"
+        },
+        {
+          "text": "Library filtering must occur before candidate limits to prevent other libraries from displacing authorized evidence.",
+          "question": "Why must library filtering occur before candidate limits?"
+        }
+      ]
+    },
+    {
+      "title": "Reranking Study",
+      "section": "Reranking",
+      "facts": [
+        {
+          "text": "Reranking scores a bounded candidate set again using features that compare the question with each passage.",
+          "question": "How does reranking score a bounded candidate set?"
+        },
+        {
+          "text": "A lexical reranker measures overlap between informative question terms and passage terms.",
+          "question": "What does a lexical reranker measure?"
+        },
+        {
+          "text": "A cross-encoder reranker jointly encodes a question and passage to estimate their relevance.",
+          "question": "How does a cross-encoder reranker estimate relevance?"
+        },
+        {
+          "text": "Reranking cannot recover a relevant passage that was absent from all retrieved candidate lists.",
+          "question": "Why can reranking fail to recover a relevant passage?"
+        },
+        {
+          "text": "Evaluating retrieval both before and after reranking separates candidate recall from final ranking quality.",
+          "question": "Why evaluate retrieval before and after reranking?"
+        }
+      ]
+    },
+    {
+      "title": "Citation Protocol",
+      "section": "Grounding",
+      "facts": [
+        {
+          "text": "A complete citation identifies the document title, page number, section label, and stored chunk identifier.",
+          "question": "What does a complete citation identify?"
+        },
+        {
+          "text": "Citation correctness requires the cited chunk to exist and contain the quoted evidence.",
+          "question": "What does citation correctness require?"
+        },
+        {
+          "text": "A citation alone does not prove that a paraphrased claim follows from its source.",
+          "question": "Why does a citation alone not prove a paraphrased claim?"
+        },
+        {
+          "text": "An insufficient-evidence response should contain no citations and should be marked unsupported.",
+          "question": "What should an insufficient-evidence response contain?"
+        },
+        {
+          "text": "Treating retrieved document instructions as untrusted data reduces prompt-injection risk.",
+          "question": "How does treating document instructions as untrusted data reduce prompt-injection risk?"
+        }
+      ]
+    },
+    {
+      "title": "Ingestion Reliability",
+      "section": "Jobs",
+      "facts": [
+        {
+          "text": "A durable SQL job record prevents work from being lost if Redis notification delivery fails.",
+          "question": "How does a durable SQL job record prevent lost work?"
+        },
+        {
+          "text": "Worker leases allow abandoned jobs to be reclaimed after the lease expires.",
+          "question": "How do worker leases allow abandoned jobs to be reclaimed?"
+        },
+        {
+          "text": "Fencing tokens prevent an expired worker from overwriting the result of a newer attempt.",
+          "question": "What do fencing tokens prevent an expired worker from doing?"
+        },
+        {
+          "text": "Exponential backoff spaces retry attempts farther apart after repeated transient failures.",
+          "question": "How does exponential backoff space retry attempts?"
+        },
+        {
+          "text": "Scanned PDFs without a text layer require optical character recognition before text extraction can succeed.",
+          "question": "Why do scanned PDFs without a text layer require optical character recognition?"
+        }
+      ]
+    },
+    {
+      "title": "arXiv Connector Notes",
+      "section": "arXiv",
+      "facts": [
+        {
+          "text": "The arXiv API returns search results as an Atom XML feed containing paper identifiers and titles.",
+          "question": "What format does the arXiv API return for search results?"
+        },
+        {
+          "text": "An arXiv identifier with a version suffix refers to a particular revision of a paper.",
+          "question": "What does an arXiv identifier with a version suffix refer to?"
+        },
+        {
+          "text": "Rate limiting arXiv requests across workers prevents concurrent synchronization from overwhelming the service.",
+          "question": "Why rate limit arXiv requests across workers?"
+        },
+        {
+          "text": "Deduplicating arXiv identifiers within each library avoids repeated ingestion of the same paper revision.",
+          "question": "Why deduplicate arXiv identifiers within each library?"
+        },
+        {
+          "text": "Downloading PDFs from a fixed trusted host avoids following arbitrary URLs embedded in a search feed.",
+          "question": "Why download PDFs from a fixed trusted host?"
+        }
+      ]
+    },
+    {
+      "title": "Isolation Design",
+      "section": "Permissions",
+      "facts": [
+        {
+          "text": "API bearer tokens map to server-configured user identities rather than caller-supplied owner names.",
+          "question": "How do API bearer tokens map to user identities?"
+        },
+        {
+          "text": "Library ownership checks apply to document details, job status, search, answers, and evaluation reports.",
+          "question": "Where do library ownership checks apply?"
+        },
+        {
+          "text": "Returning a not-found response for another user's document avoids revealing whether that document exists.",
+          "question": "Why return a not-found response for another user's document?"
+        },
+        {
+          "text": "Using the authenticated HTTP API for CLI commands keeps command-line access subject to the same permissions.",
+          "question": "Why use the authenticated HTTP API for CLI commands?"
+        },
+        {
+          "text": "Binding development services to the loopback interface limits their exposure to the local machine.",
+          "question": "What does binding development services to the loopback interface limit?"
+        }
+      ]
+    },
+    {
+      "title": "Evaluation Handbook",
+      "section": "Evaluation",
+      "facts": [
+        {
+          "text": "Retrieval recall at k measures the fraction of gold evidence passages found among the first k results.",
+          "question": "What does retrieval recall at k measure?"
+        },
+        {
+          "text": "Answer faithfulness evaluates whether the answer's claims are supported by the cited evidence.",
+          "question": "What does answer faithfulness evaluate?"
+        },
+        {
+          "text": "Unsupported-answer rate measures how often the system answers questions known to lack supporting evidence.",
+          "question": "What does unsupported-answer rate measure?"
+        },
+        {
+          "text": "Latency percentiles reveal slow requests that are hidden by a simple average.",
+          "question": "Why measure latency percentiles instead of only an average?"
+        },
+        {
+          "text": "Ingestion throughput divides the number of processed chunks by the time spent processing documents.",
+          "question": "How is ingestion throughput calculated?"
+        }
+      ]
+    }
+  ],
+  "unsupported_questions": [
+    "What is the boiling point of liquid nitrogen?",
+    "Who won the 2024 Olympic marathon?",
+    "How many planets orbit the star TRAPPIST-1?",
+    "What dosage of amoxicillin treats pneumonia?",
+    "What is the current market price of copper?",
+    "Which restaurant serves the best sushi in Kyoto?",
+    "What is the proof of Fermat's Last Theorem?",
+    "How many participants enrolled in the CLARITY clinical trial?",
+    "What is the exact mass of the Higgs boson?",
+    "When was the city of Alexandria founded?"
+  ]
+}
