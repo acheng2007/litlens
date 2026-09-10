@@ -1,14 +1,35 @@
+from pathlib import Path
+from typing import Literal
+
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
-    database_url: str = "sqlite:///./litlens.db"
-    redis_url: str = "redis://localhost:6379/0"
-    llm_provider: str = "local"
-    openai_base_url: str = "https://api.openai.com/v1"
-    openai_api_key: str | None = None
-    openai_model: str = "gpt-4o-mini"
-    embedding_dimensions: int = 384
+    database_url: str = "postgresql+psycopg://litlens:litlens@localhost:55432/litlens"
+    redis_url: str = "redis://localhost:56379/0"
+    api_tokens: dict[str, str] = {"local-dev-token": "local"}
+    data_dir: Path = Path("data")
+    llm_provider: Literal["extractive", "openai", "ollama"] = "extractive"
+    embedding_provider: Literal["hash", "openai", "ollama"] = "hash"
+    model_base_url: str = "http://localhost:11434"
+    model_api_key: str = ""
+    model_name: str = "llama3.2"
+    embedding_model: str = "nomic-embed-text"
+    embedding_dimensions: int = Field(384, ge=1, le=2000)
+    max_upload_bytes: int = 30 * 1024 * 1024
+    max_pdf_pages: int = 500
+    max_pdf_chars: int = 2_000_000
+    job_max_attempts: int = 3
+    job_lease_seconds: int = 900
+    retry_seconds: int = 5
+    evidence_threshold: float = 0.45
+
+    @property
+    def embedding_space(self) -> str:
+        model = "sha256-v1" if self.embedding_provider == "hash" else self.embedding_model
+        return f"{self.embedding_provider}:{model}:{self.embedding_dimensions}"
+
 
 settings = Settings()
-
