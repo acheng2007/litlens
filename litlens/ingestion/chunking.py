@@ -12,10 +12,20 @@ class TextChunk:
 
 
 def heading(text: str) -> bool:
-    return len(text) < 100 and "\n" not in text and (
-        text.isupper() or bool(re.match(
-            r"^(?:\d+(?:\.\d+)*\.?\s+\S|abstract$|introduction$|methods$|results$|discussion$|conclusions?$)",
-            text, re.I)))
+    return (
+        len(text) < 100
+        and "\n" not in text
+        and (
+            text.isupper()
+            or bool(
+                re.match(
+                    r"^(?:\d+(?:\.\d+)*\.?\s+\S|abstract$|introduction$|methods$|results$|discussion$|conclusions?$)",
+                    text,
+                    re.I,
+                )
+            )
+        )
+    )
 
 
 def chunk_pages(pages: list[tuple[int, str]], max_chars=1400, overlap=180) -> list[TextChunk]:
@@ -40,7 +50,7 @@ def chunk_pages(pages: list[tuple[int, str]], max_chars=1400, overlap=180) -> li
                 cut = current.rfind(" ", max_chars // 2, max_chars + 1)
                 cut = cut if cut > 0 else max_chars
                 result.append(TextChunk(current[:cut], page_no, section))
-                current = current[max(1, cut - overlap):].strip()
+                current = current[max(1, cut - overlap) :].strip()
         if current:
             result.append(TextChunk(current, page_no, section))
     return result

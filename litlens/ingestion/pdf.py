@@ -1,7 +1,9 @@
 from pathlib import Path
+
 import pymupdf
 
 from litlens.config import settings
+
 from .chunking import chunk_pages
 
 
@@ -17,8 +19,9 @@ def extract_pdf(path: str | Path):
             pages, chars = [], 0
             for number, page in enumerate(doc, 1):
                 # Blocks preserve paragraph boundaries that plain text extraction discards.
-                text = "\n\n".join(b[4].strip() for b in page.get_text("blocks", sort=True)
-                                    if b[6] == 0)
+                text = "\n\n".join(
+                    b[4].strip() for b in page.get_text("blocks", sort=True) if b[6] == 0
+                )
                 chars += len(text)
                 if chars > settings.max_pdf_chars:
                     raise InvalidPDF("PDF exceeds the extracted text limit")

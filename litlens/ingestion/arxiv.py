@@ -1,4 +1,5 @@
 """Bounded arXiv Atom search and PDF download from fixed, trusted hosts."""
+
 import re
 import time
 from dataclasses import dataclass
@@ -34,7 +35,9 @@ def parse_feed(content: bytes) -> list[Paper]:
     for entry in root.findall(f"{ATOM}entry"):
         url = urlparse(entry.findtext(f"{ATOM}id", ""))
         identifier = url.path.removeprefix("/abs/")
-        if url.hostname not in {"arxiv.org", "export.arxiv.org"} or not ARXIV_ID.fullmatch(identifier):
+        if url.hostname not in {"arxiv.org", "export.arxiv.org"} or not ARXIV_ID.fullmatch(
+            identifier
+        ):
             raise ValueError("Invalid arXiv identifier in feed")
         title = " ".join(entry.findtext(f"{ATOM}title", "").split())
         if not title:
@@ -47,7 +50,9 @@ def search_arxiv(query: str, max_results: int = 5) -> list[Paper]:
     throttle()
     params = {"max_results": min(max_results, 20), "start": 0}
     params["id_list" if ARXIV_ID.fullmatch(query) else "search_query"] = query
-    with httpx.Client(timeout=60, headers={"User-Agent": "LitLens/0.1 (local research tool)"}) as client:
+    with httpx.Client(
+        timeout=60, headers={"User-Agent": "LitLens/0.1 (local research tool)"}
+    ) as client:
         with client.stream("GET", "https://export.arxiv.org/api/query", params=params) as response:
             response.raise_for_status()
             content = bytearray()

@@ -25,5 +25,9 @@ def span(name, **fields):
         event(name + ".error", span_id=span_id, error_type=type(exc).__name__)
         raise
     finally:
-        event(name + ".end", span_id=span_id,
-              latency_ms=round((time.perf_counter() - started) * 1000, 2), **fields)
+        event(
+            name + ".end",
+            span_id=span_id,
+            latency_ms=round((time.perf_counter() - started) * 1000, 2),
+            **fields,
+        )

@@ -1,4 +1,5 @@
 from alembic import context
+
 from litlens.db.models import Base, engine
 
 with engine.connect() as connection:

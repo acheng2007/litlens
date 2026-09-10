@@ -1,13 +1,15 @@
-import pytest
 import pymupdf
-from litlens.ingestion.chunking import chunk_pages
-from litlens.ingestion.pdf import extract_pdf, InvalidPDF
+import pytest
+
 from litlens.ingestion.arxiv import parse_feed
+from litlens.ingestion.chunking import chunk_pages
+from litlens.ingestion.pdf import InvalidPDF, extract_pdf
 
 
 def test_sections_do_not_leak_backwards_and_continue_across_pages():
-    chunks = chunk_pages([(1, "METHODS\n\nFirst method.\n\nRESULTS\n\nNew result."),
-                          (2, "Continuation.")])
+    chunks = chunk_pages(
+        [(1, "METHODS\n\nFirst method.\n\nRESULTS\n\nNew result."), (2, "Continuation.")]
+    )
     assert [(c.section, c.page) for c in chunks] == [("METHODS", 1), ("RESULTS", 1), ("RESULTS", 2)]
 
 

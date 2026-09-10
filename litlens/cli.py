@@ -12,9 +12,11 @@ app.add_typer(ingest, name="ingest")
 
 
 def client():
-    return httpx.Client(base_url=os.getenv("LITLENS_API_URL", "http://localhost:8000"),
-                        headers={"Authorization": "Bearer " + os.getenv("LITLENS_API_TOKEN", "local-dev-token")},
-                        timeout=600)
+    return httpx.Client(
+        base_url=os.getenv("LITLENS_API_URL", "http://localhost:8000"),
+        headers={"Authorization": "Bearer " + os.getenv("LITLENS_API_TOKEN", "local-dev-token")},
+        timeout=600,
+    )
 
 
 def request(method, path, **kwargs):
@@ -61,9 +63,18 @@ def status(job_id: str | None = None):
 
 
 @app.command("search")
-def search_cmd(question: str, library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
-               mode: str = "hybrid"):
-    emit(request("POST", "/api/v1/search", json={"library_id": library_id, "query": question, "mode": mode}))
+def search_cmd(
+    question: str,
+    library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
+    mode: str = "hybrid",
+):
+    emit(
+        request(
+            "POST",
+            "/api/v1/search",
+            json={"library_id": library_id, "query": question, "mode": mode},
+        )
+    )
 
 
 @app.command()
@@ -78,19 +89,33 @@ def evaluate(library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID")):
 
 
 @ingest.command("pdf")
-def ingest_pdf(path: Path = typer.Argument(..., exists=True, dir_okay=False),
-               library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"), wait: bool = False):
+def ingest_pdf(
+    path: Path = typer.Argument(..., exists=True, dir_okay=False),
+    library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
+    wait: bool = False,
+):
     with path.open("rb") as file:
-        job = request("POST", "/api/v1/documents/upload", data={"library_id": library_id},
-                      files={"file": (path.name, file, "application/pdf")})
+        job = request(
+            "POST",
+            "/api/v1/documents/upload",
+            data={"library_id": library_id},
+            files={"file": (path.name, file, "application/pdf")},
+        )
     emit(wait_job(job["job_id"]) if wait else job)
 
 
 @ingest.command("arxiv")
-def ingest_arxiv(query: str, library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
-                 max_results: int = typer.Option(5, min=1, max=20), wait: bool = False):
-    job = request("POST", "/api/v1/documents/arxiv",
-                  json={"library_id": library_id, "query": query, "max_results": max_results})
+def ingest_arxiv(
+    query: str,
+    library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
+    max_results: int = typer.Option(5, min=1, max=20),
+    wait: bool = False,
+):
+    job = request(
+        "POST",
+        "/api/v1/documents/arxiv",
+        json={"library_id": library_id, "query": query, "max_results": max_results},
+    )
     emit(wait_job(job["job_id"]) if wait else job)
 
 
@@ -98,11 +123,20 @@ def ingest_arxiv(query: str, library_id: str = typer.Option(..., envvar="LITLENS
 def demo():
     """Seed ten original research-method notes as PDFs and print the library ID."""
     from litlens.evaluation.corpus import load_corpus, pdf_bytes
+
     library = request("POST", "/api/v1/libraries", json={"name": "LitLens evaluation corpus v1"})
     jobs = []
     for document in load_corpus()["documents"]:
-        jobs.append(request("POST", "/api/v1/documents/upload", data={"library_id": library["id"]},
-                            files={"file": (document["title"] + ".pdf", pdf_bytes(document), "application/pdf")}))
+        jobs.append(
+            request(
+                "POST",
+                "/api/v1/documents/upload",
+                data={"library_id": library["id"]},
+                files={
+                    "file": (document["title"] + ".pdf", pdf_bytes(document), "application/pdf")
+                },
+            )
+        )
     for job in jobs:
         wait_job(job["job_id"])
     emit(library)

@@ -2,8 +2,17 @@ from datetime import datetime, timezone
 from uuid import uuid4
 
 from pgvector.sqlalchemy import Vector
-from sqlalchemy import (JSON, DateTime, Float, ForeignKey, Integer, String, Text,
-                        UniqueConstraint, create_engine)
+from sqlalchemy import (
+    JSON,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+    create_engine,
+)
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 from litlens.config import settings
@@ -26,7 +35,9 @@ class Library(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uid)
     name: Mapped[str] = mapped_column(String(200))
     owner_id: Mapped[str] = mapped_column(String(200), index=True)
-    embedding_space: Mapped[str] = mapped_column(String(300), default=lambda: settings.embedding_space)
+    embedding_space: Mapped[str] = mapped_column(
+        String(300), default=lambda: settings.embedding_space
+    )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 
@@ -90,6 +101,7 @@ SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False
 def init_db():
     """Development helper. Production schema changes always run through Alembic."""
     from sqlalchemy import text
+
     with engine.begin() as connection:
         connection.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
     Base.metadata.create_all(engine)
