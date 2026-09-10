@@ -18,14 +18,22 @@ SYSTEM = (
 )
 
 
-def post(path: str, payload: dict):
-    headers = (
-        {"Authorization": f"Bearer {settings.model_api_key}"} if settings.model_api_key else {}
+def post(path: str, payload: dict, *, embedding=False):
+    base_url = (
+        settings.embedding_base_url
+        if embedding and settings.embedding_base_url
+        else settings.model_base_url
     )
+    api_key = (
+        settings.embedding_api_key
+        if embedding and settings.embedding_base_url
+        else settings.model_api_key
+    )
+    headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
     for attempt in range(3):
         try:
             response = httpx.post(
-                settings.model_base_url.rstrip("/") + path,
+                base_url.rstrip("/") + path,
                 headers=headers,
                 json=payload,
                 timeout=120,
@@ -71,8 +79,12 @@ class RemoteProvider:
             {
                 "model": settings.model_name,
                 "messages": messages,
-                "temperature": 0,
-                "max_tokens": 1000,
+                settings.completion_token_parameter: 1000,
+                **(
+                    {"temperature": settings.model_temperature}
+                    if settings.model_temperature is not None
+                    else {}
+                ),
             },
         )
         usage = data.get("usage", {})
@@ -85,7 +97,9 @@ class RemoteProvider:
 
 def remote_embeddings(texts):
     if settings.embedding_provider == "ollama":
-        return post("/api/embed", {"model": settings.embedding_model, "input": texts})["embeddings"]
+        return post(
+            "/api/embed", {"model": settings.embedding_model, "input": texts}, embedding=True
+        )["embeddings"]
     data = post(
         "/embeddings",
         {
@@ -93,5 +107,6 @@ def remote_embeddings(texts):
             "input": texts,
             "dimensions": settings.embedding_dimensions,
         },
+        embedding=True,
     )
     return [item["embedding"] for item in sorted(data["data"], key=lambda item: item["index"])]

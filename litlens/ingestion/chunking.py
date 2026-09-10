@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass
 
-CHUNKING_VERSION = "sections-v2"
+CHUNKING_VERSION = "sections-v3"
 
 
 @dataclass
@@ -35,6 +35,7 @@ def chunk_pages(pages: list[tuple[int, str]], max_chars=1400, overlap=180) -> li
     for page_no, raw in pages:
         current = ""
         for paragraph in filter(None, (p.strip() for p in re.split(r"\n\s*\n", raw))):
+            paragraph = re.sub(r"\s+", " ", paragraph).strip()
             if heading(paragraph):
                 if current:
                     result.append(TextChunk(current, page_no, section))

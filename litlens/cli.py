@@ -78,6 +78,13 @@ def search_cmd(
 
 
 @app.command()
+def retry(job_id: str, wait: bool = False):
+    """Retry a failed job after correcting its cause, preserving its failure history."""
+    job = request("POST", f"/api/v1/jobs/{job_id}/retry")
+    emit(wait_job(job["job_id"]) if wait else job)
+
+
+@app.command()
 def ask(question: str, library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID")):
     emit(request("POST", "/api/v1/answers", json={"library_id": library_id, "query": question}))
 
@@ -116,7 +123,12 @@ def ingest_arxiv(
         "/api/v1/documents/arxiv",
         json={"library_id": library_id, "query": query, "max_results": max_results},
     )
-    emit(wait_job(job["job_id"]) if wait else job)
+    if wait:
+        job = wait_job(job["job_id"])
+        for document_id in job["result"]["document_ids"]:
+            document = request("GET", f"/api/v1/documents/{document_id}")
+            wait_job(document["latest_job_id"])
+    emit(job)
 
 
 @app.command()

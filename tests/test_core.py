@@ -11,3 +11,6 @@ def test_embedding_is_deterministic_and_normalized():
     vector = embed("hybrid retrieval")
     assert vector == embed("hybrid retrieval")
     assert abs(cosine(vector, vector) - 1) < 1e-6
+    # Guard the persisted sha256-v1 embedding space against accidental algorithm drift.
+    assert [i for i, value in enumerate(vector) if value] == [34, 163]
+    assert vector[34] < 0 < vector[163]

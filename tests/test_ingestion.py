@@ -21,6 +21,18 @@ def test_long_paragraphs_bounded():
         chunk_pages([], 10, 10)
 
 
+def test_numbered_heading_split_over_lines():
+    chunks = chunk_pages(
+        [
+            (
+                2,
+                "1\nIntroduction\n\nThe Transformer relies on attention.\n\n2\nBackground\n\nEarlier models use recurrence.",
+            )
+        ]
+    )
+    assert [c.section for c in chunks] == ["1 Introduction", "2 Background"]
+
+
 def test_real_pdf_and_empty_pdf(tmp_path):
     path = tmp_path / "test.pdf"
     with pymupdf.open() as doc:

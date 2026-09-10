@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import func, select, text
 
 from litlens.api.dependencies import db, library_or_404, owner
+from litlens.api.limits import BodyLimit
 from litlens.api.schemas import (
     AnswerRequest,
     AnswerResponse,
@@ -37,6 +38,7 @@ app = FastAPI(
     version="1.0.0",
     description="Library-isolated research retrieval and verified, cited source quotations.",
 )
+app.add_middleware(BodyLimit)
 
 
 @app.middleware("http")
@@ -220,7 +222,17 @@ def get_document(document_id: str, session=Depends(db), user=Depends(owner)):
     count = session.scalar(
         select(func.count()).select_from(Chunk).where(Chunk.document_id == document.id)
     )
-    return {**DocumentView.model_validate(document).model_dump(), "chunks": count}
+    latest_job = session.scalar(
+        select(Job.id)
+        .where(Job.document_id == document_id)
+        .order_by(Job.created_at.desc())
+        .limit(1)
+    )
+    return {
+        **DocumentView.model_validate(document).model_dump(),
+        "chunks": count,
+        "latest_job_id": latest_job,
+    }
 
 
 def retrieve(payload, session, user):
@@ -274,6 +286,44 @@ def evaluations(
         .order_by(Evaluation.created_at.desc())
         .limit(limit)
     ).all()
+
+
+@app.post("/api/v1/jobs/{job_id}/retry", response_model=Enqueued, status_code=202)
+def retry_job(job_id: str, session=Depends(db), user=Depends(owner)):
+    failed = session.scalar(
+        select(Job).join(Library).where(Job.id == job_id, Library.owner_id == user)
+    )
+    if not failed:
+        raise HTTPException(404, "Job not found")
+    library_or_404(session, failed.library_id, user, lock=True)
+    if failed.status != "failed":
+        raise HTTPException(409, "Only failed jobs can be retried")
+    if failed.document_id:
+        document = session.get(Document, failed.document_id)
+        if document.status == "ready":
+            raise HTTPException(409, "Document is already ready")
+        active = session.scalar(
+            select(Job)
+            .where(
+                Job.document_id == failed.document_id,
+                Job.status.in_(["queued", "processing", "retrying"]),
+            )
+            .limit(1)
+        )
+        if active:
+            return {"job_id": active.id, "document_id": active.document_id, "status": active.status}
+        document.status = "queued"
+    job = Job(
+        library_id=failed.library_id,
+        document_id=failed.document_id,
+        kind=failed.kind,
+        payload=failed.payload,
+        trace_id=trace_id.get(),
+    )
+    session.add(job)
+    session.commit()
+    wake()
+    return {"job_id": job.id, "document_id": job.document_id, "status": job.status}
 
 
 @app.post("/api/v1/evaluations", response_model=EvaluationView, status_code=201)

@@ -13,6 +13,9 @@ x-app: &app
     MODEL_BASE_URL: ${MODEL_BASE_URL:-http://host.docker.internal:11434}
     MODEL_API_KEY: ${MODEL_API_KEY:-}
     MODEL_NAME: ${MODEL_NAME:-llama3.2}
+    COMPLETION_TOKEN_PARAMETER: ${COMPLETION_TOKEN_PARAMETER:-max_completion_tokens}
+    EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-}
+    EMBEDDING_API_KEY: ${EMBEDDING_API_KEY:-}
   volumes: ["uploads:/app/data"]
   extra_hosts: ["host.docker.internal:host-gateway"]
   depends_on:

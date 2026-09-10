@@ -16,13 +16,19 @@ class Settings(BaseSettings):
     model_base_url: str = "http://localhost:11434"
     model_api_key: str = ""
     model_name: str = "llama3.2"
+    completion_token_parameter: Literal["max_completion_tokens", "max_tokens"] = (
+        "max_completion_tokens"
+    )
+    model_temperature: float | None = None
+    embedding_base_url: str = ""
+    embedding_api_key: str = ""
     embedding_model: str = "nomic-embed-text"
     embedding_dimensions: int = Field(384, ge=1, le=2000)
     max_upload_bytes: int = 30 * 1024 * 1024
     max_pdf_pages: int = 500
     max_pdf_chars: int = 2_000_000
     job_max_attempts: int = 3
-    job_lease_seconds: int = 900
+    job_lease_seconds: int = Field(900, ge=60)
     retry_seconds: int = 5
     evidence_threshold: float = 0.45
 

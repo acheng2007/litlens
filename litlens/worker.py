@@ -9,6 +9,7 @@ from pathlib import Path
 import httpx
 from redis import Redis, RedisError
 from sqlalchemy import delete, select, update
+from sqlalchemy.exc import OperationalError
 
 from litlens.config import settings
 from litlens.db.models import Chunk, Document, Job, Library, SessionLocal, now, uid
@@ -73,9 +74,9 @@ def renew(job):
 def heartbeat(stop, worker_id, job=None):
     while not stop.is_set():
         try:
-            redis_client().set(f"litlens:worker:{worker_id}", "alive", ex=60)
             if job:
                 renew(job)
+            redis_client().set(f"litlens:worker:{worker_id}", "alive", ex=60)
         except Exception as exc:
             event("worker.heartbeat_error", error_type=type(exc).__name__)
         stop.wait(15)
@@ -178,7 +179,7 @@ def process(job):
                 )
             wake()
     except Exception as exc:
-        retryable = isinstance(exc, (httpx.TransportError, RedisError, OSError))
+        retryable = isinstance(exc, (httpx.TransportError, RedisError, OSError, OperationalError))
         if isinstance(exc, httpx.HTTPStatusError):
             retryable = exc.response.status_code in {408, 429, 500, 502, 503, 504}
         with SessionLocal.begin() as session:

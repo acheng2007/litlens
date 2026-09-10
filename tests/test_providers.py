@@ -35,6 +35,9 @@ def test_generation_adapters(monkeypatch, provider, path, payload):
     result = RemoteProvider().generate("question")
     assert result.input_tokens == 4 and result.output_tokens == 2
     assert b'"role":"system"' in route.calls[0].request.content
+    if provider == "openai":
+        assert b'"max_completion_tokens":1000' in route.calls[0].request.content
+        assert b'"temperature"' not in route.calls[0].request.content
 
 
 @respx.mock

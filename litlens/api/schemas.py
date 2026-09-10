@@ -59,6 +59,7 @@ class DocumentView(BaseModel):
 
 class DocumentDetail(DocumentView):
     chunks: int
+    latest_job_id: str | None
 
 
 class JobView(BaseModel):

@@ -1,0 +1,19 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start stack
+        run: docker compose up --build -d --wait
+      - name: Lint and test with isolated PostgreSQL database
+        run: |
+          docker compose exec -T api ruff check litlens tests migrations
+          docker compose exec -T -e LITLENS_INTEGRATION=1 -e LITLENS_LIVE=1 api pytest -q
+      - name: Service logs
+        if: always()
+        run: docker compose logs --no-color --tail 100
+      - name: Stop services
+        if: always()
+        run: docker compose down
