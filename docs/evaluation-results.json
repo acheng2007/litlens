@@ -1,0 +1,167 @@
+{
+  "id": "b492cb23-2b40-46bc-94ad-729cb0080e21",
+  "library_id": "9628961a-d2d1-4793-8985-3f9021ba8614",
+  "created_at": "2026-09-10T15:51:32.600669Z",
+  "metrics": {
+    "dataset_version": "1.0",
+    "questions": 60,
+    "corpus_sha256": "0b8015a382114a9d0f9ef78d3f750577b92facec1db715845d60e9db9adfac9f",
+    "embedding_space": "hash:sha256-v1:384",
+    "provider": "extractive",
+    "model": null,
+    "prompt_version": "evidence-quotes-v1",
+    "chunking_version": "sections-v3",
+    "python": "3.12.14",
+    "modes": {
+      "vector": {
+        "recall_at_5": 1.0,
+        "reranked_recall_at_5": 1.0,
+        "mrr_at_5": 0.98,
+        "citation_correctness": 1.0,
+        "quote_faithfulness": 1.0,
+        "citation_count": 50,
+        "unsupported_answer_rate": 0.0,
+        "false_refusal_rate": 0.0,
+        "latency_p50_ms": 3.769542003283277,
+        "latency_p95_ms": 4.558707994874567,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cases": []
+      },
+      "keyword": {
+        "recall_at_5": 0.84,
+        "reranked_recall_at_5": 0.84,
+        "mrr_at_5": 0.84,
+        "citation_correctness": 1.0,
+        "quote_faithfulness": 1.0,
+        "citation_count": 42,
+        "unsupported_answer_rate": 0.0,
+        "false_refusal_rate": 0.16,
+        "latency_p50_ms": 1.3908749970141798,
+        "latency_p95_ms": 2.0912920008413494,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cases": [
+          {
+            "query": "Why does section-aware chunking keep methods separate from results?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "402dfca7-109d-4594-97e2-b33f8af21c25"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 10.02
+          },
+          {
+            "query": "Why use overlapping text between neighboring chunks?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "2a7e774a-de34-485c-ac0b-35bc2dfd6135"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 1.34
+          },
+          {
+            "query": "What limitation do hash embeddings have for synonyms?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "c67a6b8e-28a1-4792-8d06-7fad1e920388"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 0.78
+          },
+          {
+            "query": "How does reciprocal rank fusion combine candidate lists?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "bd08b888-6d41-4c95-8cd2-bb89dffce0b4"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 0.73
+          },
+          {
+            "query": "Why can reranking fail to recover a relevant passage?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "6b8a2db1-1f46-4aa9-90b8-9a550442a455"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 0.83
+          },
+          {
+            "query": "What format does the arXiv API return for search results?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "3246d282-7efc-4959-959a-23ae18a137a5"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 0.77
+          },
+          {
+            "query": "Why measure latency percentiles instead of only an average?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "dff2d72a-4f13-4637-9708-fd6470f1f61c"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 0.78
+          },
+          {
+            "query": "How is ingestion throughput calculated?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "5b76d064-95f8-4a41-952e-a304f1a195f3"
+            ],
+            "retrieved_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "latency_ms": 0.73
+          }
+        ]
+      },
+      "hybrid": {
+        "recall_at_5": 1.0,
+        "reranked_recall_at_5": 1.0,
+        "mrr_at_5": 1.0,
+        "citation_correctness": 1.0,
+        "quote_faithfulness": 1.0,
+        "citation_count": 50,
+        "unsupported_answer_rate": 0.0,
+        "false_refusal_rate": 0.0,
+        "latency_p50_ms": 3.9104580064304173,
+        "latency_p95_ms": 4.506958001002204,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cases": []
+      }
+    },
+    "ingestion": {
+      "completed_documents": 10,
+      "chunks_per_processing_second": 790.9332474125292,
+      "retry_rate": 0.0,
+      "retry_attempts": 0,
+      "failed_jobs": 0
+    }
+  }
+}
