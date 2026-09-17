@@ -24,6 +24,17 @@ class Claims(BaseModel):
     claims: list[Claim] = Field(max_length=3)
 
 
+class SynthesizedClaim(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True, str_strip_whitespace=True)
+    text: str = Field(min_length=1, max_length=2000, pattern=r"^[^\[\]]+$")
+    evidence: list[Claim] = Field(min_length=1, max_length=5)
+
+
+class Synthesis(BaseModel):
+    model_config = ConfigDict(extra="forbid", strict=True)
+    claims: list[SynthesizedClaim] = Field(max_length=5)
+
+
 def provider():
     return LocalProvider() if settings.llm_provider == "extractive" else RemoteProvider()
 
@@ -33,6 +44,10 @@ def normalize(text):
 
 
 def answer(question, hits):
+    synthesis = settings.answer_mode == "synthesis"
+    if synthesis and settings.llm_provider == "extractive":
+        raise ValueError("Synthesis requires LLM_PROVIDER=ollama or openai")
+    prompt_version = "evidence-synthesis-v1" if synthesis else PROMPT_VERSION
     usage = {"input_tokens": 0, "output_tokens": 0}
     result = {
         "answer": REFUSAL,
@@ -40,9 +55,10 @@ def answer(question, hits):
         "supported": False,
         "usage": usage,
         "reason": "insufficient_evidence",
-        "prompt_version": PROMPT_VERSION,
+        "prompt_version": prompt_version,
     }
-    hits = [h for h in hits if h.score >= settings.evidence_threshold]
+    # Lexical overlap is not a semantic sufficiency test for paraphrased questions.
+    hits = list(hits) if synthesis else [h for h in hits if h.score >= settings.evidence_threshold]
     if not hits:
         return result
     prompt = json.dumps(
@@ -51,10 +67,12 @@ def answer(question, hits):
             "sources": [{"source": i, "text": h.chunk.text} for i, h in enumerate(hits, 1)],
         }
     )
-    with span("generation", provider=settings.llm_provider, prompt_version=PROMPT_VERSION):
+    with span("generation", provider=settings.llm_provider, prompt_version=prompt_version):
         generated = provider().generate(prompt)
         usage.update(input_tokens=generated.input_tokens, output_tokens=generated.output_tokens)
         event("generation.usage", **usage)
+        if synthesis:
+            return synthesis_result(generated.text, hits, result)
         try:
             claims = Claims.model_validate_json(generated.text).claims
         except (ValidationError, ValueError):
@@ -98,3 +116,45 @@ def answer(question, hits):
             "supported": True,
             "reason": "verified_source_quotes",
         }
+
+
+def synthesis_result(output, hits, result):
+    """Verify citation provenance; this does not prove semantic entailment."""
+    try:
+        claims = Synthesis.model_validate_json(output).claims
+    except (ValidationError, ValueError):
+        return {**result, "reason": "invalid_provider_output"}
+    if not claims:
+        return result
+    citations, paragraphs = [], []
+    for claim in claims:
+        markers = []
+        for evidence in claim.evidence:
+            if evidence.source > len(hits):
+                return {**result, "reason": "invalid_citation"}
+            hit = hits[evidence.source - 1]
+            quote = normalize(evidence.quote)
+            if len(quote) < 20 or quote not in normalize(hit.chunk.text):
+                return {**result, "reason": "unverified_claim"}
+            marker = f"[{len(citations) + 1}]"
+            markers.append(marker)
+            citations.append(
+                {
+                    "marker": marker,
+                    "source": hit.citation,
+                    "title": hit.document.title,
+                    "document_id": hit.document.id,
+                    "chunk_id": hit.chunk.id,
+                    "page": hit.chunk.page,
+                    "section": hit.chunk.section,
+                    "quote": quote,
+                }
+            )
+        paragraphs.append(f"{claim.text} {' '.join(markers)}")
+    return {
+        **result,
+        "answer": "\n\n".join(paragraphs),
+        "citations": citations,
+        "supported": True,
+        "reason": "generated_answer_with_verified_quotes",
+    }

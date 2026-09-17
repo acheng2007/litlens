@@ -1,7 +1,13 @@
+[← Overview](../README.md) · [Demo](demo.md) · [Setup](setup.md) · [API](api.md) · [Architecture](architecture.md) · [Evaluation](evaluation.md)
+
 # Architecture
 
 The API and CLI are transport layers over independent ingestion, retrieval, generation, and evaluation modules.
 The CLI calls the API and never opens the database directly.
+
+[Data and retrieval](#data-and-retrieval) · [Jobs and recovery](#jobs-and-recovery) · [Grounding](#grounding-contract) · [Observability](#evaluation-and-observability) · [Scaling](#scaling-boundaries)
+
+## System map
 
 ```mermaid
 flowchart LR
@@ -24,6 +30,15 @@ flowchart LR
 ```
 
 ## Data and retrieval
+
+| Module | Responsibility |
+| --- | --- |
+| `api/` and `cli.py` | Authenticated HTTP contract and terminal client |
+| `ingestion/` and `worker.py` | PDF parsing, chunking, arXiv discovery, and durable jobs |
+| `retrieval/` | Embeddings, scoped keyword/vector search, and reranking |
+| `providers/` and `generation/` | Provider adapters, evidence selection, and citation validation |
+| `evaluation/` | Seeded corpus, regression metrics, and stored reports |
+| `db/` and `migrations/` | Persistence models, schema, and indexes |
 
 Libraries have server-assigned owners and a recorded embedding-space fingerprint.
 Documents are unique by library and source key: uploaded byte hash or versioned arXiv identifier.
@@ -78,18 +93,24 @@ There is no periodic scheduler in this release; external scheduling can submit t
 The evidence provider receives a JSON question and numbered source chunks.
 Remote providers also receive a system message identifying source text as untrusted data.
 The deterministic provider chooses a source sentence by lexical relevance.
-Remote providers return a small structured list of source numbers and exact quotations.
+In default quotation mode, remote providers return a small structured list of source numbers and exact quotations.
 The generation module accepts only complete sentences present in the referenced stored chunk and above the lexical evidence threshold.
 It constructs all citation fields itself and returns no citations when any claim fails verification.
 
 This contract prevents the API from presenting invented text as a verified source quote.
 It does not establish truth, semantic sufficiency, or entailment for arbitrary research questions.
-Future synthesis should be introduced as a separately evaluated generation policy with explicit entailment checks rather than silently weakening the quote validator.
+Experimental `ANSWER_MODE=synthesis` uses a separate structured contract: generated claims plus exact evidence passages.
+Its validator checks citation provenance but does not establish semantic entailment.
+It bypasses the lexical evidence threshold while preserving retrieval ranking, and requires a remote model provider.
+The original quotation validator remains unchanged.
+See [configuration and limitations](setup.md#experimental-rag-synthesis); independent support checks and live quality evaluation remain pending.
 Provider failures return an upstream error instead of being mislabeled as insufficient corpus evidence.
 
 ## Evaluation and observability
 
-The corpus fixture has ten five-page PDFs, one fact and one question per page, plus ten unsupported questions.
+The synthetic corpus fixture has ten five-page PDFs, one fact and one question per page, plus ten unsupported questions.
+The separate [real-paper dataset](real-paper-evaluation.md) uses six checksum-pinned PDFs, 26 evidence labels, and 36 questions.
+Its resolver matches uploaded document hashes, PDF page indices, and short anchors, treating overlapping chunks as alternatives for each evidence label.
 Each retrieval mode is evaluated both before and after reranking.
 Evaluation stores per-question gold IDs, retrieved IDs, emitted citation IDs, support decisions, and timings in PostgreSQL.
 The checked-in report includes aggregate metrics and mismatched support decisions; complete cases remain available from the API.
@@ -103,6 +124,15 @@ Generation logs include provider-reported input and output token counts; extract
 No model credentials or document bodies are deliberately included in application stage logs.
 Readiness verifies dependency connectivity, migration revision, embedding dimensions, and a recent worker heartbeat.
 It does not call a paid model API or guarantee that an external model is loaded.
+
+Inspect API and worker logs from the project root:
+
+```bash
+docker compose logs -f api worker
+```
+
+`X-Request-ID` connects API submissions with background job logs.
+These are structured log traces; this release does not include an OpenTelemetry collector or dashboard.
 
 ## Scaling boundaries
 

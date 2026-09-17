@@ -1,7 +1,22 @@
+[← Overview](../README.md) · [Demo](demo.md) · [Setup](setup.md) · [API](api.md) · [Architecture](architecture.md) · [Evaluation](evaluation.md)
+
 # Demo walkthrough
 
-Start the stack and run `docker compose exec api litlens demo`.
+Go from an empty stack to a cited answer, then try a question the corpus cannot answer.
+The default demo runs without model credentials.
+
+## 1. Start and seed
+
+Run from the project root:
+
+```bash
+docker compose up --build -d --wait
+docker compose exec api litlens demo
+```
+
 Use the returned library ID with the commands below.
+
+## 2. Ask for evidence
 
 ```bash
 docker compose exec api litlens ask "What candidates does hybrid retrieval combine?" --library-id LIBRARY_ID
@@ -25,11 +40,15 @@ The demo returns:
 
 This shortened example omits other response fields; the API returns document ID, source description, quotation, usage, policy version, and reason too.
 
+## 3. Check an unsupported question
+
 ```bash
 docker compose exec api litlens ask "What is the mass of Jupiter?" --library-id LIBRARY_ID
 ```
 
 Expected behavior is the explicit insufficient-evidence response with `supported: false` and `citations: []`.
+
+## 4. Import a real paper
 
 For a real paper, create a separate library so the evaluation corpus stays unchanged:
 
@@ -45,3 +64,12 @@ Re-ingest into a new library after chunking changes so stored metadata reflects 
 
 Provider adapters are additionally checked with controlled HTTP responses for hosted chat, hosted embeddings, Ollama chat, Ollama embeddings, usage accounting, invalid dimensions, authentication failures, and transient retries.
 Live hosted or Ollama model generation is not included in the recorded default-provider benchmark.
+
+## Next steps
+
+| Try | Guide |
+| --- | --- |
+| Compare vector, keyword, and hybrid retrieval | [Run the benchmark](evaluation.md#reproduce-the-benchmark) |
+| Upload your own PDF or inspect ingestion jobs | [API examples](api.md#api-examples) |
+| Configure Ollama or a hosted provider | [Provider setup](setup.md#providers) |
+| Understand why a quotation is accepted | [Grounding contract](architecture.md#grounding-contract) |

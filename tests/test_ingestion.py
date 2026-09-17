@@ -54,3 +54,43 @@ def test_arxiv_parser():
     assert parse_feed(feed)[0].arxiv_id == "1706.03762v7"
     with pytest.raises(ValueError):
         parse_feed(feed.replace(b"arxiv.org", b"evil.example"))
+
+
+def test_extraction_handles_math_glyphs_nul_and_punctuation(monkeypatch):
+    from litlens.retrieval.embeddings import embed_many
+
+    class Page:
+        def get_text(self, *args, **kwargs):
+            return [
+                (0, 0, 0, 0, text, 0, 0)
+                for text in [
+                    "Abstract",
+                    "A ﬁnding\x00with mathematical 𝑥 and ℎ.",
+                ]
+            ]
+
+    class NoisePage(Page):
+        def get_text(self, *args, **kwargs):
+            return [(0, 0, 0, 0, "... !", 0, 0)]
+
+    class PDF:
+        is_pdf, needs_pass = True, False
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            pass
+
+        def __len__(self):
+            return 2
+
+        def __iter__(self):
+            return iter([Page(), NoisePage()])
+
+    monkeypatch.setattr(pymupdf, "open", lambda _: PDF())
+    chunks = extract_pdf("unused.pdf")
+    assert len(chunks) == 1
+    assert chunks[0].text == "A finding with mathematical x and h."
+    assert chunks[0].page == 1
+    assert len(embed_many([c.text for c in chunks])) == 1

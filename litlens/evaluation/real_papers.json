@@ -1,0 +1,597 @@
+{
+  "id": "real-papers",
+  "version": "1.0.0",
+  "annotation": {
+    "method": "Source-checked by the implementing agent against pinned PDF pages; independently authored questions and reference summaries, not generated from retrieval outputs.",
+    "independent_human_review": false,
+    "page_convention": "One-based PDF page index, including front matter.",
+    "scope": "Six machine-learning papers across NLP, retrieval, context evaluation, state-space modeling, and computer vision. Not a cross-discipline scientific benchmark."
+  },
+  "documents": [
+    {
+      "id": "attention",
+      "arxiv_id": "1706.03762v7",
+      "title": "Attention Is All You Need",
+      "pdf_url": "https://arxiv.org/pdf/1706.03762v7",
+      "source_url": "https://arxiv.org/abs/1706.03762v7",
+      "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+      "pages": 15
+    },
+    {
+      "id": "bert",
+      "arxiv_id": "1810.04805v2",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "pdf_url": "https://arxiv.org/pdf/1810.04805v2",
+      "source_url": "https://arxiv.org/abs/1810.04805v2",
+      "sha256": "5692a5514787a8c6727b4ff3b726a3385798bc68e12138d1d4af83947e2acf6e",
+      "pages": 16
+    },
+    {
+      "id": "rag",
+      "arxiv_id": "2005.11401v4",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "pdf_url": "https://arxiv.org/pdf/2005.11401v4",
+      "source_url": "https://arxiv.org/abs/2005.11401v4",
+      "sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+      "pages": 19
+    },
+    {
+      "id": "middle",
+      "arxiv_id": "2307.03172v3",
+      "title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "pdf_url": "https://arxiv.org/pdf/2307.03172v3",
+      "source_url": "https://arxiv.org/abs/2307.03172v3",
+      "sha256": "653b29619eae2ae4b361d7bdcdc06db4bedcb1b0eabe31814036beca8c1af0b1",
+      "pages": 18
+    },
+    {
+      "id": "mamba",
+      "arxiv_id": "2312.00752v2",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "pdf_url": "https://arxiv.org/pdf/2312.00752v2",
+      "source_url": "https://arxiv.org/abs/2312.00752v2",
+      "sha256": "adf70ed1803c85b1899dec3e21f3af0b124411439e8654b840ea65f7b9f52b2e",
+      "pages": 36
+    },
+    {
+      "id": "resnet",
+      "arxiv_id": "1512.03385v1",
+      "title": "Deep Residual Learning for Image Recognition",
+      "pdf_url": "https://arxiv.org/pdf/1512.03385v1",
+      "source_url": "https://arxiv.org/abs/1512.03385v1",
+      "sha256": "1e0651b6810ecba34a3dbc5b5b0209226f889004607c1f203540a48d64e5a93a",
+      "pages": 12
+    }
+  ],
+  "evidence": [
+    {
+      "id": "attention-1",
+      "document": "attention",
+      "page": 2,
+      "anchor": "relying entirely on",
+      "section": "1 Introduction"
+    },
+    {
+      "id": "attention-2",
+      "document": "attention",
+      "page": 5,
+      "anchor": "different representation subspaces",
+      "section": "3.2.2 Multi-Head Attention"
+    },
+    {
+      "id": "attention-3",
+      "document": "attention",
+      "page": 6,
+      "anchor": "sine and cosine",
+      "section": "3.5 Positional Encoding"
+    },
+    {
+      "id": "attention-4",
+      "document": "attention",
+      "page": 6,
+      "anchor": "nearly identical results",
+      "section": "3.5 Positional Encoding"
+    },
+    {
+      "id": "bert-1",
+      "document": "bert",
+      "page": 1,
+      "anchor": "left and right context",
+      "section": "Abstract"
+    },
+    {
+      "id": "bert-2",
+      "document": "bert",
+      "page": 4,
+      "anchor": "15% of all WordPiece",
+      "section": "3.1 Pre-training BERT"
+    },
+    {
+      "id": "bert-3",
+      "document": "bert",
+      "page": 4,
+      "anchor": "segment, and position embeddings",
+      "section": "Input/Output Representations"
+    },
+    {
+      "id": "bert-4",
+      "document": "bert",
+      "page": 4,
+      "anchor": "50% of the time",
+      "section": "Task #2: Next Sentence Prediction"
+    },
+    {
+      "id": "rag-1",
+      "document": "rag",
+      "page": 1,
+      "anchor": "vector index of Wikipedia",
+      "section": "Abstract"
+    },
+    {
+      "id": "rag-2",
+      "document": "rag",
+      "page": 3,
+      "anchor": "same retrieved document",
+      "section": "2.1 Models"
+    },
+    {
+      "id": "rag-3",
+      "document": "rag",
+      "page": 3,
+      "anchor": "different latent document",
+      "section": "2.1 Models"
+    },
+    {
+      "id": "rag-4",
+      "document": "rag",
+      "page": 3,
+      "anchor": "400M parameters",
+      "section": "2.3 Generator: BART"
+    },
+    {
+      "id": "middle-1",
+      "document": "middle",
+      "page": 1,
+      "anchor": "beginning or end",
+      "section": "Abstract"
+    },
+    {
+      "id": "middle-2",
+      "document": "middle",
+      "page": 6,
+      "anchor": "randomly-generated UUIDs",
+      "section": "3.1 Experimental Setup"
+    },
+    {
+      "id": "middle-3",
+      "document": "middle",
+      "page": 6,
+      "anchor": "75, 140, and 300",
+      "section": "3.2 Results and Discussion"
+    },
+    {
+      "id": "middle-4",
+      "document": "middle",
+      "page": 2,
+      "anchor": "but minimally",
+      "section": "1 Introduction"
+    },
+    {
+      "id": "mamba-1",
+      "document": "mamba",
+      "page": 1,
+      "anchor": "without attention or even",
+      "section": "Abstract"
+    },
+    {
+      "id": "mamba-2",
+      "document": "mamba",
+      "page": 2,
+      "anchor": "parameterizing the SSM",
+      "section": "Selection Mechanism"
+    },
+    {
+      "id": "mamba-3",
+      "document": "mamba",
+      "page": 2,
+      "anchor": "5× generation throughput",
+      "section": "Language Modeling"
+    },
+    {
+      "id": "mamba-4",
+      "document": "mamba",
+      "page": 8,
+      "anchor": "reset their state",
+      "section": "3.5.2 Interpretation of Selection Mechanisms"
+    },
+    {
+      "id": "resnet-1",
+      "document": "resnet",
+      "page": 2,
+      "anchor": "neither extra parameter",
+      "section": "1 Introduction"
+    },
+    {
+      "id": "resnet-2",
+      "document": "resnet",
+      "page": 7,
+      "anchor": "4.49%",
+      "section": "4.1 ImageNet Classification"
+    },
+    {
+      "id": "resnet-3",
+      "document": "resnet",
+      "page": 7,
+      "anchor": "3.57%",
+      "section": "4.1 ImageNet Classification"
+    },
+    {
+      "id": "resnet-4",
+      "document": "resnet",
+      "page": 1,
+      "anchor": "not caused by",
+      "section": "1 Introduction"
+    },
+    {
+      "id": "resnet-5",
+      "document": "resnet",
+      "page": 7,
+      "anchor": "accuracy gains",
+      "section": "4.1 ImageNet Classification"
+    },
+    {
+      "id": "mamba-5",
+      "document": "mamba",
+      "page": 2,
+      "anchor": "up to sequence length",
+      "section": "1 Introduction"
+    }
+  ],
+  "questions": [
+    {
+      "id": "attention-1",
+      "category": "paraphrase",
+      "query": "What mechanism replaces recurrence in the Transformer architecture?",
+      "expected_supported": true,
+      "evidence": [
+        "attention-1"
+      ],
+      "reference_answer": "Attention connects input and output globally."
+    },
+    {
+      "id": "attention-2",
+      "category": "paraphrase",
+      "query": "Why use several attention heads rather than one?",
+      "expected_supported": true,
+      "evidence": [
+        "attention-2"
+      ],
+      "reference_answer": "Heads capture different subspaces and positions; a single head averages them."
+    },
+    {
+      "id": "attention-3",
+      "category": "paraphrase",
+      "query": "How does the Transformer represent token order without recurrent layers?",
+      "expected_supported": true,
+      "evidence": [
+        "attention-3"
+      ],
+      "reference_answer": "It adds sinusoidal position vectors to token embeddings."
+    },
+    {
+      "id": "attention-4",
+      "category": "qualification",
+      "query": "Did learned position embeddings clearly outperform sinusoidal ones in the Transformer experiments?",
+      "expected_supported": true,
+      "evidence": [
+        "attention-4"
+      ],
+      "reference_answer": "No; the reported results were approximately equal."
+    },
+    {
+      "id": "bert-1",
+      "category": "paraphrase",
+      "query": "Which directions of context does BERT use during pretraining?",
+      "expected_supported": true,
+      "evidence": [
+        "bert-1"
+      ],
+      "reference_answer": "Both directions jointly throughout the network."
+    },
+    {
+      "id": "bert-2",
+      "category": "paraphrase",
+      "query": "What fraction of token positions are selected for BERT's masked prediction objective?",
+      "expected_supported": true,
+      "evidence": [
+        "bert-2"
+      ],
+      "reference_answer": "Fifteen percent."
+    },
+    {
+      "id": "bert-3",
+      "category": "paraphrase",
+      "query": "Which components are added to construct a BERT token's input representation?",
+      "expected_supported": true,
+      "evidence": [
+        "bert-3"
+      ],
+      "reference_answer": "Token, segment, and position vectors."
+    },
+    {
+      "id": "bert-4",
+      "category": "qualification",
+      "query": "How are positive and negative next-sentence examples balanced in BERT?",
+      "expected_supported": true,
+      "evidence": [
+        "bert-4"
+      ],
+      "reference_answer": "Half use the following sentence; half use a random sentence."
+    },
+    {
+      "id": "rag-1",
+      "category": "paraphrase",
+      "query": "Where does the RAG paper keep its external knowledge?",
+      "expected_supported": true,
+      "evidence": [
+        "rag-1"
+      ],
+      "reference_answer": "In a dense index built from Wikipedia."
+    },
+    {
+      "id": "rag-2",
+      "category": "paraphrase",
+      "query": "Can RAG-Sequence change its retrieved document for each output token?",
+      "expected_supported": true,
+      "evidence": [
+        "rag-2"
+      ],
+      "reference_answer": "No; a document conditions the whole output sequence before marginalization."
+    },
+    {
+      "id": "rag-3",
+      "category": "paraphrase",
+      "query": "How does RAG-Token differ in its choice of evidence while generating?",
+      "expected_supported": true,
+      "evidence": [
+        "rag-3"
+      ],
+      "reference_answer": "It can use a different document at each token."
+    },
+    {
+      "id": "rag-4",
+      "category": "qualification",
+      "query": "Which generator and parameter count were used in the RAG experiments?",
+      "expected_supported": true,
+      "evidence": [
+        "rag-4"
+      ],
+      "reference_answer": "BART-large with 400 million parameters."
+    },
+    {
+      "id": "middle-1",
+      "category": "paraphrase",
+      "query": "Where is relevant information easiest for models to use in Lost in the Middle?",
+      "expected_supported": true,
+      "evidence": [
+        "middle-1"
+      ],
+      "reference_answer": "Often near either edge; middle placement hurts."
+    },
+    {
+      "id": "middle-2",
+      "category": "paraphrase",
+      "query": "How did the key-value retrieval task reduce dependence on language meaning?",
+      "expected_supported": true,
+      "evidence": [
+        "middle-2"
+      ],
+      "reference_answer": "It used random UUID keys and values."
+    },
+    {
+      "id": "middle-3",
+      "category": "paraphrase",
+      "query": "Which key-value pair counts were tested in Lost in the Middle?",
+      "expected_supported": true,
+      "evidence": [
+        "middle-3"
+      ],
+      "reference_answer": "Seventy-five, 140, and 300, each with 500 examples."
+    },
+    {
+      "id": "middle-4",
+      "category": "qualification",
+      "query": "Does placing the query on both sides of the context help both tasks equally in Lost in the Middle?",
+      "expected_supported": true,
+      "evidence": [
+        "middle-4"
+      ],
+      "reference_answer": "No; it helps key-value retrieval substantially but changes multi-document QA trends little."
+    },
+    {
+      "id": "mamba-1",
+      "category": "paraphrase",
+      "query": "Does Mamba require attention blocks in its architecture?",
+      "expected_supported": true,
+      "evidence": [
+        "mamba-1"
+      ],
+      "reference_answer": "No; its core is a selective state-space architecture."
+    },
+    {
+      "id": "mamba-2",
+      "category": "paraphrase",
+      "query": "How does Mamba make selection depend on the current input?",
+      "expected_supported": true,
+      "evidence": [
+        "mamba-2"
+      ],
+      "reference_answer": "Its state-space parameters depend on input."
+    },
+    {
+      "id": "mamba-3",
+      "category": "paraphrase",
+      "query": "What generation throughput comparison does Mamba report against similarly sized Transformers?",
+      "expected_supported": true,
+      "evidence": [
+        "mamba-3"
+      ],
+      "reference_answer": "About five times the throughput in its reported comparison."
+    },
+    {
+      "id": "mamba-4",
+      "category": "qualification",
+      "query": "How can selective models discard an irrelevant history in Mamba's account?",
+      "expected_supported": true,
+      "evidence": [
+        "mamba-4"
+      ],
+      "reference_answer": "They can reset state to remove previous context."
+    },
+    {
+      "id": "resnet-1",
+      "category": "paraphrase",
+      "query": "Do identity shortcuts in ResNet add parameters or computation?",
+      "expected_supported": true,
+      "evidence": [
+        "resnet-1"
+      ],
+      "reference_answer": "The identity shortcut itself adds neither."
+    },
+    {
+      "id": "resnet-2",
+      "category": "paraphrase",
+      "query": "What top-five validation error is reported for the single 152-layer ResNet?",
+      "expected_supported": true,
+      "evidence": [
+        "resnet-2"
+      ],
+      "reference_answer": "4.49 percent."
+    },
+    {
+      "id": "resnet-3",
+      "category": "paraphrase",
+      "query": "What top-five test error did the ResNet ensemble obtain?",
+      "expected_supported": true,
+      "evidence": [
+        "resnet-3"
+      ],
+      "reference_answer": "3.57 percent; this is an ensemble result, not the single model."
+    },
+    {
+      "id": "resnet-4",
+      "category": "qualification",
+      "query": "Does the ResNet paper attribute the degradation of deeper plain networks to overfitting?",
+      "expected_supported": true,
+      "evidence": [
+        "resnet-4"
+      ],
+      "reference_answer": "No; increasing depth also increases training error."
+    },
+    {
+      "id": "contrast-architecture",
+      "category": "conflicting_findings",
+      "query": "Attention Is All You Need uses attention, while Mamba removes it. Do these papers support the same architectural choice?",
+      "expected_supported": true,
+      "evidence": [
+        "attention-1",
+        "mamba-1"
+      ],
+      "reference_answer": "They report different architectural choices in different experiments; neither proves one design universally necessary."
+    },
+    {
+      "id": "contrast-depth",
+      "category": "conflicting_findings",
+      "query": "Does the ResNet paper find that adding depth hurts plain networks but helps residual networks?",
+      "expected_supported": true,
+      "evidence": [
+        "resnet-4",
+        "resnet-5"
+      ],
+      "reference_answer": "It reports degradation for plain networks and gains from residual learning; the architecture qualifies the effect."
+    },
+    {
+      "id": "contrast-context",
+      "category": "conflicting_findings",
+      "query": "How can Mamba report benefits from longer context while Lost in the Middle reports failures in using long contexts?",
+      "expected_supported": true,
+      "evidence": [
+        "mamba-5",
+        "middle-1"
+      ],
+      "reference_answer": "Different models and tasks are studied; selective state handling and position sensitivity should not be collapsed into a universal claim."
+    },
+    {
+      "id": "ambiguous-model",
+      "category": "ambiguity",
+      "query": "How many parameters does the model have?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "The question does not identify a model, variant, or paper."
+    },
+    {
+      "id": "ambiguous-score",
+      "category": "ambiguity",
+      "query": "What score did it get?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "No model, metric, dataset, or evaluation split is specified."
+    },
+    {
+      "id": "ambiguous-best",
+      "category": "ambiguity",
+      "query": "Which architecture is best?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "No task, constraint, or comparison setting is specified; these papers do not establish a universal winner."
+    },
+    {
+      "id": "unsupported-bert",
+      "category": "unsupported",
+      "query": "What was the BERT training cluster's total electricity consumption in kilowatt-hours?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "Training hardware is not a measured energy total; the corpus does not report this quantity."
+    },
+    {
+      "id": "unsupported-rag",
+      "category": "unsupported",
+      "query": "What is the RAG model's guaranteed factual accuracy for every possible question?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "Benchmark measurements do not supply a universal accuracy guarantee."
+    },
+    {
+      "id": "unsupported-mamba",
+      "category": "unsupported",
+      "query": "What did Mamba score on the 2025 International Mathematical Olympiad?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "This pinned revision predates the event and provides no such evaluation."
+    },
+    {
+      "id": "unsupported-resnet",
+      "category": "unsupported",
+      "query": "What clinical trial demonstrates that ResNet cures melanoma?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "Image recognition experiments do not provide a clinical treatment trial."
+    },
+    {
+      "id": "unsupported-attention",
+      "category": "unsupported",
+      "query": "What is the exact dollar cost of training the original Transformer?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "Reported hardware and duration do not establish an exact monetary cost."
+    },
+    {
+      "id": "unsupported-middle",
+      "category": "unsupported",
+      "query": "Does Lost in the Middle prove every future language model must fail at middle-position retrieval?",
+      "expected_supported": false,
+      "evidence": [],
+      "reference_answer": "Empirical results on the tested models do not establish a universal impossibility theorem."
+    }
+  ]
+}

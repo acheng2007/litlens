@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     api_tokens: dict[str, str] = {"local-dev-token": "local"}
     data_dir: Path = Path("data")
     llm_provider: Literal["extractive", "openai", "ollama"] = "extractive"
+    answer_mode: Literal["quotes", "synthesis"] = "quotes"
     embedding_provider: Literal["hash", "openai", "ollama"] = "hash"
     model_base_url: str = "http://localhost:11434"
     model_api_key: str = ""

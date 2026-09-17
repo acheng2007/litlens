@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+  <title id="title">LitLens - Research, with receipts.</title>
+  <desc id="desc">A navy banner with mint lettering and a magnifying glass over highlighted lines on a research paper.</desc>
+  <rect width="1200" height="340" rx="24" fill="#101e32"/>
+  <path d="M784 32v276M816 32v276M848 32v276M880 32v276M912 32v276M944 32v276M976 32v276M1008 32v276M1040 32v276M1072 32v276M1104 32v276M1136 32v276M768 64h384M768 96h384M768 128h384M768 160h384M768 192h384M768 224h384M768 256h384M768 288h384" fill="none" stroke="#203548"/>
+  <g font-family="sans-serif">
+    <text x="64" y="68" fill="#9de5ce" font-size="14" font-weight="600" letter-spacing="3">YOUR PAPERS. TRACEABLE ANSWERS.</text>
+    <text x="60" y="162" fill="#f2f7fa" font-size="82" font-weight="700" letter-spacing="-3">Lit<tspan fill="#9de5ce">Lens</tspan></text>
+    <text x="64" y="213" fill="#d4e1e8" font-size="28">Research, with receipts.</text>
+    <text x="64" y="282" fill="#a7becb" font-size="16" letter-spacing="1">PDF + arXiv   /   Hybrid retrieval   /   Cited evidence</text>
+  </g>
+  <g transform="translate(854 49)">
+    <rect x="-18" y="18" width="183" height="230" rx="12" fill="#274a59" stroke="#52717c"/>
+    <rect width="183" height="230" rx="12" fill="#edf4f3"/>
+    <rect x="24" y="28" width="86" height="8" rx="4" fill="#234453"/>
+    <rect x="24" y="48" width="131" height="5" rx="2.5" fill="#9bafb4"/>
+    <rect x="18" y="78" width="146" height="47" rx="6" fill="#b3e5d2"/>
+    <path d="M28 91h112M28 110h93M24 148h130M24 167h112M24 186h124" stroke="#67878d" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="146" cy="143" r="58" fill="#9de5ce" fill-opacity=".13" stroke="#163948" stroke-width="13"/>
+    <circle cx="146" cy="143" r="57" fill="none" stroke="#9de5ce" stroke-width="5"/>
+    <path d="m188 186 49 49" stroke="#9de5ce" stroke-width="19" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -170,13 +170,13 @@ def process(job):
                     active.result = {"chunks": len(chunks)}
                 active.status, active.error, active.completed_at = "completed", None, now()
                 active.duration_ms = (time.perf_counter() - started) * 1000
-                event(
-                    "job.completed",
-                    job_id=job.id,
-                    duration_ms=active.duration_ms,
-                    attempts=active.attempts,
-                    **active.result,
-                )
+            event(
+                "job.completed",
+                job_id=job.id,
+                duration_ms=active.duration_ms,
+                attempts=active.attempts,
+                **active.result,
+            )
             wake()
     except Exception as exc:
         retryable = isinstance(exc, (httpx.TransportError, RedisError, OSError, OperationalError))

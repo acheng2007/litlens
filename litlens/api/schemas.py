@@ -39,6 +39,7 @@ class ArxivRequest(Input):
 
 class EvaluationRequest(Input):
     library_id: str
+    dataset: Literal["synthetic", "real-papers"] = "synthetic"
 
 
 class Enqueued(BaseModel):

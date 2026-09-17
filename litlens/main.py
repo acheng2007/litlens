@@ -331,4 +331,13 @@ def run_evaluation(payload: EvaluationRequest, session=Depends(db), user=Depends
     from litlens.evaluation.runner import evaluate
 
     library_or_404(session, payload.library_id, user)
-    return evaluate(session, payload.library_id, user)
+    try:
+        return evaluate(session, payload.library_id, user, payload.dataset)
+    except ValueError as exc:
+        # Dataset diagnostics contain only public label IDs and configuration guidance.
+        # Provider errors retain the existing generic handler.
+        if str(exc).startswith(
+            ("Use a separate library", "Wait for every", "Missing gold", "Seed the complete")
+        ):
+            raise HTTPException(409, str(exc)) from None
+        raise

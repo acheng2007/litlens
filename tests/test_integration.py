@@ -214,6 +214,29 @@ def test_indexes_and_full_evaluation(api):
         assert {"ix_chunks_vector", "ix_chunks_fts"} <= set(indexes)
 
 
+def test_worker_logs_completion_only_after_database_commit(api, monkeypatch):
+    from litlens.ingestion.chunking import TextChunk
+
+    client, factory = api
+    job = upload(client, library(client))
+    events = []
+    monkeypatch.setattr("litlens.worker.event", lambda name, **fields: events.append(name))
+    # Reproduce the original RAG PDF's database rejection, after embedding succeeds.
+    monkeypatch.setattr(
+        "litlens.worker.extract_pdf",
+        lambda _: [TextChunk("A valid sentence with a database-invalid NUL \x00 character.")],
+    )
+    assert run_once()
+    status = client.get(f"/api/v1/jobs/{job['job_id']}").json()
+    assert status["status"] == "failed"
+    assert "job.failed" in events
+    assert "job.completed" not in events
+    with factory() as session:
+        assert not session.scalars(
+            select(Chunk).where(Chunk.document_id == job["document_id"])
+        ).all()
+
+
 def test_retry_recovers_and_redis_outage_does_not_lose_job(api, monkeypatch):
     from redis import RedisError
 

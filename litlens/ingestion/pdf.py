@@ -1,3 +1,4 @@
+import unicodedata
 from pathlib import Path
 
 import pymupdf
@@ -5,6 +6,8 @@ import pymupdf
 from litlens.config import settings
 
 from .chunking import chunk_pages
+
+EXTRACTION_VERSION = "pymupdf-nfkc-v1"
 
 
 class InvalidPDF(ValueError):
@@ -20,7 +23,9 @@ def extract_pdf(path: str | Path):
             for number, page in enumerate(doc, 1):
                 # Blocks preserve paragraph boundaries that plain text extraction discards.
                 text = "\n\n".join(
-                    b[4].strip() for b in page.get_text("blocks", sort=True) if b[6] == 0
+                    unicodedata.normalize("NFKC", b[4]).replace("\x00", " ").strip()
+                    for b in page.get_text("blocks", sort=True)
+                    if b[6] == 0
                 )
                 chars += len(text)
                 if chars > settings.max_pdf_chars:
@@ -28,7 +33,7 @@ def extract_pdf(path: str | Path):
                 pages.append((number, text))
     except (pymupdf.FileDataError, pymupdf.EmptyFileError) as exc:
         raise InvalidPDF("Unreadable PDF") from exc
-    chunks = chunk_pages(pages)
+    chunks = [chunk for chunk in chunk_pages(pages) if any(c.isalnum() for c in chunk.text)]
     if not chunks:
         raise InvalidPDF("No extractable text; scanned PDFs require OCR before upload")
     return chunks

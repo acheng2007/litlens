@@ -1,0 +1,3866 @@
+{
+  "id": "941a8b72-ad7e-44ae-a8cc-c6961e32f864",
+  "library_id": "12cd425f-9187-466e-a941-ea22f029eebf",
+  "created_at": "2026-09-15T00:02:04.913160Z",
+  "metrics": {
+    "dataset": "real-papers",
+    "dataset_version": "1.0.0",
+    "questions": 36,
+    "answerable_questions": 27,
+    "refusal_questions": 9,
+    "corpus_sha256": "b86e8c0b8dcb7dd5c255976da0cd3ffdfd3c2fd92957ee856fb662ca357174ea",
+    "embedding_space": "hash:sha256-v1:384",
+    "provider": "extractive",
+    "model": null,
+    "prompt_version": "evidence-quotes-v1",
+    "chunking_version": "sections-v3",
+    "extraction_version": "pymupdf-nfkc-v1",
+    "python": "3.12.14",
+    "pymupdf": "1.28.2",
+    "evidence_threshold": 0.45,
+    "retrieval_limit": 5,
+    "modes": {
+      "vector": {
+        "recall_at_5": 0.3333333333333333,
+        "reranked_recall_at_5": 0.5740740740740741,
+        "mrr_at_5": 0.17530864197530865,
+        "citation_correctness": 1.0,
+        "quote_faithfulness": 1.0,
+        "citation_count": 17,
+        "unsupported_answer_rate": 0.4444444444444444,
+        "false_refusal_rate": 0.5185185185185185,
+        "latency_p50_ms": 8.422958999972252,
+        "latency_p95_ms": 9.222333000025174,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cases": [
+          {
+            "id": "attention-1",
+            "category": "paraphrase",
+            "query": "What mechanism replaces recurrence in the Transformer architecture?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "4567c775-5c00-4313-b8d7-dc5d415f81a6",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "retrieved_chunk_ids": [
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "18675c85-bffc-42b3-8832-ac0b6812776c",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863",
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088"
+            ],
+            "reranked_chunk_ids": [
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863",
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca",
+              "740b131c-19c5-405c-9325-787b207bd2f1",
+              "18675c85-bffc-42b3-8832-ac0b6812776c",
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b"
+            ],
+            "citation_chunk_ids": [
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "gold_evidence_ids": [
+              "attention-1"
+            ],
+            "reference_answer": "Attention connects input and output globally.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 1.0,
+            "quoted_anchor_coverage": 1.0,
+            "latency_ms": 11.6
+          },
+          {
+            "id": "attention-2",
+            "category": "paraphrase",
+            "query": "Why use several attention heads rather than one?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "86cae1df-eaa5-49a3-8d58-aad767565b8f"
+            ],
+            "retrieved_chunk_ids": [
+              "d59a368f-5daf-4230-ac92-8148c915b454",
+              "f00365d8-8817-44be-af5f-ca0db6310d63",
+              "3ee339e3-ab75-4be7-85af-bd8c6a838f75",
+              "03cffb90-cd61-442d-8a09-aec52bab8504",
+              "26afcb20-7980-489f-88c9-0ef1d3c68080"
+            ],
+            "reranked_chunk_ids": [
+              "3604ebda-0f67-402a-97d0-83de81a42df7",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "f048dc68-eae2-4c6b-b3c6-1cf46d459eb8",
+              "03cffb90-cd61-442d-8a09-aec52bab8504",
+              "86cae1df-eaa5-49a3-8d58-aad767565b8f"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-2"
+            ],
+            "reference_answer": "Heads capture different subspaces and positions; a single head averages them.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 9.15
+          },
+          {
+            "id": "attention-3",
+            "category": "paraphrase",
+            "query": "How does the Transformer represent token order without recurrent layers?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "retrieved_chunk_ids": [
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514",
+              "b13fc1ee-a504-482f-8b72-e70be1e3cba9",
+              "1e98c3af-439c-4b4a-b51e-e88ea186c15f",
+              "cc62ad24-6842-4a9a-abc7-725ffc70c7a3",
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd"
+            ],
+            "reranked_chunk_ids": [
+              "cc62ad24-6842-4a9a-abc7-725ffc70c7a3",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "f8e32751-b1c1-4639-8516-c571a1490aa3",
+              "de258644-170c-4704-8ccf-e041809de6d3",
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-3"
+            ],
+            "reference_answer": "It adds sinusoidal position vectors to token embeddings.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.3
+          },
+          {
+            "id": "attention-4",
+            "category": "qualification",
+            "query": "Did learned position embeddings clearly outperform sinusoidal ones in the Transformer experiments?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "retrieved_chunk_ids": [
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "d59a368f-5daf-4230-ac92-8148c915b454",
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "reranked_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d",
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "771aeac6-5d29-4424-ae9c-b6530a0b6c0b",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-4"
+            ],
+            "reference_answer": "No; the reported results were approximately equal.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.67
+          },
+          {
+            "id": "bert-1",
+            "category": "paraphrase",
+            "query": "Which directions of context does BERT use during pretraining?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "5d92837b-2b82-427d-9dd7-ee570ddd729a"
+            ],
+            "retrieved_chunk_ids": [
+              "7617bdca-61bd-4b1c-905f-40956e166255",
+              "2d9c5a0a-e7fd-432f-a3fb-b4bfda049000",
+              "fc16c69f-0ec4-4592-99a4-337674759cee",
+              "1db1d4dc-14ae-4353-85ff-86a16b9b50d8",
+              "d5ef6e2f-509c-47e0-bb05-119e85a6f08a"
+            ],
+            "reranked_chunk_ids": [
+              "2e84a60b-ae52-4fd6-bdaa-3810691dd9a0",
+              "fc16c69f-0ec4-4592-99a4-337674759cee",
+              "2d9c5a0a-e7fd-432f-a3fb-b4bfda049000",
+              "1db1d4dc-14ae-4353-85ff-86a16b9b50d8",
+              "d5ef6e2f-509c-47e0-bb05-119e85a6f08a"
+            ],
+            "citation_chunk_ids": [
+              "2e84a60b-ae52-4fd6-bdaa-3810691dd9a0"
+            ],
+            "gold_evidence_ids": [
+              "bert-1"
+            ],
+            "reference_answer": "Both directions jointly throughout the network.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.28
+          },
+          {
+            "id": "bert-2",
+            "category": "paraphrase",
+            "query": "What fraction of token positions are selected for BERT's masked prediction objective?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0b48ff32-4921-4de2-8a83-751317efb6af"
+            ],
+            "retrieved_chunk_ids": [
+              "a88938dc-ff73-42eb-85ce-fdba60c9b721",
+              "dc15388a-e755-4b8b-893d-c7ddee3e0014",
+              "03e315ea-26f4-4337-9e5a-d6a58e03120a",
+              "b6172f90-eb7a-4fc0-8a96-796f03baf767",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "reranked_chunk_ids": [
+              "b6172f90-eb7a-4fc0-8a96-796f03baf767",
+              "9c031b00-baf9-45d2-b1b4-38cf3b84f901",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514",
+              "dc15388a-e755-4b8b-893d-c7ddee3e0014",
+              "03e315ea-26f4-4337-9e5a-d6a58e03120a"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "bert-2"
+            ],
+            "reference_answer": "Fifteen percent.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.9
+          },
+          {
+            "id": "bert-3",
+            "category": "paraphrase",
+            "query": "Which components are added to construct a BERT token's input representation?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "retrieved_chunk_ids": [
+              "c2e87e45-a0f8-4c9e-83bf-c4424b5d6d8c",
+              "09df1ed7-e7b1-46cd-b70e-53329ed82254",
+              "35e4accb-9adf-4ff5-ab25-8e4832fa4592",
+              "cfba60a9-3b98-44f4-aafc-e457e9634678",
+              "0b48ff32-4921-4de2-8a83-751317efb6af"
+            ],
+            "reranked_chunk_ids": [
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d",
+              "0b48ff32-4921-4de2-8a83-751317efb6af",
+              "5a8ddb08-d6a9-4ccb-85ee-ec38ced45dbb",
+              "2360ad70-a40a-45c7-a53d-488d8e5206c7",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "citation_chunk_ids": [
+              "0b48ff32-4921-4de2-8a83-751317efb6af"
+            ],
+            "gold_evidence_ids": [
+              "bert-3"
+            ],
+            "reference_answer": "Token, segment, and position vectors.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.18
+          },
+          {
+            "id": "bert-4",
+            "category": "qualification",
+            "query": "How are positive and negative next-sentence examples balanced in BERT?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "05b2da39-c14a-45c6-806d-a14d4dc278d2"
+            ],
+            "retrieved_chunk_ids": [
+              "cb08cbf9-a63e-48e1-aaa2-3fd5eb6287c3",
+              "c2902e34-29d8-4532-8121-88731ee4ccf4",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "f955a597-939f-48c4-857b-e25b1e582d66"
+            ],
+            "reranked_chunk_ids": [
+              "587d0ec5-a2e1-4f92-96db-fdeb6872d299",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "03e315ea-26f4-4337-9e5a-d6a58e03120a",
+              "cb08cbf9-a63e-48e1-aaa2-3fd5eb6287c3",
+              "cd8028d2-96c8-4022-9c4a-25e9fdc27f92"
+            ],
+            "citation_chunk_ids": [
+              "587d0ec5-a2e1-4f92-96db-fdeb6872d299"
+            ],
+            "gold_evidence_ids": [
+              "bert-4"
+            ],
+            "reference_answer": "Half use the following sentence; half use a random sentence.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 9.1
+          },
+          {
+            "id": "rag-1",
+            "category": "paraphrase",
+            "query": "Where does the RAG paper keep its external knowledge?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "7d31bafa-191d-4f03-b388-af112c283141"
+            ],
+            "retrieved_chunk_ids": [
+              "b13fc1ee-a504-482f-8b72-e70be1e3cba9",
+              "ecf898e1-4986-46c6-a187-5c7ef1c316a3",
+              "96d171ae-5a64-4aa9-9475-48b34c509962",
+              "ad916c71-80fe-4b0a-aea1-9c890f69e608",
+              "bf21b748-0249-4ea3-b132-f9557c029065"
+            ],
+            "reranked_chunk_ids": [
+              "ad916c71-80fe-4b0a-aea1-9c890f69e608",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "b13fc1ee-a504-482f-8b72-e70be1e3cba9",
+              "a117dfaf-6e20-4461-bc48-27917d7175b4",
+              "81ac6a69-b1a7-4aa7-8110-426249731f73"
+            ],
+            "citation_chunk_ids": [
+              "63c49347-ced4-403d-8454-713349ca8bb1"
+            ],
+            "gold_evidence_ids": [
+              "rag-1"
+            ],
+            "reference_answer": "In a dense index built from Wikipedia.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.58
+          },
+          {
+            "id": "rag-2",
+            "category": "paraphrase",
+            "query": "Can RAG-Sequence change its retrieved document for each output token?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "a2814075-1d9b-46e6-8432-6eea83af346e"
+            ],
+            "retrieved_chunk_ids": [
+              "a2814075-1d9b-46e6-8432-6eea83af346e",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "fc11d374-19b7-4cc7-82ce-ca0628183875",
+              "7f017c91-9166-45f8-aa76-a1a2d94ddf80",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97"
+            ],
+            "reranked_chunk_ids": [
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219",
+              "a2814075-1d9b-46e6-8432-6eea83af346e",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "acc672c4-07e9-4a59-8fd8-090a180ecc81",
+              "d2c1027b-1dce-4c74-8672-ce539391d288"
+            ],
+            "citation_chunk_ids": [
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219"
+            ],
+            "gold_evidence_ids": [
+              "rag-2"
+            ],
+            "reference_answer": "No; a document conditions the whole output sequence before marginalization.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.18
+          },
+          {
+            "id": "rag-3",
+            "category": "paraphrase",
+            "query": "How does RAG-Token differ in its choice of evidence while generating?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219"
+            ],
+            "retrieved_chunk_ids": [
+              "baad0bb9-9294-48e7-8ad5-0636d0325e1c",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "f955a597-939f-48c4-857b-e25b1e582d66",
+              "ec134c4b-6cba-4a1b-9110-e04bf0077824"
+            ],
+            "reranked_chunk_ids": [
+              "baad0bb9-9294-48e7-8ad5-0636d0325e1c",
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "f048dc68-eae2-4c6b-b3c6-1cf46d459eb8",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97",
+              "ec134c4b-6cba-4a1b-9110-e04bf0077824"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "rag-3"
+            ],
+            "reference_answer": "It can use a different document at each token.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 7.69
+          },
+          {
+            "id": "rag-4",
+            "category": "qualification",
+            "query": "Which generator and parameter count were used in the RAG experiments?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "ef245a0b-276b-435b-bb73-52b65b855024"
+            ],
+            "retrieved_chunk_ids": [
+              "acc672c4-07e9-4a59-8fd8-090a180ecc81",
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "0e4fdb39-d7a2-4aa7-ac8b-4563ba2a4aa9",
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219",
+              "4a2c676f-1b03-47e6-8f8f-d6fd0a5bdc5c"
+            ],
+            "reranked_chunk_ids": [
+              "f486c1b3-977d-4d95-aa4e-7309b3c64ab6",
+              "acc672c4-07e9-4a59-8fd8-090a180ecc81",
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97",
+              "0cf894f4-1296-4b04-aab7-ce9282be5db3"
+            ],
+            "citation_chunk_ids": [
+              "f486c1b3-977d-4d95-aa4e-7309b3c64ab6"
+            ],
+            "gold_evidence_ids": [
+              "rag-4"
+            ],
+            "reference_answer": "BART-large with 400 million parameters.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.19
+          },
+          {
+            "id": "middle-1",
+            "category": "paraphrase",
+            "query": "Where is relevant information easiest for models to use in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661"
+            ],
+            "retrieved_chunk_ids": [
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5"
+            ],
+            "reranked_chunk_ids": [
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "4feb00ff-9f1c-4d2b-b910-6aa9ba7dff83",
+              "55806992-aa6f-4144-b64c-07c6186e3a63"
+            ],
+            "citation_chunk_ids": [
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5"
+            ],
+            "gold_evidence_ids": [
+              "middle-1"
+            ],
+            "reference_answer": "Often near either edge; middle placement hurts.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.42
+          },
+          {
+            "id": "middle-2",
+            "category": "paraphrase",
+            "query": "How did the key-value retrieval task reduce dependence on language meaning?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330"
+            ],
+            "retrieved_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d4b5a32-47a4-4f6a-ab50-4aa36c4c9068",
+              "99a084b6-80c1-49a2-b29c-d44c354d3b97",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76"
+            ],
+            "reranked_chunk_ids": [
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d4b5a32-47a4-4f6a-ab50-4aa36c4c9068",
+              "18d83b01-e8ea-476b-9486-760eefa2c330",
+              "caad7996-ea48-4aca-a0a9-0e18e0eb21bc",
+              "74ff4278-52f3-4c9d-9a36-47490b5d0df2"
+            ],
+            "citation_chunk_ids": [
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b"
+            ],
+            "gold_evidence_ids": [
+              "middle-2"
+            ],
+            "reference_answer": "It used random UUID keys and values.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 9.05
+          },
+          {
+            "id": "middle-3",
+            "category": "paraphrase",
+            "query": "Which key-value pair counts were tested in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330"
+            ],
+            "retrieved_chunk_ids": [
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "ccc8ea35-e912-4e59-8060-4dadffe36299",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "fad33007-0e9c-4a5c-ba0f-474c529a1dae",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b"
+            ],
+            "reranked_chunk_ids": [
+              "ccc8ea35-e912-4e59-8060-4dadffe36299",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "caad7996-ea48-4aca-a0a9-0e18e0eb21bc",
+              "18d83b01-e8ea-476b-9486-760eefa2c330",
+              "74ff4278-52f3-4c9d-9a36-47490b5d0df2"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-3"
+            ],
+            "reference_answer": "Seventy-five, 140, and 300, each with 500 examples.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 7.72
+          },
+          {
+            "id": "middle-4",
+            "category": "qualification",
+            "query": "Does placing the query on both sides of the context help both tasks equally in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2"
+            ],
+            "retrieved_chunk_ids": [
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2",
+              "3a21da5d-f677-4578-b641-b4e50b13daa5",
+              "1d14674f-ba79-4b8d-8452-a7dc5d5daa95"
+            ],
+            "reranked_chunk_ids": [
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2",
+              "0f30190f-7e6a-4858-a7d6-64472ccb5a08",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "1042202f-16ad-41ec-afd9-25b043428ec7",
+              "3a21da5d-f677-4578-b641-b4e50b13daa5"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-4"
+            ],
+            "reference_answer": "No; it helps key-value retrieval substantially but changes multi-document QA trends little.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 9.22
+          },
+          {
+            "id": "mamba-1",
+            "category": "paraphrase",
+            "query": "Does Mamba require attention blocks in its architecture?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "retrieved_chunk_ids": [
+              "e3d4c491-fe48-4618-91d2-edbcfa5d7159",
+              "e89db121-354c-4bb7-b1cc-a632cf2031eb",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "8e0ee097-0295-492a-9b2b-5e196b1642fd",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "reranked_chunk_ids": [
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "e3d4c491-fe48-4618-91d2-edbcfa5d7159",
+              "f048dc68-eae2-4c6b-b3c6-1cf46d459eb8",
+              "e89db121-354c-4bb7-b1cc-a632cf2031eb"
+            ],
+            "citation_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "gold_evidence_ids": [
+              "mamba-1"
+            ],
+            "reference_answer": "No; its core is a selective state-space architecture.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 1.0,
+            "quoted_anchor_coverage": 1.0,
+            "latency_ms": 7.66
+          },
+          {
+            "id": "mamba-2",
+            "category": "paraphrase",
+            "query": "How does Mamba make selection depend on the current input?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "171f6925-3f60-42e8-8282-6996ed86b2b2",
+              "8a5d2045-9f7b-41d4-86c5-7ab4192b5ecb"
+            ],
+            "retrieved_chunk_ids": [
+              "f362c9bc-f253-49dc-8b46-c0df9a284ae5",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76",
+              "f6ff5a7c-a3ca-493d-ba8d-1b8bb0c5a315",
+              "171f6925-3f60-42e8-8282-6996ed86b2b2"
+            ],
+            "reranked_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "f6ff5a7c-a3ca-493d-ba8d-1b8bb0c5a315",
+              "171f6925-3f60-42e8-8282-6996ed86b2b2",
+              "604451cf-6f55-4656-aa23-395b9b0c01b1"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-2"
+            ],
+            "reference_answer": "Its state-space parameters depend on input.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.73
+          },
+          {
+            "id": "mamba-3",
+            "category": "paraphrase",
+            "query": "What generation throughput comparison does Mamba report against similarly sized Transformers?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "9afa80e0-9603-41f7-a7cf-f4c9382c2ace"
+            ],
+            "retrieved_chunk_ids": [
+              "9afa80e0-9603-41f7-a7cf-f4c9382c2ace",
+              "4938eb03-5cf8-465b-8474-a025100ea89d",
+              "b11ad3fc-b653-48ba-a4a0-261937be7342",
+              "6da0ddac-bead-40b8-8c49-57f1afdb1e6a",
+              "c87f1d55-c5ad-4ed1-9234-b09bee71f757"
+            ],
+            "reranked_chunk_ids": [
+              "9afa80e0-9603-41f7-a7cf-f4c9382c2ace",
+              "91581fd0-6427-428c-8fe3-7e4bade424b3",
+              "b11ad3fc-b653-48ba-a4a0-261937be7342",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "4938eb03-5cf8-465b-8474-a025100ea89d"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-3"
+            ],
+            "reference_answer": "About five times the throughput in its reported comparison.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 7.05
+          },
+          {
+            "id": "mamba-4",
+            "category": "qualification",
+            "query": "How can selective models discard an irrelevant history in Mamba's account?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "3671aca7-30bc-4d12-8838-c92ff7b0eb99"
+            ],
+            "retrieved_chunk_ids": [
+              "8e0ee097-0295-492a-9b2b-5e196b1642fd",
+              "3671aca7-30bc-4d12-8838-c92ff7b0eb99",
+              "f9c212da-f22b-471a-9098-3ca5a07dac36",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "4ef60aa9-7f20-4515-91df-3e50c559efe0"
+            ],
+            "reranked_chunk_ids": [
+              "3671aca7-30bc-4d12-8838-c92ff7b0eb99",
+              "4bddd258-7517-4c64-bd78-c1a589d8dcbb",
+              "4ef60aa9-7f20-4515-91df-3e50c559efe0",
+              "c2e87e45-a0f8-4c9e-83bf-c4424b5d6d8c",
+              "fedee43c-4959-46cb-9a9c-b5bcd8ce8328"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-4"
+            ],
+            "reference_answer": "They can reset state to remove previous context.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.34
+          },
+          {
+            "id": "resnet-1",
+            "category": "paraphrase",
+            "query": "Do identity shortcuts in ResNet add parameters or computation?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd"
+            ],
+            "retrieved_chunk_ids": [
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "5db74aec-1593-4ca0-8911-ae7c8e99a3ab",
+              "7dd5a162-8b08-4a66-9156-c3677e361e2f",
+              "c997ce51-a288-4cbf-8de3-5eef4fd49a91"
+            ],
+            "reranked_chunk_ids": [
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "cfba60a9-3b98-44f4-aafc-e457e9634678",
+              "5db74aec-1593-4ca0-8911-ae7c8e99a3ab",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-1"
+            ],
+            "reference_answer": "The identity shortcut itself adds neither.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.57
+          },
+          {
+            "id": "resnet-2",
+            "category": "paraphrase",
+            "query": "What top-five validation error is reported for the single 152-layer ResNet?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "retrieved_chunk_ids": [
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "a8990e00-36d3-4998-93a0-f65585cde9e9",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "e89eafb4-8e9e-4672-bc14-b1c8971cb33e"
+            ],
+            "reranked_chunk_ids": [
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "217e268f-c998-441d-a081-7196faf8281f",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "7150f65e-1a5e-46bc-803d-4dd438217e08"
+            ],
+            "citation_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "gold_evidence_ids": [
+              "resnet-2"
+            ],
+            "reference_answer": "4.49 percent.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 1.0,
+            "quoted_anchor_coverage": 1.0,
+            "latency_ms": 8.68
+          },
+          {
+            "id": "resnet-3",
+            "category": "paraphrase",
+            "query": "What top-five test error did the ResNet ensemble obtain?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "retrieved_chunk_ids": [
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "a8990e00-36d3-4998-93a0-f65585cde9e9",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f"
+            ],
+            "reranked_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f",
+              "217e268f-c998-441d-a081-7196faf8281f",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "a8990e00-36d3-4998-93a0-f65585cde9e9"
+            ],
+            "citation_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f"
+            ],
+            "gold_evidence_ids": [
+              "resnet-3"
+            ],
+            "reference_answer": "3.57 percent; this is an ensemble result, not the single model.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.44
+          },
+          {
+            "id": "resnet-4",
+            "category": "qualification",
+            "query": "Does the ResNet paper attribute the degradation of deeper plain networks to overfitting?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "8a189735-4250-4626-9e28-1ba7bcd9ff4b"
+            ],
+            "retrieved_chunk_ids": [
+              "85ef755f-83ff-4c7a-8df9-3ecac0e8ac6a",
+              "604451cf-6f55-4656-aa23-395b9b0c01b1",
+              "d307d490-d4fa-46a7-b227-a5b806920dce",
+              "3a21da5d-f677-4578-b641-b4e50b13daa5",
+              "824fad1b-f922-4b64-8279-c95f1027655d"
+            ],
+            "reranked_chunk_ids": [
+              "10074f90-12db-41e2-bcc3-0358e9726c48",
+              "7d8066c3-944c-45ca-9b0c-1e86025e7dc6",
+              "7150f65e-1a5e-46bc-803d-4dd438217e08",
+              "20bca9a7-bcc7-4967-bcef-04c50c8162cb",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-4"
+            ],
+            "reference_answer": "No; increasing depth also increases training error.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 8.0
+          },
+          {
+            "id": "contrast-architecture",
+            "category": "conflicting_findings",
+            "query": "Attention Is All You Need uses attention, while Mamba removes it. Do these papers support the same architectural choice?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "4567c775-5c00-4313-b8d7-dc5d415f81a6",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "retrieved_chunk_ids": [
+              "55aa15b8-d494-47f3-b685-217542471bc1",
+              "3349bcd4-5cb0-497a-85f8-5af949e0fa1d",
+              "77454d31-46b5-4d26-acb8-7c223fc92eb2",
+              "8b777ada-02d1-4d5c-8b93-b5b28bc57519",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4"
+            ],
+            "reranked_chunk_ids": [
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b",
+              "5db74aec-1593-4ca0-8911-ae7c8e99a3ab",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "c34004e7-e411-48ec-ae22-021e1a764f29"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-1",
+              "mamba-1"
+            ],
+            "reference_answer": "They report different architectural choices in different experiments; neither proves one design universally necessary.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 7.76
+          },
+          {
+            "id": "contrast-depth",
+            "category": "conflicting_findings",
+            "query": "Does the ResNet paper find that adding depth hurts plain networks but helps residual networks?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "7cc44993-2271-4abe-b6a3-cb7c0dc67f0d",
+              "8a189735-4250-4626-9e28-1ba7bcd9ff4b"
+            ],
+            "retrieved_chunk_ids": [
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd",
+              "a0f4854d-b6e5-423c-ab52-d143cd3befdd",
+              "7150f65e-1a5e-46bc-803d-4dd438217e08",
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "efba8e2e-1c8a-4176-a6cb-57d76fa384c3"
+            ],
+            "reranked_chunk_ids": [
+              "7d8066c3-944c-45ca-9b0c-1e86025e7dc6",
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd",
+              "a0f4854d-b6e5-423c-ab52-d143cd3befdd",
+              "639047eb-2f0a-47a3-ad5b-b8b4189fa27d",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda"
+            ],
+            "citation_chunk_ids": [
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd"
+            ],
+            "gold_evidence_ids": [
+              "resnet-4",
+              "resnet-5"
+            ],
+            "reference_answer": "It reports degradation for plain networks and gains from residual learning; the architecture qualifies the effect.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.5,
+            "latency_ms": 8.86
+          },
+          {
+            "id": "contrast-context",
+            "category": "conflicting_findings",
+            "query": "How can Mamba report benefits from longer context while Lost in the Middle reports failures in using long contexts?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "4bddd258-7517-4c64-bd78-c1a589d8dcbb",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661"
+            ],
+            "retrieved_chunk_ids": [
+              "fad33007-0e9c-4a5c-ba0f-474c529a1dae",
+              "fc58c0bb-2d85-4942-a722-30ef6d485a2b",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "ac0d3451-72dc-4a45-b735-d9688f675513",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5"
+            ],
+            "reranked_chunk_ids": [
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "6e1e15e8-3d02-4bcb-ae22-e3709934ac56",
+              "54726fde-5a03-4625-9640-b04608d718f5",
+              "75d46718-1c48-4370-955b-993ca390dfab",
+              "11cc8c44-4af0-4ba3-8b66-ee1a58287b7e"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-5",
+              "middle-1"
+            ],
+            "reference_answer": "Different models and tasks are studied; selective state handling and position sensitivity should not be collapsed into a universal claim.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.5,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 7.85
+          },
+          {
+            "id": "ambiguous-model",
+            "category": "ambiguity",
+            "query": "How many parameters does the model have?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "5db74aec-1593-4ca0-8911-ae7c8e99a3ab",
+              "217e268f-c998-441d-a081-7196faf8281f",
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d",
+              "efba8e2e-1c8a-4176-a6cb-57d76fa384c3",
+              "740b131c-19c5-405c-9325-787b207bd2f1"
+            ],
+            "reranked_chunk_ids": [
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "217e268f-c998-441d-a081-7196faf8281f",
+              "efba8e2e-1c8a-4176-a6cb-57d76fa384c3",
+              "740b131c-19c5-405c-9325-787b207bd2f1"
+            ],
+            "citation_chunk_ids": [
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "The question does not identify a model, variant, or paper.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 8.88
+          },
+          {
+            "id": "ambiguous-score",
+            "category": "ambiguity",
+            "query": "What score did it get?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "f691de35-8792-414c-8738-647e6df580b5",
+              "5b5a6e5f-a1b8-4f7e-86e5-f676a3db2be1",
+              "4bc12945-fa08-4b64-ac03-bdf8a572ee40",
+              "0a3dc4e2-85b0-4047-bd5d-bfe5b519dcba",
+              "e0577e90-cee8-424b-9ae1-9056c47e31c4"
+            ],
+            "reranked_chunk_ids": [
+              "5b5a6e5f-a1b8-4f7e-86e5-f676a3db2be1",
+              "a2814075-1d9b-46e6-8432-6eea83af346e",
+              "f691de35-8792-414c-8738-647e6df580b5",
+              "4bc12945-fa08-4b64-ac03-bdf8a572ee40",
+              "0a3dc4e2-85b0-4047-bd5d-bfe5b519dcba"
+            ],
+            "citation_chunk_ids": [
+              "5b5a6e5f-a1b8-4f7e-86e5-f676a3db2be1"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "No model, metric, dataset, or evaluation split is specified.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 7.28
+          },
+          {
+            "id": "ambiguous-best",
+            "category": "ambiguity",
+            "query": "Which architecture is best?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "b6b383c1-d649-434e-9310-23aa2d9ea089",
+              "a847f982-8247-42fc-aa85-8b03bf5a522b",
+              "bd9537ff-9b5e-4f49-ba54-f737862c3d1d",
+              "8494e854-2fe5-4734-a772-22cc5c6cb25b",
+              "8fbd5e5a-3a6f-4320-89be-931b3c6d4408"
+            ],
+            "reranked_chunk_ids": [
+              "74bb088b-02a9-4d9b-ab29-76e2d6072a69",
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b",
+              "587d0ec5-a2e1-4f92-96db-fdeb6872d299",
+              "e3d4c491-fe48-4618-91d2-edbcfa5d7159",
+              "99947a8c-6223-404d-91d5-206a6cff6ccf"
+            ],
+            "citation_chunk_ids": [
+              "74bb088b-02a9-4d9b-ab29-76e2d6072a69"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "No task, constraint, or comparison setting is specified; these papers do not establish a universal winner.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 8.19
+          },
+          {
+            "id": "unsupported-bert",
+            "category": "unsupported",
+            "query": "What was the BERT training cluster's total electricity consumption in kilowatt-hours?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "add3d90a-42ce-4dfa-89cc-a6f3cc643390",
+              "5548c6dd-614a-4ae8-b78f-a04bd38078db",
+              "d7e028f2-033f-4b4f-a598-bdc08d157185",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088"
+            ],
+            "reranked_chunk_ids": [
+              "add3d90a-42ce-4dfa-89cc-a6f3cc643390",
+              "1d16af80-075c-4460-9cf4-a0fffa2ba69c",
+              "bf21b748-0249-4ea3-b132-f9557c029065",
+              "a4dbcb61-0c53-457a-a65a-6bf31a99c312",
+              "5548c6dd-614a-4ae8-b78f-a04bd38078db"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Training hardware is not a measured energy total; the corpus does not report this quantity.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 7.96
+          },
+          {
+            "id": "unsupported-rag",
+            "category": "unsupported",
+            "query": "What is the RAG model's guaranteed factual accuracy for every possible question?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "0e9416d2-5eac-4de7-bd35-a4367c9e7b50",
+              "a117dfaf-6e20-4461-bc48-27917d7175b4",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76"
+            ],
+            "reranked_chunk_ids": [
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "c98c7dec-2455-4be8-bef7-8dc5ce68d237",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "a4dbcb61-0c53-457a-a65a-6bf31a99c312",
+              "21f0c729-95bc-4d09-aa93-daacc50386c5"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Benchmark measurements do not supply a universal accuracy guarantee.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 9.48
+          },
+          {
+            "id": "unsupported-mamba",
+            "category": "unsupported",
+            "query": "What did Mamba score on the 2025 International Mathematical Olympiad?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "f362c9bc-f253-49dc-8b46-c0df9a284ae5",
+              "056f6736-ea65-4743-92e5-5fd209b3db04",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76",
+              "a879e52d-5014-4a83-be61-0ea9a11efa20",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27"
+            ],
+            "reranked_chunk_ids": [
+              "f362c9bc-f253-49dc-8b46-c0df9a284ae5",
+              "056f6736-ea65-4743-92e5-5fd209b3db04",
+              "a879e52d-5014-4a83-be61-0ea9a11efa20",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "This pinned revision predates the event and provides no such evaluation.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 8.49
+          },
+          {
+            "id": "unsupported-resnet",
+            "category": "unsupported",
+            "query": "What clinical trial demonstrates that ResNet cures melanoma?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "154dac01-df54-4d08-bde9-93151c697e65",
+              "7dc2ed35-8bb1-4ef9-ad97-7ec405787a1e",
+              "7c51376f-eb00-4eb4-931e-e4e386acdaa8"
+            ],
+            "reranked_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "154dac01-df54-4d08-bde9-93151c697e65",
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "a5873880-d078-4b0d-ba19-5f73be25d7d8"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Image recognition experiments do not provide a clinical treatment trial.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 8.23
+          },
+          {
+            "id": "unsupported-attention",
+            "category": "unsupported",
+            "query": "What is the exact dollar cost of training the original Transformer?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "9fdd9148-a65e-4820-a48e-ab1c755f89cc",
+              "505b7065-817c-4dbd-8257-38b8463d98e4",
+              "38313868-5b25-4d57-80e9-578535e514af",
+              "9c031b00-baf9-45d2-b1b4-38cf3b84f901",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76"
+            ],
+            "reranked_chunk_ids": [
+              "9fdd9148-a65e-4820-a48e-ab1c755f89cc",
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "d7e028f2-033f-4b4f-a598-bdc08d157185",
+              "dc15388a-e755-4b8b-893d-c7ddee3e0014"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Reported hardware and duration do not establish an exact monetary cost.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 8.5
+          },
+          {
+            "id": "unsupported-middle",
+            "category": "unsupported",
+            "query": "Does Lost in the Middle prove every future language model must fail at middle-position retrieval?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "a5c98706-98e0-4b23-9427-9a7f26da51c4",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "b9fbd19c-7963-4e68-8545-670ae8ddefbb",
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2",
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5"
+            ],
+            "reranked_chunk_ids": [
+              "609d28cb-7075-4f17-be6d-144a9b7a1335",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "a5c98706-98e0-4b23-9427-9a7f26da51c4",
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5",
+              "55806992-aa6f-4144-b64c-07c6186e3a63"
+            ],
+            "citation_chunk_ids": [
+              "609d28cb-7075-4f17-be6d-144a9b7a1335"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "Empirical results on the tested models do not establish a universal impossibility theorem.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 8.62
+          }
+        ],
+        "by_category": {
+          "ambiguity": {
+            "questions": 3,
+            "support_decision_accuracy": 0,
+            "recall_at_5": null
+          },
+          "conflicting_findings": {
+            "questions": 3,
+            "support_decision_accuracy": 0.3333333333333333,
+            "recall_at_5": 0.0
+          },
+          "paraphrase": {
+            "questions": 18,
+            "support_decision_accuracy": 0.5555555555555556,
+            "recall_at_5": 0.3333333333333333
+          },
+          "qualification": {
+            "questions": 6,
+            "support_decision_accuracy": 0.3333333333333333,
+            "recall_at_5": 0.5
+          },
+          "unsupported": {
+            "questions": 6,
+            "support_decision_accuracy": 0.8333333333333334,
+            "recall_at_5": null
+          }
+        }
+      },
+      "keyword": {
+        "recall_at_5": 0.0,
+        "reranked_recall_at_5": 0.0,
+        "mrr_at_5": 0,
+        "citation_correctness": 1.0,
+        "quote_faithfulness": 1.0,
+        "citation_count": 2,
+        "unsupported_answer_rate": 0.2222222222222222,
+        "false_refusal_rate": 1.0,
+        "latency_p50_ms": 69.98825000005127,
+        "latency_p95_ms": 74.20554200007246,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cases": [
+          {
+            "id": "attention-1",
+            "category": "paraphrase",
+            "query": "What mechanism replaces recurrence in the Transformer architecture?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "4567c775-5c00-4313-b8d7-dc5d415f81a6",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "retrieved_chunk_ids": [
+              "3fa84bc8-d5b0-4bc0-919c-caa6ae4fb0bd",
+              "8aeba282-900f-48b3-963a-3914dd0af1a4"
+            ],
+            "reranked_chunk_ids": [
+              "3fa84bc8-d5b0-4bc0-919c-caa6ae4fb0bd",
+              "8aeba282-900f-48b3-963a-3914dd0af1a4"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-1"
+            ],
+            "reference_answer": "Attention connects input and output globally.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.15
+          },
+          {
+            "id": "attention-2",
+            "category": "paraphrase",
+            "query": "Why use several attention heads rather than one?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "86cae1df-eaa5-49a3-8d58-aad767565b8f"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-2"
+            ],
+            "reference_answer": "Heads capture different subspaces and positions; a single head averages them.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 71.14
+          },
+          {
+            "id": "attention-3",
+            "category": "paraphrase",
+            "query": "How does the Transformer represent token order without recurrent layers?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-3"
+            ],
+            "reference_answer": "It adds sinusoidal position vectors to token embeddings.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 71.01
+          },
+          {
+            "id": "attention-4",
+            "category": "qualification",
+            "query": "Did learned position embeddings clearly outperform sinusoidal ones in the Transformer experiments?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-4"
+            ],
+            "reference_answer": "No; the reported results were approximately equal.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 71.73
+          },
+          {
+            "id": "bert-1",
+            "category": "paraphrase",
+            "query": "Which directions of context does BERT use during pretraining?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "5d92837b-2b82-427d-9dd7-ee570ddd729a"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "bert-1"
+            ],
+            "reference_answer": "Both directions jointly throughout the network.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 70.55
+          },
+          {
+            "id": "bert-2",
+            "category": "paraphrase",
+            "query": "What fraction of token positions are selected for BERT's masked prediction objective?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0b48ff32-4921-4de2-8a83-751317efb6af"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "bert-2"
+            ],
+            "reference_answer": "Fifteen percent.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 70.33
+          },
+          {
+            "id": "bert-3",
+            "category": "paraphrase",
+            "query": "Which components are added to construct a BERT token's input representation?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "bert-3"
+            ],
+            "reference_answer": "Token, segment, and position vectors.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 70.71
+          },
+          {
+            "id": "bert-4",
+            "category": "qualification",
+            "query": "How are positive and negative next-sentence examples balanced in BERT?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "05b2da39-c14a-45c6-806d-a14d4dc278d2"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "bert-4"
+            ],
+            "reference_answer": "Half use the following sentence; half use a random sentence.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 71.24
+          },
+          {
+            "id": "rag-1",
+            "category": "paraphrase",
+            "query": "Where does the RAG paper keep its external knowledge?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "7d31bafa-191d-4f03-b388-af112c283141"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "rag-1"
+            ],
+            "reference_answer": "In a dense index built from Wikipedia.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 70.36
+          },
+          {
+            "id": "rag-2",
+            "category": "paraphrase",
+            "query": "Can RAG-Sequence change its retrieved document for each output token?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "a2814075-1d9b-46e6-8432-6eea83af346e"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "rag-2"
+            ],
+            "reference_answer": "No; a document conditions the whole output sequence before marginalization.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 74.21
+          },
+          {
+            "id": "rag-3",
+            "category": "paraphrase",
+            "query": "How does RAG-Token differ in its choice of evidence while generating?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "rag-3"
+            ],
+            "reference_answer": "It can use a different document at each token.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 73.86
+          },
+          {
+            "id": "rag-4",
+            "category": "qualification",
+            "query": "Which generator and parameter count were used in the RAG experiments?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "ef245a0b-276b-435b-bb73-52b65b855024"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "rag-4"
+            ],
+            "reference_answer": "BART-large with 400 million parameters.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 71.6
+          },
+          {
+            "id": "middle-1",
+            "category": "paraphrase",
+            "query": "Where is relevant information easiest for models to use in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-1"
+            ],
+            "reference_answer": "Often near either edge; middle placement hurts.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 69.99
+          },
+          {
+            "id": "middle-2",
+            "category": "paraphrase",
+            "query": "How did the key-value retrieval task reduce dependence on language meaning?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-2"
+            ],
+            "reference_answer": "It used random UUID keys and values.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 70.75
+          },
+          {
+            "id": "middle-3",
+            "category": "paraphrase",
+            "query": "Which key-value pair counts were tested in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-3"
+            ],
+            "reference_answer": "Seventy-five, 140, and 300, each with 500 examples.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 70.76
+          },
+          {
+            "id": "middle-4",
+            "category": "qualification",
+            "query": "Does placing the query on both sides of the context help both tasks equally in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-4"
+            ],
+            "reference_answer": "No; it helps key-value retrieval substantially but changes multi-document QA trends little.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 70.56
+          },
+          {
+            "id": "mamba-1",
+            "category": "paraphrase",
+            "query": "Does Mamba require attention blocks in its architecture?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-1"
+            ],
+            "reference_answer": "No; its core is a selective state-space architecture.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 68.23
+          },
+          {
+            "id": "mamba-2",
+            "category": "paraphrase",
+            "query": "How does Mamba make selection depend on the current input?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "171f6925-3f60-42e8-8282-6996ed86b2b2",
+              "8a5d2045-9f7b-41d4-86c5-7ab4192b5ecb"
+            ],
+            "retrieved_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "reranked_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-2"
+            ],
+            "reference_answer": "Its state-space parameters depend on input.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 69.49
+          },
+          {
+            "id": "mamba-3",
+            "category": "paraphrase",
+            "query": "What generation throughput comparison does Mamba report against similarly sized Transformers?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "9afa80e0-9603-41f7-a7cf-f4c9382c2ace"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-3"
+            ],
+            "reference_answer": "About five times the throughput in its reported comparison.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 67.41
+          },
+          {
+            "id": "mamba-4",
+            "category": "qualification",
+            "query": "How can selective models discard an irrelevant history in Mamba's account?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "3671aca7-30bc-4d12-8838-c92ff7b0eb99"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-4"
+            ],
+            "reference_answer": "They can reset state to remove previous context.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 67.54
+          },
+          {
+            "id": "resnet-1",
+            "category": "paraphrase",
+            "query": "Do identity shortcuts in ResNet add parameters or computation?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd"
+            ],
+            "retrieved_chunk_ids": [
+              "6887d1c3-2629-4155-935a-0ef1fa71ec0a",
+              "539f42c3-c499-4554-9c47-63e5b28b6d59",
+              "aa6ce06b-70d4-4fbf-a5ea-d642efc77aa8",
+              "f7d840c7-301a-4e91-8ecb-f54541b17dea",
+              "171f6925-3f60-42e8-8282-6996ed86b2b2"
+            ],
+            "reranked_chunk_ids": [
+              "171f6925-3f60-42e8-8282-6996ed86b2b2",
+              "b5b1aa20-90a7-4a2b-bf1b-508e132e0127",
+              "6887d1c3-2629-4155-935a-0ef1fa71ec0a",
+              "26afcb20-7980-489f-88c9-0ef1d3c68080",
+              "b8447e22-caf6-4574-9271-ce3af4dfc33e"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-1"
+            ],
+            "reference_answer": "The identity shortcut itself adds neither.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 87.68
+          },
+          {
+            "id": "resnet-2",
+            "category": "paraphrase",
+            "query": "What top-five validation error is reported for the single 152-layer ResNet?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-2"
+            ],
+            "reference_answer": "4.49 percent.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 67.24
+          },
+          {
+            "id": "resnet-3",
+            "category": "paraphrase",
+            "query": "What top-five test error did the ResNet ensemble obtain?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-3"
+            ],
+            "reference_answer": "3.57 percent; this is an ensemble result, not the single model.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 67.25
+          },
+          {
+            "id": "resnet-4",
+            "category": "qualification",
+            "query": "Does the ResNet paper attribute the degradation of deeper plain networks to overfitting?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "8a189735-4250-4626-9e28-1ba7bcd9ff4b"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-4"
+            ],
+            "reference_answer": "No; increasing depth also increases training error.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 67.87
+          },
+          {
+            "id": "contrast-architecture",
+            "category": "conflicting_findings",
+            "query": "Attention Is All You Need uses attention, while Mamba removes it. Do these papers support the same architectural choice?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "4567c775-5c00-4313-b8d7-dc5d415f81a6",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-1",
+              "mamba-1"
+            ],
+            "reference_answer": "They report different architectural choices in different experiments; neither proves one design universally necessary.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 69.13
+          },
+          {
+            "id": "contrast-depth",
+            "category": "conflicting_findings",
+            "query": "Does the ResNet paper find that adding depth hurts plain networks but helps residual networks?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "7cc44993-2271-4abe-b6a3-cb7c0dc67f0d",
+              "8a189735-4250-4626-9e28-1ba7bcd9ff4b"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-4",
+              "resnet-5"
+            ],
+            "reference_answer": "It reports degradation for plain networks and gains from residual learning; the architecture qualifies the effect.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 68.89
+          },
+          {
+            "id": "contrast-context",
+            "category": "conflicting_findings",
+            "query": "How can Mamba report benefits from longer context while Lost in the Middle reports failures in using long contexts?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "4bddd258-7517-4c64-bd78-c1a589d8dcbb",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661"
+            ],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-5",
+              "middle-1"
+            ],
+            "reference_answer": "Different models and tasks are studied; selective state handling and position sensitivity should not be collapsed into a universal claim.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 67.77
+          },
+          {
+            "id": "ambiguous-model",
+            "category": "ambiguity",
+            "query": "How many parameters does the model have?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "a43459a5-0250-4547-94db-1345adb8854b",
+              "740b131c-19c5-405c-9325-787b207bd2f1",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d"
+            ],
+            "reranked_chunk_ids": [
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "a43459a5-0250-4547-94db-1345adb8854b",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d",
+              "8a5d2045-9f7b-41d4-86c5-7ab4192b5ecb"
+            ],
+            "citation_chunk_ids": [
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "The question does not identify a model, variant, or paper.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 70.84
+          },
+          {
+            "id": "ambiguous-score",
+            "category": "ambiguity",
+            "query": "What score did it get?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "No model, metric, dataset, or evaluation split is specified.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 66.99
+          },
+          {
+            "id": "ambiguous-best",
+            "category": "ambiguity",
+            "query": "Which architecture is best?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca",
+              "743a6e2b-3ad4-4db6-90a8-c0c705d73bbc",
+              "8aeba282-900f-48b3-963a-3914dd0af1a4",
+              "55806992-aa6f-4144-b64c-07c6186e3a63"
+            ],
+            "reranked_chunk_ids": [
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca",
+              "55806992-aa6f-4144-b64c-07c6186e3a63",
+              "743a6e2b-3ad4-4db6-90a8-c0c705d73bbc",
+              "8aeba282-900f-48b3-963a-3914dd0af1a4"
+            ],
+            "citation_chunk_ids": [
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "No task, constraint, or comparison setting is specified; these papers do not establish a universal winner.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 70.04
+          },
+          {
+            "id": "unsupported-bert",
+            "category": "unsupported",
+            "query": "What was the BERT training cluster's total electricity consumption in kilowatt-hours?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Training hardware is not a measured energy total; the corpus does not report this quantity.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 67.73
+          },
+          {
+            "id": "unsupported-rag",
+            "category": "unsupported",
+            "query": "What is the RAG model's guaranteed factual accuracy for every possible question?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Benchmark measurements do not supply a universal accuracy guarantee.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 68.42
+          },
+          {
+            "id": "unsupported-mamba",
+            "category": "unsupported",
+            "query": "What did Mamba score on the 2025 International Mathematical Olympiad?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "This pinned revision predates the event and provides no such evaluation.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 67.84
+          },
+          {
+            "id": "unsupported-resnet",
+            "category": "unsupported",
+            "query": "What clinical trial demonstrates that ResNet cures melanoma?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Image recognition experiments do not provide a clinical treatment trial.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 68.09
+          },
+          {
+            "id": "unsupported-attention",
+            "category": "unsupported",
+            "query": "What is the exact dollar cost of training the original Transformer?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Reported hardware and duration do not establish an exact monetary cost.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 69.55
+          },
+          {
+            "id": "unsupported-middle",
+            "category": "unsupported",
+            "query": "Does Lost in the Middle prove every future language model must fail at middle-position retrieval?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [],
+            "reranked_chunk_ids": [],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Empirical results on the tested models do not establish a universal impossibility theorem.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 67.92
+          }
+        ],
+        "by_category": {
+          "ambiguity": {
+            "questions": 3,
+            "support_decision_accuracy": 0.3333333333333333,
+            "recall_at_5": null
+          },
+          "conflicting_findings": {
+            "questions": 3,
+            "support_decision_accuracy": 0,
+            "recall_at_5": 0.0
+          },
+          "paraphrase": {
+            "questions": 18,
+            "support_decision_accuracy": 0,
+            "recall_at_5": 0.0
+          },
+          "qualification": {
+            "questions": 6,
+            "support_decision_accuracy": 0,
+            "recall_at_5": 0.0
+          },
+          "unsupported": {
+            "questions": 6,
+            "support_decision_accuracy": 1,
+            "recall_at_5": null
+          }
+        }
+      },
+      "hybrid": {
+        "recall_at_5": 0.25925925925925924,
+        "reranked_recall_at_5": 0.5740740740740741,
+        "mrr_at_5": 0.15864197530864196,
+        "citation_correctness": 1.0,
+        "quote_faithfulness": 1.0,
+        "citation_count": 17,
+        "unsupported_answer_rate": 0.4444444444444444,
+        "false_refusal_rate": 0.5185185185185185,
+        "latency_p50_ms": 75.42579199980537,
+        "latency_p95_ms": 77.61045799998101,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cases": [
+          {
+            "id": "attention-1",
+            "category": "paraphrase",
+            "query": "What mechanism replaces recurrence in the Transformer architecture?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "4567c775-5c00-4313-b8d7-dc5d415f81a6",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "retrieved_chunk_ids": [
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "3fa84bc8-d5b0-4bc0-919c-caa6ae4fb0bd",
+              "8aeba282-900f-48b3-963a-3914dd0af1a4",
+              "18675c85-bffc-42b3-8832-ac0b6812776c",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4"
+            ],
+            "reranked_chunk_ids": [
+              "3fa84bc8-d5b0-4bc0-919c-caa6ae4fb0bd",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863",
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca",
+              "740b131c-19c5-405c-9325-787b207bd2f1",
+              "18675c85-bffc-42b3-8832-ac0b6812776c"
+            ],
+            "citation_chunk_ids": [
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "gold_evidence_ids": [
+              "attention-1"
+            ],
+            "reference_answer": "Attention connects input and output globally.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 1.0,
+            "quoted_anchor_coverage": 1.0,
+            "latency_ms": 77.55
+          },
+          {
+            "id": "attention-2",
+            "category": "paraphrase",
+            "query": "Why use several attention heads rather than one?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "86cae1df-eaa5-49a3-8d58-aad767565b8f"
+            ],
+            "retrieved_chunk_ids": [
+              "d59a368f-5daf-4230-ac92-8148c915b454",
+              "f00365d8-8817-44be-af5f-ca0db6310d63",
+              "3ee339e3-ab75-4be7-85af-bd8c6a838f75",
+              "03cffb90-cd61-442d-8a09-aec52bab8504",
+              "26afcb20-7980-489f-88c9-0ef1d3c68080"
+            ],
+            "reranked_chunk_ids": [
+              "3604ebda-0f67-402a-97d0-83de81a42df7",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "f048dc68-eae2-4c6b-b3c6-1cf46d459eb8",
+              "03cffb90-cd61-442d-8a09-aec52bab8504",
+              "86cae1df-eaa5-49a3-8d58-aad767565b8f"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-2"
+            ],
+            "reference_answer": "Heads capture different subspaces and positions; a single head averages them.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.58
+          },
+          {
+            "id": "attention-3",
+            "category": "paraphrase",
+            "query": "How does the Transformer represent token order without recurrent layers?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "retrieved_chunk_ids": [
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514",
+              "b13fc1ee-a504-482f-8b72-e70be1e3cba9",
+              "1e98c3af-439c-4b4a-b51e-e88ea186c15f",
+              "cc62ad24-6842-4a9a-abc7-725ffc70c7a3",
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd"
+            ],
+            "reranked_chunk_ids": [
+              "cc62ad24-6842-4a9a-abc7-725ffc70c7a3",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "f8e32751-b1c1-4639-8516-c571a1490aa3",
+              "de258644-170c-4704-8ccf-e041809de6d3",
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-3"
+            ],
+            "reference_answer": "It adds sinusoidal position vectors to token embeddings.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 88.91
+          },
+          {
+            "id": "attention-4",
+            "category": "qualification",
+            "query": "Did learned position embeddings clearly outperform sinusoidal ones in the Transformer experiments?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "retrieved_chunk_ids": [
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "d59a368f-5daf-4230-ac92-8148c915b454",
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d"
+            ],
+            "reranked_chunk_ids": [
+              "c3ca9a6d-1227-46ed-b89d-02cd46c3109d",
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "771aeac6-5d29-4424-ae9c-b6530a0b6c0b",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-4"
+            ],
+            "reference_answer": "No; the reported results were approximately equal.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.89
+          },
+          {
+            "id": "bert-1",
+            "category": "paraphrase",
+            "query": "Which directions of context does BERT use during pretraining?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "5d92837b-2b82-427d-9dd7-ee570ddd729a"
+            ],
+            "retrieved_chunk_ids": [
+              "7617bdca-61bd-4b1c-905f-40956e166255",
+              "2d9c5a0a-e7fd-432f-a3fb-b4bfda049000",
+              "fc16c69f-0ec4-4592-99a4-337674759cee",
+              "1db1d4dc-14ae-4353-85ff-86a16b9b50d8",
+              "d5ef6e2f-509c-47e0-bb05-119e85a6f08a"
+            ],
+            "reranked_chunk_ids": [
+              "2e84a60b-ae52-4fd6-bdaa-3810691dd9a0",
+              "fc16c69f-0ec4-4592-99a4-337674759cee",
+              "2d9c5a0a-e7fd-432f-a3fb-b4bfda049000",
+              "1db1d4dc-14ae-4353-85ff-86a16b9b50d8",
+              "d5ef6e2f-509c-47e0-bb05-119e85a6f08a"
+            ],
+            "citation_chunk_ids": [
+              "2e84a60b-ae52-4fd6-bdaa-3810691dd9a0"
+            ],
+            "gold_evidence_ids": [
+              "bert-1"
+            ],
+            "reference_answer": "Both directions jointly throughout the network.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 74.51
+          },
+          {
+            "id": "bert-2",
+            "category": "paraphrase",
+            "query": "What fraction of token positions are selected for BERT's masked prediction objective?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0b48ff32-4921-4de2-8a83-751317efb6af"
+            ],
+            "retrieved_chunk_ids": [
+              "a88938dc-ff73-42eb-85ce-fdba60c9b721",
+              "dc15388a-e755-4b8b-893d-c7ddee3e0014",
+              "03e315ea-26f4-4337-9e5a-d6a58e03120a",
+              "b6172f90-eb7a-4fc0-8a96-796f03baf767",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "reranked_chunk_ids": [
+              "b6172f90-eb7a-4fc0-8a96-796f03baf767",
+              "9c031b00-baf9-45d2-b1b4-38cf3b84f901",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514",
+              "dc15388a-e755-4b8b-893d-c7ddee3e0014",
+              "03e315ea-26f4-4337-9e5a-d6a58e03120a"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "bert-2"
+            ],
+            "reference_answer": "Fifteen percent.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 76.24
+          },
+          {
+            "id": "bert-3",
+            "category": "paraphrase",
+            "query": "Which components are added to construct a BERT token's input representation?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "retrieved_chunk_ids": [
+              "c2e87e45-a0f8-4c9e-83bf-c4424b5d6d8c",
+              "09df1ed7-e7b1-46cd-b70e-53329ed82254",
+              "35e4accb-9adf-4ff5-ab25-8e4832fa4592",
+              "cfba60a9-3b98-44f4-aafc-e457e9634678",
+              "0b48ff32-4921-4de2-8a83-751317efb6af"
+            ],
+            "reranked_chunk_ids": [
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d",
+              "0b48ff32-4921-4de2-8a83-751317efb6af",
+              "5a8ddb08-d6a9-4ccb-85ee-ec38ced45dbb",
+              "2360ad70-a40a-45c7-a53d-488d8e5206c7",
+              "1e0afbfe-53cc-49c5-b646-d6f7f40b6514"
+            ],
+            "citation_chunk_ids": [
+              "0b48ff32-4921-4de2-8a83-751317efb6af"
+            ],
+            "gold_evidence_ids": [
+              "bert-3"
+            ],
+            "reference_answer": "Token, segment, and position vectors.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.42
+          },
+          {
+            "id": "bert-4",
+            "category": "qualification",
+            "query": "How are positive and negative next-sentence examples balanced in BERT?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "05b2da39-c14a-45c6-806d-a14d4dc278d2"
+            ],
+            "retrieved_chunk_ids": [
+              "cb08cbf9-a63e-48e1-aaa2-3fd5eb6287c3",
+              "c2902e34-29d8-4532-8121-88731ee4ccf4",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "f955a597-939f-48c4-857b-e25b1e582d66"
+            ],
+            "reranked_chunk_ids": [
+              "587d0ec5-a2e1-4f92-96db-fdeb6872d299",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "03e315ea-26f4-4337-9e5a-d6a58e03120a",
+              "cb08cbf9-a63e-48e1-aaa2-3fd5eb6287c3",
+              "cd8028d2-96c8-4022-9c4a-25e9fdc27f92"
+            ],
+            "citation_chunk_ids": [
+              "587d0ec5-a2e1-4f92-96db-fdeb6872d299"
+            ],
+            "gold_evidence_ids": [
+              "bert-4"
+            ],
+            "reference_answer": "Half use the following sentence; half use a random sentence.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 73.78
+          },
+          {
+            "id": "rag-1",
+            "category": "paraphrase",
+            "query": "Where does the RAG paper keep its external knowledge?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "7d31bafa-191d-4f03-b388-af112c283141"
+            ],
+            "retrieved_chunk_ids": [
+              "b13fc1ee-a504-482f-8b72-e70be1e3cba9",
+              "ecf898e1-4986-46c6-a187-5c7ef1c316a3",
+              "96d171ae-5a64-4aa9-9475-48b34c509962",
+              "ad916c71-80fe-4b0a-aea1-9c890f69e608",
+              "bf21b748-0249-4ea3-b132-f9557c029065"
+            ],
+            "reranked_chunk_ids": [
+              "ad916c71-80fe-4b0a-aea1-9c890f69e608",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "b13fc1ee-a504-482f-8b72-e70be1e3cba9",
+              "a117dfaf-6e20-4461-bc48-27917d7175b4",
+              "81ac6a69-b1a7-4aa7-8110-426249731f73"
+            ],
+            "citation_chunk_ids": [
+              "63c49347-ced4-403d-8454-713349ca8bb1"
+            ],
+            "gold_evidence_ids": [
+              "rag-1"
+            ],
+            "reference_answer": "In a dense index built from Wikipedia.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 74.44
+          },
+          {
+            "id": "rag-2",
+            "category": "paraphrase",
+            "query": "Can RAG-Sequence change its retrieved document for each output token?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "a2814075-1d9b-46e6-8432-6eea83af346e"
+            ],
+            "retrieved_chunk_ids": [
+              "a2814075-1d9b-46e6-8432-6eea83af346e",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "fc11d374-19b7-4cc7-82ce-ca0628183875",
+              "7f017c91-9166-45f8-aa76-a1a2d94ddf80",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97"
+            ],
+            "reranked_chunk_ids": [
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219",
+              "a2814075-1d9b-46e6-8432-6eea83af346e",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "acc672c4-07e9-4a59-8fd8-090a180ecc81",
+              "d2c1027b-1dce-4c74-8672-ce539391d288"
+            ],
+            "citation_chunk_ids": [
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219"
+            ],
+            "gold_evidence_ids": [
+              "rag-2"
+            ],
+            "reference_answer": "No; a document conditions the whole output sequence before marginalization.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.44
+          },
+          {
+            "id": "rag-3",
+            "category": "paraphrase",
+            "query": "How does RAG-Token differ in its choice of evidence while generating?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219"
+            ],
+            "retrieved_chunk_ids": [
+              "baad0bb9-9294-48e7-8ad5-0636d0325e1c",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "f955a597-939f-48c4-857b-e25b1e582d66",
+              "ec134c4b-6cba-4a1b-9110-e04bf0077824"
+            ],
+            "reranked_chunk_ids": [
+              "baad0bb9-9294-48e7-8ad5-0636d0325e1c",
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "f048dc68-eae2-4c6b-b3c6-1cf46d459eb8",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97",
+              "ec134c4b-6cba-4a1b-9110-e04bf0077824"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "rag-3"
+            ],
+            "reference_answer": "It can use a different document at each token.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.32
+          },
+          {
+            "id": "rag-4",
+            "category": "qualification",
+            "query": "Which generator and parameter count were used in the RAG experiments?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "ef245a0b-276b-435b-bb73-52b65b855024"
+            ],
+            "retrieved_chunk_ids": [
+              "acc672c4-07e9-4a59-8fd8-090a180ecc81",
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "0e4fdb39-d7a2-4aa7-ac8b-4563ba2a4aa9",
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219",
+              "4a2c676f-1b03-47e6-8f8f-d6fd0a5bdc5c"
+            ],
+            "reranked_chunk_ids": [
+              "f486c1b3-977d-4d95-aa4e-7309b3c64ab6",
+              "acc672c4-07e9-4a59-8fd8-090a180ecc81",
+              "780497df-3af6-4d6e-a6f0-3ad9859a1219",
+              "070e1639-4aae-47e1-b5f7-0b83a87bcb97",
+              "0cf894f4-1296-4b04-aab7-ce9282be5db3"
+            ],
+            "citation_chunk_ids": [
+              "f486c1b3-977d-4d95-aa4e-7309b3c64ab6"
+            ],
+            "gold_evidence_ids": [
+              "rag-4"
+            ],
+            "reference_answer": "BART-large with 400 million parameters.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 74.41
+          },
+          {
+            "id": "middle-1",
+            "category": "paraphrase",
+            "query": "Where is relevant information easiest for models to use in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661"
+            ],
+            "retrieved_chunk_ids": [
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5"
+            ],
+            "reranked_chunk_ids": [
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "4feb00ff-9f1c-4d2b-b910-6aa9ba7dff83",
+              "55806992-aa6f-4144-b64c-07c6186e3a63"
+            ],
+            "citation_chunk_ids": [
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5"
+            ],
+            "gold_evidence_ids": [
+              "middle-1"
+            ],
+            "reference_answer": "Often near either edge; middle placement hurts.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 73.86
+          },
+          {
+            "id": "middle-2",
+            "category": "paraphrase",
+            "query": "How did the key-value retrieval task reduce dependence on language meaning?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330"
+            ],
+            "retrieved_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d4b5a32-47a4-4f6a-ab50-4aa36c4c9068",
+              "99a084b6-80c1-49a2-b29c-d44c354d3b97",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76"
+            ],
+            "reranked_chunk_ids": [
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "8d4b5a32-47a4-4f6a-ab50-4aa36c4c9068",
+              "18d83b01-e8ea-476b-9486-760eefa2c330",
+              "caad7996-ea48-4aca-a0a9-0e18e0eb21bc",
+              "74ff4278-52f3-4c9d-9a36-47490b5d0df2"
+            ],
+            "citation_chunk_ids": [
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b"
+            ],
+            "gold_evidence_ids": [
+              "middle-2"
+            ],
+            "reference_answer": "It used random UUID keys and values.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.15
+          },
+          {
+            "id": "middle-3",
+            "category": "paraphrase",
+            "query": "Which key-value pair counts were tested in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "18d83b01-e8ea-476b-9486-760eefa2c330"
+            ],
+            "retrieved_chunk_ids": [
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "ccc8ea35-e912-4e59-8060-4dadffe36299",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "fad33007-0e9c-4a5c-ba0f-474c529a1dae",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b"
+            ],
+            "reranked_chunk_ids": [
+              "ccc8ea35-e912-4e59-8060-4dadffe36299",
+              "77bf911e-a0da-4ebe-a35a-1a892ffa6a4b",
+              "caad7996-ea48-4aca-a0a9-0e18e0eb21bc",
+              "18d83b01-e8ea-476b-9486-760eefa2c330",
+              "74ff4278-52f3-4c9d-9a36-47490b5d0df2"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-3"
+            ],
+            "reference_answer": "Seventy-five, 140, and 300, each with 500 examples.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.24
+          },
+          {
+            "id": "middle-4",
+            "category": "qualification",
+            "query": "Does placing the query on both sides of the context help both tasks equally in Lost in the Middle?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2"
+            ],
+            "retrieved_chunk_ids": [
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2",
+              "3a21da5d-f677-4578-b641-b4e50b13daa5",
+              "1d14674f-ba79-4b8d-8452-a7dc5d5daa95"
+            ],
+            "reranked_chunk_ids": [
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2",
+              "0f30190f-7e6a-4858-a7d6-64472ccb5a08",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "1042202f-16ad-41ec-afd9-25b043428ec7",
+              "3a21da5d-f677-4578-b641-b4e50b13daa5"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "middle-4"
+            ],
+            "reference_answer": "No; it helps key-value retrieval substantially but changes multi-document QA trends little.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 77.08
+          },
+          {
+            "id": "mamba-1",
+            "category": "paraphrase",
+            "query": "Does Mamba require attention blocks in its architecture?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "retrieved_chunk_ids": [
+              "e3d4c491-fe48-4618-91d2-edbcfa5d7159",
+              "e89db121-354c-4bb7-b1cc-a632cf2031eb",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "8e0ee097-0295-492a-9b2b-5e196b1642fd",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "reranked_chunk_ids": [
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "e3d4c491-fe48-4618-91d2-edbcfa5d7159",
+              "f048dc68-eae2-4c6b-b3c6-1cf46d459eb8",
+              "e89db121-354c-4bb7-b1cc-a632cf2031eb"
+            ],
+            "citation_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "gold_evidence_ids": [
+              "mamba-1"
+            ],
+            "reference_answer": "No; its core is a selective state-space architecture.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 1.0,
+            "quoted_anchor_coverage": 1.0,
+            "latency_ms": 76.98
+          },
+          {
+            "id": "mamba-2",
+            "category": "paraphrase",
+            "query": "How does Mamba make selection depend on the current input?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "171f6925-3f60-42e8-8282-6996ed86b2b2",
+              "8a5d2045-9f7b-41d4-86c5-7ab4192b5ecb"
+            ],
+            "retrieved_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "f362c9bc-f253-49dc-8b46-c0df9a284ae5",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76",
+              "f6ff5a7c-a3ca-493d-ba8d-1b8bb0c5a315"
+            ],
+            "reranked_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "f6ff5a7c-a3ca-493d-ba8d-1b8bb0c5a315",
+              "171f6925-3f60-42e8-8282-6996ed86b2b2",
+              "604451cf-6f55-4656-aa23-395b9b0c01b1"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-2"
+            ],
+            "reference_answer": "Its state-space parameters depend on input.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 76.21
+          },
+          {
+            "id": "mamba-3",
+            "category": "paraphrase",
+            "query": "What generation throughput comparison does Mamba report against similarly sized Transformers?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "9afa80e0-9603-41f7-a7cf-f4c9382c2ace"
+            ],
+            "retrieved_chunk_ids": [
+              "9afa80e0-9603-41f7-a7cf-f4c9382c2ace",
+              "4938eb03-5cf8-465b-8474-a025100ea89d",
+              "b11ad3fc-b653-48ba-a4a0-261937be7342",
+              "6da0ddac-bead-40b8-8c49-57f1afdb1e6a",
+              "c87f1d55-c5ad-4ed1-9234-b09bee71f757"
+            ],
+            "reranked_chunk_ids": [
+              "9afa80e0-9603-41f7-a7cf-f4c9382c2ace",
+              "91581fd0-6427-428c-8fe3-7e4bade424b3",
+              "b11ad3fc-b653-48ba-a4a0-261937be7342",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "4938eb03-5cf8-465b-8474-a025100ea89d"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-3"
+            ],
+            "reference_answer": "About five times the throughput in its reported comparison.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 73.09
+          },
+          {
+            "id": "mamba-4",
+            "category": "qualification",
+            "query": "How can selective models discard an irrelevant history in Mamba's account?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "3671aca7-30bc-4d12-8838-c92ff7b0eb99"
+            ],
+            "retrieved_chunk_ids": [
+              "8e0ee097-0295-492a-9b2b-5e196b1642fd",
+              "3671aca7-30bc-4d12-8838-c92ff7b0eb99",
+              "f9c212da-f22b-471a-9098-3ca5a07dac36",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5",
+              "4ef60aa9-7f20-4515-91df-3e50c559efe0"
+            ],
+            "reranked_chunk_ids": [
+              "3671aca7-30bc-4d12-8838-c92ff7b0eb99",
+              "4bddd258-7517-4c64-bd78-c1a589d8dcbb",
+              "4ef60aa9-7f20-4515-91df-3e50c559efe0",
+              "c2e87e45-a0f8-4c9e-83bf-c4424b5d6d8c",
+              "fedee43c-4959-46cb-9a9c-b5bcd8ce8328"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-4"
+            ],
+            "reference_answer": "They can reset state to remove previous context.",
+            "evidence_recall_at_5": 1.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.44
+          },
+          {
+            "id": "resnet-1",
+            "category": "paraphrase",
+            "query": "Do identity shortcuts in ResNet add parameters or computation?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd"
+            ],
+            "retrieved_chunk_ids": [
+              "5db74aec-1593-4ca0-8911-ae7c8e99a3ab",
+              "7dd5a162-8b08-4a66-9156-c3677e361e2f",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863",
+              "47beebf0-8550-4af5-9585-27935b0f60be",
+              "8f2c6772-c323-4c2f-bdb6-26717eccd7bd"
+            ],
+            "reranked_chunk_ids": [
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "171f6925-3f60-42e8-8282-6996ed86b2b2",
+              "b5b1aa20-90a7-4a2b-bf1b-508e132e0127",
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "cfba60a9-3b98-44f4-aafc-e457e9634678"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-1"
+            ],
+            "reference_answer": "The identity shortcut itself adds neither.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 94.15
+          },
+          {
+            "id": "resnet-2",
+            "category": "paraphrase",
+            "query": "What top-five validation error is reported for the single 152-layer ResNet?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "retrieved_chunk_ids": [
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "a8990e00-36d3-4998-93a0-f65585cde9e9",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "e89eafb4-8e9e-4672-bc14-b1c8971cb33e"
+            ],
+            "reranked_chunk_ids": [
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "217e268f-c998-441d-a081-7196faf8281f",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "7150f65e-1a5e-46bc-803d-4dd438217e08"
+            ],
+            "citation_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "gold_evidence_ids": [
+              "resnet-2"
+            ],
+            "reference_answer": "4.49 percent.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 1.0,
+            "quoted_anchor_coverage": 1.0,
+            "latency_ms": 75.27
+          },
+          {
+            "id": "resnet-3",
+            "category": "paraphrase",
+            "query": "What top-five test error did the ResNet ensemble obtain?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "217e268f-c998-441d-a081-7196faf8281f"
+            ],
+            "retrieved_chunk_ids": [
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "a8990e00-36d3-4998-93a0-f65585cde9e9",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f"
+            ],
+            "reranked_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f",
+              "217e268f-c998-441d-a081-7196faf8281f",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192",
+              "a8990e00-36d3-4998-93a0-f65585cde9e9"
+            ],
+            "citation_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f"
+            ],
+            "gold_evidence_ids": [
+              "resnet-3"
+            ],
+            "reference_answer": "3.57 percent; this is an ensemble result, not the single model.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 1.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 74.94
+          },
+          {
+            "id": "resnet-4",
+            "category": "qualification",
+            "query": "Does the ResNet paper attribute the degradation of deeper plain networks to overfitting?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "8a189735-4250-4626-9e28-1ba7bcd9ff4b"
+            ],
+            "retrieved_chunk_ids": [
+              "85ef755f-83ff-4c7a-8df9-3ecac0e8ac6a",
+              "604451cf-6f55-4656-aa23-395b9b0c01b1",
+              "d307d490-d4fa-46a7-b227-a5b806920dce",
+              "3a21da5d-f677-4578-b641-b4e50b13daa5",
+              "824fad1b-f922-4b64-8279-c95f1027655d"
+            ],
+            "reranked_chunk_ids": [
+              "10074f90-12db-41e2-bcc3-0358e9726c48",
+              "7d8066c3-944c-45ca-9b0c-1e86025e7dc6",
+              "7150f65e-1a5e-46bc-803d-4dd438217e08",
+              "20bca9a7-bcc7-4967-bcef-04c50c8162cb",
+              "6a232fb9-68fd-4cbb-b9db-e9ed4f57d192"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "resnet-4"
+            ],
+            "reference_answer": "No; increasing depth also increases training error.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.58
+          },
+          {
+            "id": "contrast-architecture",
+            "category": "conflicting_findings",
+            "query": "Attention Is All You Need uses attention, while Mamba removes it. Do these papers support the same architectural choice?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "4567c775-5c00-4313-b8d7-dc5d415f81a6",
+              "8d3d2441-0d22-4bd9-9358-87a7d821b863"
+            ],
+            "retrieved_chunk_ids": [
+              "55aa15b8-d494-47f3-b685-217542471bc1",
+              "3349bcd4-5cb0-497a-85f8-5af949e0fa1d",
+              "77454d31-46b5-4d26-acb8-7c223fc92eb2",
+              "8b777ada-02d1-4d5c-8b93-b5b28bc57519",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4"
+            ],
+            "reranked_chunk_ids": [
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b",
+              "5db74aec-1593-4ca0-8911-ae7c8e99a3ab",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "c34004e7-e411-48ec-ae22-021e1a764f29"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "attention-1",
+              "mamba-1"
+            ],
+            "reference_answer": "They report different architectural choices in different experiments; neither proves one design universally necessary.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 76.28
+          },
+          {
+            "id": "contrast-depth",
+            "category": "conflicting_findings",
+            "query": "Does the ResNet paper find that adding depth hurts plain networks but helps residual networks?",
+            "expected_supported": true,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "7cc44993-2271-4abe-b6a3-cb7c0dc67f0d",
+              "8a189735-4250-4626-9e28-1ba7bcd9ff4b"
+            ],
+            "retrieved_chunk_ids": [
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd",
+              "a0f4854d-b6e5-423c-ab52-d143cd3befdd",
+              "7150f65e-1a5e-46bc-803d-4dd438217e08",
+              "444a7541-6569-4837-b863-d19ea58833b0",
+              "efba8e2e-1c8a-4176-a6cb-57d76fa384c3"
+            ],
+            "reranked_chunk_ids": [
+              "7d8066c3-944c-45ca-9b0c-1e86025e7dc6",
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd",
+              "a0f4854d-b6e5-423c-ab52-d143cd3befdd",
+              "639047eb-2f0a-47a3-ad5b-b8b4189fa27d",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda"
+            ],
+            "citation_chunk_ids": [
+              "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd"
+            ],
+            "gold_evidence_ids": [
+              "resnet-4",
+              "resnet-5"
+            ],
+            "reference_answer": "It reports degradation for plain networks and gains from residual learning; the architecture qualifies the effect.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.0,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.5,
+            "latency_ms": 75.78
+          },
+          {
+            "id": "contrast-context",
+            "category": "conflicting_findings",
+            "query": "How can Mamba report benefits from longer context while Lost in the Middle reports failures in using long contexts?",
+            "expected_supported": true,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [
+              "4bddd258-7517-4c64-bd78-c1a589d8dcbb",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661"
+            ],
+            "retrieved_chunk_ids": [
+              "fad33007-0e9c-4a5c-ba0f-474c529a1dae",
+              "fc58c0bb-2d85-4942-a722-30ef6d485a2b",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "ac0d3451-72dc-4a45-b735-d9688f675513",
+              "51039890-99d5-4b23-9364-0a4e2fab98c5"
+            ],
+            "reranked_chunk_ids": [
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "6e1e15e8-3d02-4bcb-ae22-e3709934ac56",
+              "54726fde-5a03-4625-9640-b04608d718f5",
+              "75d46718-1c48-4370-955b-993ca390dfab",
+              "11cc8c44-4af0-4ba3-8b66-ee1a58287b7e"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [
+              "mamba-5",
+              "middle-1"
+            ],
+            "reference_answer": "Different models and tasks are studied; selective state handling and position sensitivity should not be collapsed into a universal claim.",
+            "evidence_recall_at_5": 0.0,
+            "reranked_evidence_recall_at_5": 0.5,
+            "citation_evidence_recall": 0.0,
+            "quoted_anchor_coverage": 0.0,
+            "latency_ms": 75.0
+          },
+          {
+            "id": "ambiguous-model",
+            "category": "ambiguity",
+            "query": "How many parameters does the model have?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "740b131c-19c5-405c-9325-787b207bd2f1",
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "5db74aec-1593-4ca0-8911-ae7c8e99a3ab",
+              "a43459a5-0250-4547-94db-1345adb8854b"
+            ],
+            "reranked_chunk_ids": [
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d",
+              "2ca700a9-165a-4c37-8f56-b8e5d0445cda",
+              "a43459a5-0250-4547-94db-1345adb8854b",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+              "8a5d2045-9f7b-41d4-86c5-7ab4192b5ecb"
+            ],
+            "citation_chunk_ids": [
+              "6ae3fdcb-fc56-4347-a8ee-6f601334963d"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "The question does not identify a model, variant, or paper.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 77.61
+          },
+          {
+            "id": "ambiguous-score",
+            "category": "ambiguity",
+            "query": "What score did it get?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "f691de35-8792-414c-8738-647e6df580b5",
+              "5b5a6e5f-a1b8-4f7e-86e5-f676a3db2be1",
+              "4bc12945-fa08-4b64-ac03-bdf8a572ee40",
+              "0a3dc4e2-85b0-4047-bd5d-bfe5b519dcba",
+              "e0577e90-cee8-424b-9ae1-9056c47e31c4"
+            ],
+            "reranked_chunk_ids": [
+              "5b5a6e5f-a1b8-4f7e-86e5-f676a3db2be1",
+              "a2814075-1d9b-46e6-8432-6eea83af346e",
+              "f691de35-8792-414c-8738-647e6df580b5",
+              "4bc12945-fa08-4b64-ac03-bdf8a572ee40",
+              "0a3dc4e2-85b0-4047-bd5d-bfe5b519dcba"
+            ],
+            "citation_chunk_ids": [
+              "5b5a6e5f-a1b8-4f7e-86e5-f676a3db2be1"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "No model, metric, dataset, or evaluation split is specified.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 73.79
+          },
+          {
+            "id": "ambiguous-best",
+            "category": "ambiguity",
+            "query": "Which architecture is best?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "b6b383c1-d649-434e-9310-23aa2d9ea089",
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca",
+              "a847f982-8247-42fc-aa85-8b03bf5a522b",
+              "743a6e2b-3ad4-4db6-90a8-c0c705d73bbc",
+              "bd9537ff-9b5e-4f49-ba54-f737862c3d1d"
+            ],
+            "reranked_chunk_ids": [
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca",
+              "55806992-aa6f-4144-b64c-07c6186e3a63",
+              "743a6e2b-3ad4-4db6-90a8-c0c705d73bbc",
+              "8aeba282-900f-48b3-963a-3914dd0af1a4",
+              "74bb088b-02a9-4d9b-ab29-76e2d6072a69"
+            ],
+            "citation_chunk_ids": [
+              "7bcee034-e9b3-4fc9-94cf-7388e40beaca"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "No task, constraint, or comparison setting is specified; these papers do not establish a universal winner.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 76.02
+          },
+          {
+            "id": "unsupported-bert",
+            "category": "unsupported",
+            "query": "What was the BERT training cluster's total electricity consumption in kilowatt-hours?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "add3d90a-42ce-4dfa-89cc-a6f3cc643390",
+              "5548c6dd-614a-4ae8-b78f-a04bd38078db",
+              "d7e028f2-033f-4b4f-a598-bdc08d157185",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088"
+            ],
+            "reranked_chunk_ids": [
+              "add3d90a-42ce-4dfa-89cc-a6f3cc643390",
+              "1d16af80-075c-4460-9cf4-a0fffa2ba69c",
+              "bf21b748-0249-4ea3-b132-f9557c029065",
+              "a4dbcb61-0c53-457a-a65a-6bf31a99c312",
+              "5548c6dd-614a-4ae8-b78f-a04bd38078db"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Training hardware is not a measured energy total; the corpus does not report this quantity.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 75.64
+          },
+          {
+            "id": "unsupported-rag",
+            "category": "unsupported",
+            "query": "What is the RAG model's guaranteed factual accuracy for every possible question?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "0e9416d2-5eac-4de7-bd35-a4367c9e7b50",
+              "a117dfaf-6e20-4461-bc48-27917d7175b4",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76"
+            ],
+            "reranked_chunk_ids": [
+              "ff0d7735-fef3-4134-9dfc-42cb0a931088",
+              "c98c7dec-2455-4be8-bef7-8dc5ce68d237",
+              "63c49347-ced4-403d-8454-713349ca8bb1",
+              "a4dbcb61-0c53-457a-a65a-6bf31a99c312",
+              "21f0c729-95bc-4d09-aa93-daacc50386c5"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Benchmark measurements do not supply a universal accuracy guarantee.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 75.13
+          },
+          {
+            "id": "unsupported-mamba",
+            "category": "unsupported",
+            "query": "What did Mamba score on the 2025 International Mathematical Olympiad?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "f362c9bc-f253-49dc-8b46-c0df9a284ae5",
+              "056f6736-ea65-4743-92e5-5fd209b3db04",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76",
+              "a879e52d-5014-4a83-be61-0ea9a11efa20",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27"
+            ],
+            "reranked_chunk_ids": [
+              "f362c9bc-f253-49dc-8b46-c0df9a284ae5",
+              "056f6736-ea65-4743-92e5-5fd209b3db04",
+              "a879e52d-5014-4a83-be61-0ea9a11efa20",
+              "e6512057-8c77-429d-b7e3-ce0838ad4d27",
+              "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "This pinned revision predates the event and provides no such evaluation.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 74.25
+          },
+          {
+            "id": "unsupported-resnet",
+            "category": "unsupported",
+            "query": "What clinical trial demonstrates that ResNet cures melanoma?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "154dac01-df54-4d08-bde9-93151c697e65",
+              "7dc2ed35-8bb1-4ef9-ad97-7ec405787a1e",
+              "7c51376f-eb00-4eb4-931e-e4e386acdaa8"
+            ],
+            "reranked_chunk_ids": [
+              "6c9f5dd4-04fe-4a60-923c-4734deb5421f",
+              "15894264-2ff2-436b-9278-f5eddeb171e8",
+              "154dac01-df54-4d08-bde9-93151c697e65",
+              "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+              "a5873880-d078-4b0d-ba19-5f73be25d7d8"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Image recognition experiments do not provide a clinical treatment trial.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 74.72
+          },
+          {
+            "id": "unsupported-attention",
+            "category": "unsupported",
+            "query": "What is the exact dollar cost of training the original Transformer?",
+            "expected_supported": false,
+            "supported": false,
+            "reason": "insufficient_evidence",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "9fdd9148-a65e-4820-a48e-ab1c755f89cc",
+              "505b7065-817c-4dbd-8257-38b8463d98e4",
+              "38313868-5b25-4d57-80e9-578535e514af",
+              "9c031b00-baf9-45d2-b1b4-38cf3b84f901",
+              "7ec25ba7-75a5-44d6-b8a0-a6a936ea4f76"
+            ],
+            "reranked_chunk_ids": [
+              "9fdd9148-a65e-4820-a48e-ab1c755f89cc",
+              "bcee2286-62c5-4602-ad95-2dcebdb87e8b",
+              "2a0c6741-105a-483a-a6c7-ad2ed9b8c5f3",
+              "d7e028f2-033f-4b4f-a598-bdc08d157185",
+              "dc15388a-e755-4b8b-893d-c7ddee3e0014"
+            ],
+            "citation_chunk_ids": [],
+            "gold_evidence_ids": [],
+            "reference_answer": "Reported hardware and duration do not establish an exact monetary cost.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 76.13
+          },
+          {
+            "id": "unsupported-middle",
+            "category": "unsupported",
+            "query": "Does Lost in the Middle prove every future language model must fail at middle-position retrieval?",
+            "expected_supported": false,
+            "supported": true,
+            "reason": "verified_source_quotes",
+            "gold_chunk_ids": [],
+            "retrieved_chunk_ids": [
+              "a5c98706-98e0-4b23-9427-9a7f26da51c4",
+              "9c64cba9-c7fb-45b1-a863-2f3683ea46f4",
+              "b9fbd19c-7963-4e68-8545-670ae8ddefbb",
+              "a7e61607-97b5-4712-a43d-10bcaaf797b2",
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5"
+            ],
+            "reranked_chunk_ids": [
+              "609d28cb-7075-4f17-be6d-144a9b7a1335",
+              "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+              "a5c98706-98e0-4b23-9427-9a7f26da51c4",
+              "2a4101bb-630f-4cc0-a49a-02ffa85b16a5",
+              "55806992-aa6f-4144-b64c-07c6186e3a63"
+            ],
+            "citation_chunk_ids": [
+              "609d28cb-7075-4f17-be6d-144a9b7a1335"
+            ],
+            "gold_evidence_ids": [],
+            "reference_answer": "Empirical results on the tested models do not establish a universal impossibility theorem.",
+            "evidence_recall_at_5": null,
+            "reranked_evidence_recall_at_5": null,
+            "citation_evidence_recall": null,
+            "quoted_anchor_coverage": null,
+            "latency_ms": 75.43
+          }
+        ],
+        "by_category": {
+          "ambiguity": {
+            "questions": 3,
+            "support_decision_accuracy": 0,
+            "recall_at_5": null
+          },
+          "conflicting_findings": {
+            "questions": 3,
+            "support_decision_accuracy": 0.3333333333333333,
+            "recall_at_5": 0.0
+          },
+          "paraphrase": {
+            "questions": 18,
+            "support_decision_accuracy": 0.5555555555555556,
+            "recall_at_5": 0.2222222222222222
+          },
+          "qualification": {
+            "questions": 6,
+            "support_decision_accuracy": 0.3333333333333333,
+            "recall_at_5": 0.5
+          },
+          "unsupported": {
+            "questions": 6,
+            "support_decision_accuracy": 0.8333333333333334,
+            "recall_at_5": null
+          }
+        }
+      }
+    },
+    "annotation": {
+      "method": "Source-checked by the implementing agent against pinned PDF pages; independently authored questions and reference summaries, not generated from retrieval outputs.",
+      "independent_human_review": false,
+      "page_convention": "One-based PDF page index, including front matter.",
+      "scope": "Six machine-learning papers across NLP, retrieval, context evaluation, state-space modeling, and computer vision. Not a cross-discipline scientific benchmark."
+    },
+    "sources": [
+      {
+        "id": "attention",
+        "arxiv_id": "1706.03762v7",
+        "title": "Attention Is All You Need",
+        "pdf_url": "https://arxiv.org/pdf/1706.03762v7",
+        "source_url": "https://arxiv.org/abs/1706.03762v7",
+        "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+        "pages": 15
+      },
+      {
+        "id": "bert",
+        "arxiv_id": "1810.04805v2",
+        "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "pdf_url": "https://arxiv.org/pdf/1810.04805v2",
+        "source_url": "https://arxiv.org/abs/1810.04805v2",
+        "sha256": "5692a5514787a8c6727b4ff3b726a3385798bc68e12138d1d4af83947e2acf6e",
+        "pages": 16
+      },
+      {
+        "id": "rag",
+        "arxiv_id": "2005.11401v4",
+        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+        "pdf_url": "https://arxiv.org/pdf/2005.11401v4",
+        "source_url": "https://arxiv.org/abs/2005.11401v4",
+        "sha256": "23e3249e9a1e75418d82efecab0ea8c4d033b89c93742f63208d47ce01f21233",
+        "pages": 19
+      },
+      {
+        "id": "middle",
+        "arxiv_id": "2307.03172v3",
+        "title": "Lost in the Middle: How Language Models Use Long Contexts",
+        "pdf_url": "https://arxiv.org/pdf/2307.03172v3",
+        "source_url": "https://arxiv.org/abs/2307.03172v3",
+        "sha256": "653b29619eae2ae4b361d7bdcdc06db4bedcb1b0eabe31814036beca8c1af0b1",
+        "pages": 18
+      },
+      {
+        "id": "mamba",
+        "arxiv_id": "2312.00752v2",
+        "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+        "pdf_url": "https://arxiv.org/pdf/2312.00752v2",
+        "source_url": "https://arxiv.org/abs/2312.00752v2",
+        "sha256": "adf70ed1803c85b1899dec3e21f3af0b124411439e8654b840ea65f7b9f52b2e",
+        "pages": 36
+      },
+      {
+        "id": "resnet",
+        "arxiv_id": "1512.03385v1",
+        "title": "Deep Residual Learning for Image Recognition",
+        "pdf_url": "https://arxiv.org/pdf/1512.03385v1",
+        "source_url": "https://arxiv.org/abs/1512.03385v1",
+        "sha256": "1e0651b6810ecba34a3dbc5b5b0209226f889004607c1f203540a48d64e5a93a",
+        "pages": 12
+      }
+    ],
+    "gold_resolution": {
+      "attention-1": [
+        {
+          "chunk_id": "8d3d2441-0d22-4bd9-9358-87a7d821b863",
+          "document_id": "e3c452f6-9a1b-456d-8bbe-127142abad2c",
+          "page": 2,
+          "stored_section": "1 Introduction",
+          "text_sha256": "84566744aa02d9f2732f4ce596b54599eec8e7d4f52eac8a55027648b1a1d83a"
+        },
+        {
+          "chunk_id": "4567c775-5c00-4313-b8d7-dc5d415f81a6",
+          "document_id": "e3c452f6-9a1b-456d-8bbe-127142abad2c",
+          "page": 2,
+          "stored_section": "2 Background",
+          "text_sha256": "6d5851aead72006e3af18627d05609a16475b0f723537c3d0acfeb299560acb3"
+        }
+      ],
+      "attention-2": [
+        {
+          "chunk_id": "86cae1df-eaa5-49a3-8d58-aad767565b8f",
+          "document_id": "e3c452f6-9a1b-456d-8bbe-127142abad2c",
+          "page": 5,
+          "stored_section": "3.2.2 Multi-Head Attention",
+          "text_sha256": "9fe1181dceb26d03864ba18f764eb9348588a152794a756b29555681aa194bc7"
+        }
+      ],
+      "attention-3": [
+        {
+          "chunk_id": "c3ca9a6d-1227-46ed-b89d-02cd46c3109d",
+          "document_id": "e3c452f6-9a1b-456d-8bbe-127142abad2c",
+          "page": 6,
+          "stored_section": "3.5 Positional Encoding",
+          "text_sha256": "b114a297ff993625b5ad8006da6713d846fad206277ecb0c20d51c2d0eb286bc"
+        }
+      ],
+      "attention-4": [
+        {
+          "chunk_id": "c3ca9a6d-1227-46ed-b89d-02cd46c3109d",
+          "document_id": "e3c452f6-9a1b-456d-8bbe-127142abad2c",
+          "page": 6,
+          "stored_section": "3.5 Positional Encoding",
+          "text_sha256": "b114a297ff993625b5ad8006da6713d846fad206277ecb0c20d51c2d0eb286bc"
+        }
+      ],
+      "bert-1": [
+        {
+          "chunk_id": "5d92837b-2b82-427d-9dd7-ee570ddd729a",
+          "document_id": "351f1468-f364-45cc-b828-581f5309da73",
+          "page": 1,
+          "stored_section": "Abstract",
+          "text_sha256": "541832a35cd3d466248d4477b53629f38a76e66f5db0b00aded6a516da860d6a"
+        }
+      ],
+      "bert-2": [
+        {
+          "chunk_id": "0b48ff32-4921-4de2-8a83-751317efb6af",
+          "document_id": "351f1468-f364-45cc-b828-581f5309da73",
+          "page": 4,
+          "stored_section": "3 BERT",
+          "text_sha256": "36b19fbdaa3a902dfc0868a8c6e0bba9ca62abd06e7b8d5f99b222fb0a854266"
+        }
+      ],
+      "bert-3": [
+        {
+          "chunk_id": "1e0afbfe-53cc-49c5-b646-d6f7f40b6514",
+          "document_id": "351f1468-f364-45cc-b828-581f5309da73",
+          "page": 4,
+          "stored_section": "3 BERT",
+          "text_sha256": "865f744136c5fac465808d5b15e49cda7fa74e3b536c625ed41a9642370af157"
+        }
+      ],
+      "bert-4": [
+        {
+          "chunk_id": "05b2da39-c14a-45c6-806d-a14d4dc278d2",
+          "document_id": "351f1468-f364-45cc-b828-581f5309da73",
+          "page": 4,
+          "stored_section": "3.1 Pre-training BERT",
+          "text_sha256": "4ed9e9456db152aaa9369e79ed75a83f8da8d7a475ac059ca9c2e4391064e50b"
+        }
+      ],
+      "rag-1": [
+        {
+          "chunk_id": "7d31bafa-191d-4f03-b388-af112c283141",
+          "document_id": "05838fb5-d12a-4b46-ac8e-3453606836ad",
+          "page": 1,
+          "stored_section": "Abstract",
+          "text_sha256": "4d293fe92bc906af530fa0c0ab077ebaf4747918a1f642b15b2262f2edc84d91"
+        }
+      ],
+      "rag-2": [
+        {
+          "chunk_id": "a2814075-1d9b-46e6-8432-6eea83af346e",
+          "document_id": "05838fb5-d12a-4b46-ac8e-3453606836ad",
+          "page": 3,
+          "stored_section": "2.1 Models",
+          "text_sha256": "7505ecb7c0de1fe8d7f057264216530d8e732aa6962a3e4698bc4ec7598b4537"
+        }
+      ],
+      "rag-3": [
+        {
+          "chunk_id": "780497df-3af6-4d6e-a6f0-3ad9859a1219",
+          "document_id": "05838fb5-d12a-4b46-ac8e-3453606836ad",
+          "page": 3,
+          "stored_section": "X",
+          "text_sha256": "c3a9aceec62b0f80169b895e9f988c495db9e2cbaea198eb420f62b6a0ef5114"
+        }
+      ],
+      "rag-4": [
+        {
+          "chunk_id": "ef245a0b-276b-435b-bb73-52b65b855024",
+          "document_id": "05838fb5-d12a-4b46-ac8e-3453606836ad",
+          "page": 3,
+          "stored_section": "2.3 Generator: BART",
+          "text_sha256": "b7392ce800e6a3052b809df970f5673c0601f3d392760042bcd6200fe7c97e32"
+        }
+      ],
+      "middle-1": [
+        {
+          "chunk_id": "8d9463a8-7b15-4d1b-bf84-4f7548736661",
+          "document_id": "56a99d29-253c-40bc-b6c0-d879c5cdb91c",
+          "page": 1,
+          "stored_section": "20 Total Retrieved Documents (~4K tokens)",
+          "text_sha256": "f9944c763a2de08de91c4df18122f9191bfb49e6e8635143d0edab7f88813037"
+        }
+      ],
+      "middle-2": [
+        {
+          "chunk_id": "18d83b01-e8ea-476b-9486-760eefa2c330",
+          "document_id": "56a99d29-253c-40bc-b6c0-d879c5cdb91c",
+          "page": 6,
+          "stored_section": "3.1 Experimental Setup",
+          "text_sha256": "1cd57c4da93d80e857d468b760540fbe5f0b4a10fcccd8c834a5dc207878a8cb"
+        }
+      ],
+      "middle-3": [
+        {
+          "chunk_id": "18d83b01-e8ea-476b-9486-760eefa2c330",
+          "document_id": "56a99d29-253c-40bc-b6c0-d879c5cdb91c",
+          "page": 6,
+          "stored_section": "3.1 Experimental Setup",
+          "text_sha256": "1cd57c4da93d80e857d468b760540fbe5f0b4a10fcccd8c834a5dc207878a8cb"
+        }
+      ],
+      "middle-4": [
+        {
+          "chunk_id": "a7e61607-97b5-4712-a43d-10bcaaf797b2",
+          "document_id": "56a99d29-253c-40bc-b6c0-d879c5cdb91c",
+          "page": 2,
+          "stored_section": "1 Introduction",
+          "text_sha256": "78eeb6a7b87629351fa49a49569ad8904894171211e912ce0cb5ce9be59d1058"
+        }
+      ],
+      "mamba-1": [
+        {
+          "chunk_id": "0e6e8cca-1c0a-474d-b4b7-5271e772d7a8",
+          "document_id": "8fb001e0-f5fa-4eb2-98ed-e8b2ed49cbc4",
+          "page": 1,
+          "stored_section": "Abstract",
+          "text_sha256": "1b28f362f349eb20549600bf06d99d017eb0295a53dbc60cfc3bb9428315d3c5"
+        }
+      ],
+      "mamba-2": [
+        {
+          "chunk_id": "8a5d2045-9f7b-41d4-86c5-7ab4192b5ecb",
+          "document_id": "8fb001e0-f5fa-4eb2-98ed-e8b2ed49cbc4",
+          "page": 2,
+          "stored_section": "1 Introduction",
+          "text_sha256": "250ab9eb5048b8c532aeb7f04228b513dc1d544829ba89a16737285c11162b88"
+        },
+        {
+          "chunk_id": "171f6925-3f60-42e8-8282-6996ed86b2b2",
+          "document_id": "8fb001e0-f5fa-4eb2-98ed-e8b2ed49cbc4",
+          "page": 2,
+          "stored_section": "1 Introduction",
+          "text_sha256": "78a3cbe6ed2a370192b1b70a89223a07555b5ccd42f06a7aaa27cebe6f5baee0"
+        }
+      ],
+      "mamba-3": [
+        {
+          "chunk_id": "9afa80e0-9603-41f7-a7cf-f4c9382c2ace",
+          "document_id": "8fb001e0-f5fa-4eb2-98ed-e8b2ed49cbc4",
+          "page": 2,
+          "stored_section": "1 Introduction",
+          "text_sha256": "bbb471606f76b28605fe04416fa444069f21ca791cb260a54c96980deb727224"
+        }
+      ],
+      "mamba-4": [
+        {
+          "chunk_id": "3671aca7-30bc-4d12-8838-c92ff7b0eb99",
+          "document_id": "8fb001e0-f5fa-4eb2-98ed-e8b2ed49cbc4",
+          "page": 8,
+          "stored_section": "3.5.2 Interpretation of Selection Mechanisms",
+          "text_sha256": "df625b9968373441d5fc6e0ee0698502f2f3ee6fc195223a8ac628d811dbb7a8"
+        }
+      ],
+      "resnet-1": [
+        {
+          "chunk_id": "ae97d1ab-ecd2-4363-9095-f8a7cc0b25fd",
+          "document_id": "fa664087-242f-4c72-b29d-7bac780fbafe",
+          "page": 2,
+          "stored_section": "2. Related Work",
+          "text_sha256": "66069da6393fe7d3887cca12ba02247ba890702627e72cebb1634722c74894a7"
+        }
+      ],
+      "resnet-2": [
+        {
+          "chunk_id": "217e268f-c998-441d-a081-7196faf8281f",
+          "document_id": "fa664087-242f-4c72-b29d-7bac780fbafe",
+          "page": 7,
+          "stored_section": "VGG-16 [41] 28.07 9.33",
+          "text_sha256": "3c875fb66ba39d8797599d98252d393d46397549653960320bd13e1866106847"
+        }
+      ],
+      "resnet-3": [
+        {
+          "chunk_id": "217e268f-c998-441d-a081-7196faf8281f",
+          "document_id": "fa664087-242f-4c72-b29d-7bac780fbafe",
+          "page": 7,
+          "stored_section": "VGG-16 [41] 28.07 9.33",
+          "text_sha256": "3c875fb66ba39d8797599d98252d393d46397549653960320bd13e1866106847"
+        }
+      ],
+      "resnet-4": [
+        {
+          "chunk_id": "8a189735-4250-4626-9e28-1ba7bcd9ff4b",
+          "document_id": "fa664087-242f-4c72-b29d-7bac780fbafe",
+          "page": 1,
+          "stored_section": "1. Introduction",
+          "text_sha256": "b774a76f57844289f21125507a347f4fddf61f18c73c96f83ecc1b9b515c213a"
+        }
+      ],
+      "resnet-5": [
+        {
+          "chunk_id": "0f04eb04-de12-4f2f-a7a8-7ac95159f475",
+          "document_id": "fa664087-242f-4c72-b29d-7bac780fbafe",
+          "page": 7,
+          "stored_section": "VGG-16 [41] 28.07 9.33",
+          "text_sha256": "5cf28b04c249b9fdb86688c551579730a5d3d99c2fa2c52212d9a1853d286861"
+        },
+        {
+          "chunk_id": "7cc44993-2271-4abe-b6a3-cb7c0dc67f0d",
+          "document_id": "fa664087-242f-4c72-b29d-7bac780fbafe",
+          "page": 7,
+          "stored_section": "4.2. CIFAR-10 and Analysis",
+          "text_sha256": "da94e880036732caac3b88a04d77a12e2e5207b3c959b6cd557e9f3256eaae14"
+        }
+      ],
+      "mamba-5": [
+        {
+          "chunk_id": "4bddd258-7517-4c64-bd78-c1a589d8dcbb",
+          "document_id": "8fb001e0-f5fa-4eb2-98ed-e8b2ed49cbc4",
+          "page": 2,
+          "stored_section": "1 Introduction",
+          "text_sha256": "e81292683e6ce20f1a3550ca91f07cb445186178f24d39a6b164be1ee5bce3e2"
+        }
+      ]
+    },
+    "ingestion": {
+      "completed_documents": 6,
+      "chunks_per_processing_second": 1034.4606305416323,
+      "retry_rate": 0.0,
+      "retry_attempts": 0,
+      "failed_jobs": 0
+    }
+  }
+}

@@ -6,6 +6,8 @@ from pathlib import Path
 import httpx
 import typer
 
+from litlens.evaluation.datasets import DatasetName
+
 app = typer.Typer(help="LitLens research assistant. All commands use the authenticated HTTP API.")
 ingest = typer.Typer()
 app.add_typer(ingest, name="ingest")
@@ -90,9 +92,37 @@ def ask(question: str, library_id: str = typer.Option(..., envvar="LITLENS_LIBRA
 
 
 @app.command()
-def evaluate(library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID")):
-    """Benchmark the bundled 60-question corpus; run demo first."""
-    emit(request("POST", "/api/v1/evaluations", json={"library_id": library_id}))
+def evaluate(
+    library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
+    dataset: str = typer.Option("synthetic", help="synthetic or real-papers"),
+    output: Path | None = typer.Option(None, help="Save the complete JSON report to a new file."),
+):
+    """Benchmark a seeded library, keeping real-paper and synthetic reports separate."""
+    from typing import get_args
+
+    if dataset not in get_args(DatasetName):
+        raise typer.BadParameter("Choose synthetic or real-papers", param_hint="--dataset")
+    if output and output.exists():
+        raise typer.BadParameter("Output already exists; choose a new path", param_hint="--output")
+    report = request(
+        "POST", "/api/v1/evaluations", json={"library_id": library_id, "dataset": dataset}
+    )
+    if output:
+        with output.open("x") as stream:
+            stream.write(json.dumps(report, indent=2) + "\n")
+    emit(report)
+
+
+@app.command("seed-papers")
+def seed_papers(cache_dir: Path = typer.Option(Path("data/evaluation-papers"))):
+    """Download pinned real papers, verify checksums, and ingest a separate library."""
+    from litlens.evaluation.seed import seed_real_papers
+
+    try:
+        emit(seed_real_papers(cache_dir, request, wait_job))
+    except (ValueError, httpx.HTTPError, OSError) as exc:
+        typer.echo(f"Cannot seed real papers: {exc}", err=True)
+        raise typer.Exit(1) from None
 
 
 @ingest.command("pdf")
