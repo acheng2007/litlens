@@ -7,6 +7,7 @@ from litlens.config import settings
 from litlens.observability import event, span
 from litlens.providers.local import LocalProvider
 from litlens.providers.remote import RemoteProvider
+from litlens.providers.tracking import active_request
 from litlens.retrieval.search import relevance
 
 PROMPT_VERSION = "evidence-quotes-v1"
@@ -68,6 +69,9 @@ def answer(question, hits):
         }
     )
     with span("generation", provider=settings.llm_provider, prompt_version=prompt_version):
+        accounting = active_request.get()
+        if accounting:
+            accounting.logical_calls += 1
         generated = provider().generate(prompt)
         usage.update(input_tokens=generated.input_tokens, output_tokens=generated.output_tokens)
         event("generation.usage", **usage)
@@ -124,18 +128,33 @@ def synthesis_result(output, hits, result):
         claims = Synthesis.model_validate_json(output).claims
     except (ValidationError, ValueError):
         return {**result, "reason": "invalid_provider_output"}
+    reason = synthesis_provenance(claims, hits)
+    if reason:
+        return {**result, "reason": reason}
+    return render_synthesis(claims, hits, result)
+
+
+def synthesis_provenance(claims, hits):
     if not claims:
-        return result
+        return "insufficient_evidence"
+    for claim in claims:
+        for evidence in claim.evidence:
+            if evidence.source > len(hits):
+                return "invalid_citation"
+            quote = normalize(evidence.quote)
+            if len(quote) < 20 or quote not in normalize(hits[evidence.source - 1].chunk.text):
+                return "unverified_claim"
+    return None
+
+
+def render_synthesis(claims, hits, result):
+    """Render already validated structured claims, preserving evidence order."""
     citations, paragraphs = [], []
     for claim in claims:
         markers = []
         for evidence in claim.evidence:
-            if evidence.source > len(hits):
-                return {**result, "reason": "invalid_citation"}
             hit = hits[evidence.source - 1]
             quote = normalize(evidence.quote)
-            if len(quote) < 20 or quote not in normalize(hit.chunk.text):
-                return {**result, "reason": "unverified_claim"}
             marker = f"[{len(citations) + 1}]"
             markers.append(marker)
             citations.append(

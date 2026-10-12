@@ -32,6 +32,15 @@
             "minLength": 1,
             "title": "Query",
             "type": "string"
+          },
+          "workflow": {
+            "default": "direct",
+            "enum": [
+              "direct",
+              "research"
+            ],
+            "title": "Workflow",
+            "type": "string"
           }
         },
         "required": [
@@ -54,13 +63,117 @@
             "title": "Citations",
             "type": "array"
           },
+          "claim_verification": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Claim Verification",
+            "type": "array"
+          },
+          "cost_complete": {
+            "default": false,
+            "title": "Cost Complete",
+            "type": "boolean"
+          },
+          "estimated_cost_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Estimated Cost Usd"
+          },
+          "evidence_gaps": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Evidence Gaps",
+            "type": "array"
+          },
+          "evidence_rounds": {
+            "default": 0,
+            "title": "Evidence Rounds",
+            "type": "integer"
+          },
+          "final_evidence": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Final Evidence",
+            "type": "array"
+          },
+          "first_round_evidence": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "First Round Evidence",
+            "type": "array"
+          },
+          "logical_model_calls": {
+            "default": 0,
+            "title": "Logical Model Calls",
+            "type": "integer"
+          },
           "prompt_version": {
             "title": "Prompt Version",
             "type": "string"
           },
+          "provider_attempts": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Provider Attempts",
+            "type": "array"
+          },
           "reason": {
             "title": "Reason",
             "type": "string"
+          },
+          "request_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Id"
+          },
+          "research_plan": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Research Plan"
+          },
+          "retry_count": {
+            "default": 0,
+            "title": "Retry Count",
+            "type": "integer"
+          },
+          "stage_timings_ms": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "default": {},
+            "title": "Stage Timings Ms",
+            "type": "object"
           },
           "supported": {
             "title": "Supported",
@@ -68,6 +181,35 @@
           },
           "usage": {
             "$ref": "#/components/schemas/Usage"
+          },
+          "verification_history": {
+            "default": [],
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Verification History",
+            "type": "array"
+          },
+          "workflow": {
+            "default": "direct",
+            "enum": [
+              "direct",
+              "research"
+            ],
+            "title": "Workflow",
+            "type": "string"
+          },
+          "workflow_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workflow Version"
           }
         },
         "required": [
@@ -334,6 +476,15 @@
           "library_id": {
             "title": "Library Id",
             "type": "string"
+          },
+          "workflow": {
+            "default": "direct",
+            "enum": [
+              "direct",
+              "research"
+            ],
+            "title": "Workflow",
+            "type": "string"
           }
         },
         "required": [
@@ -536,6 +687,36 @@
         "title": "LibraryView",
         "type": "object"
       },
+      "RequestDetail": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "library_id": {
+            "title": "Library Id",
+            "type": "string"
+          },
+          "summary": {
+            "additionalProperties": true,
+            "title": "Summary",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "library_id",
+          "created_at",
+          "summary"
+        ],
+        "title": "RequestDetail",
+        "type": "object"
+      },
       "SearchHit": {
         "properties": {
           "chunk_id": {
@@ -654,13 +835,38 @@
       },
       "Usage": {
         "properties": {
+          "available": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Available"
+          },
           "input_tokens": {
-            "title": "Input Tokens",
-            "type": "integer"
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input Tokens"
           },
           "output_tokens": {
-            "title": "Output Tokens",
-            "type": "integer"
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Tokens"
           }
         },
         "required": [
@@ -708,6 +914,22 @@
           "type"
         ],
         "title": "ValidationError",
+        "type": "object"
+      },
+      "VerifierEvaluationRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "library_id": {
+            "maxLength": 36,
+            "minLength": 1,
+            "title": "Library Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "library_id"
+        ],
+        "title": "VerifierEvaluationRequest",
         "type": "object"
       }
     },
@@ -1070,6 +1292,49 @@
         "summary": "Run Evaluation"
       }
     },
+    "/api/v1/evaluations/claim-support": {
+      "post": {
+        "operationId": "verifier_evaluation_api_v1_evaluations_claim_support_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifierEvaluationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluationView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Verifier Evaluation"
+      }
+    },
     "/api/v1/jobs/{job_id}": {
       "get": {
         "operationId": "get_job_api_v1_jobs__job_id__get",
@@ -1199,6 +1464,59 @@
           }
         ],
         "summary": "Create Library"
+      }
+    },
+    "/api/v1/requests/{request_id}": {
+      "get": {
+        "operationId": "request_detail_api_v1_requests__request_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "request_id",
+            "required": true,
+            "schema": {
+              "title": "Request Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "library_id",
+            "required": true,
+            "schema": {
+              "title": "Library Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Request Detail"
       }
     },
     "/api/v1/search": {

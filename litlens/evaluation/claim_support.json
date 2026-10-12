@@ -1,0 +1,126 @@
+{
+  "version": "claim-support-v1",
+  "annotation": "Original synthetic challenge passages and agent-reviewed labels; no independent human review. Fixture labels are separate from runtime verifier decisions.",
+  "cases": [
+    {
+      "id": "claim-01",
+      "category": "paraphrase",
+      "passage": "A hybrid retriever combines keyword matches and vector candidates.",
+      "quote": "A hybrid retriever combines keyword matches and vector candidates.",
+      "claim": "The retriever merges lexical matches with vector candidates.",
+      "label": "supported"
+    },
+    {
+      "id": "claim-02",
+      "category": "paraphrase",
+      "passage": "The model uses three attention layers and no recurrent layers.",
+      "quote": "The model uses three attention layers and no recurrent layers.",
+      "claim": "Three attention layers are used without recurrence.",
+      "label": "supported"
+    },
+    {
+      "id": "claim-03",
+      "category": "numerical",
+      "passage": "The measured accuracy was 82 percent on the held-out test set.",
+      "quote": "The measured accuracy was 82 percent on the held-out test set.",
+      "claim": "Accuracy was 92 percent on the held-out test set.",
+      "label": "contradicted"
+    },
+    {
+      "id": "claim-04",
+      "category": "numerical",
+      "passage": "The trial reported accuracy but did not report its sample size.",
+      "quote": "The trial reported accuracy but did not report its sample size.",
+      "claim": "The trial enrolled 400 participants.",
+      "label": "unsupported"
+    },
+    {
+      "id": "claim-05",
+      "category": "qualification",
+      "passage": "Latency fell by 20 percent for batch size one, but increased for larger batches.",
+      "quote": "Latency fell by 20 percent for batch size one, but increased for larger batches.",
+      "claim": "Latency fell by 20 percent across all batch sizes.",
+      "label": "contradicted"
+    },
+    {
+      "id": "claim-06",
+      "category": "qualification",
+      "passage": "The result suggests a possible benefit; causal effects were not established.",
+      "quote": "The result suggests a possible benefit; causal effects were not established.",
+      "claim": "A possible benefit was observed, with causality still uncertain.",
+      "label": "supported"
+    },
+    {
+      "id": "claim-07",
+      "category": "contradiction",
+      "passage": "The ablation found that removing reranking reduced retrieval recall.",
+      "quote": "The ablation found that removing reranking reduced retrieval recall.",
+      "claim": "Removing reranking increased retrieval recall.",
+      "label": "contradicted"
+    },
+    {
+      "id": "claim-08",
+      "category": "contradiction",
+      "passage": "The two methods had equal accuracy in this experiment.",
+      "quote": "The two methods had equal accuracy in this experiment.",
+      "claim": "The first method was more accurate than the second.",
+      "label": "contradicted"
+    },
+    {
+      "id": "claim-09",
+      "category": "misleading-quotation",
+      "passage": "Accuracy reached 92 percent in training. Held-out accuracy was 61 percent.",
+      "quote": "Accuracy reached 92 percent in training.",
+      "claim": "Held-out accuracy reached 92 percent.",
+      "label": "contradicted"
+    },
+    {
+      "id": "claim-10",
+      "category": "misleading-quotation",
+      "passage": "The treatment improved recovery in mice. No human trial was conducted.",
+      "quote": "The treatment improved recovery in mice.",
+      "claim": "The treatment improved recovery in humans.",
+      "label": "contradicted"
+    },
+    {
+      "id": "claim-11",
+      "category": "qualification",
+      "passage": "The experiment used one English dataset and did not evaluate other languages.",
+      "quote": "The experiment used one English dataset and did not evaluate other languages.",
+      "claim": "The method generalizes to multilingual data.",
+      "label": "unsupported"
+    },
+    {
+      "id": "claim-12",
+      "category": "paraphrase",
+      "passage": "Researchers measured latency at batch size one, with a median of 12 milliseconds.",
+      "quote": "Researchers measured latency at batch size one, with a median of 12 milliseconds.",
+      "claim": "Median latency for single-item batches was 12 milliseconds.",
+      "label": "supported"
+    },
+    {
+      "id": "claim-13",
+      "category": "misleading-quotation",
+      "passage": "The new model is cheaper per token. Total request cost was higher because it used more tokens.",
+      "quote": "The new model is cheaper per token.",
+      "claim": "The new model had a lower total request cost.",
+      "label": "contradicted"
+    },
+    {
+      "id": "claim-14",
+      "category": "numerical",
+      "passage": "There were ten runs. The median recall was 0.8, with a minimum of 0.6.",
+      "quote": "There were ten runs. The median recall was 0.8, with a minimum of 0.6.",
+      "claim": "The median recall over ten runs was 0.8.",
+      "label": "supported"
+    },
+    {
+      "id": "claim-15",
+      "category": "contradiction",
+      "passage": "The study did not compare retrieval with a cross-encoder reranker.",
+      "quote": "The study did not compare retrieval with a cross-encoder reranker.",
+      "claim": "A cross-encoder reranker outperformed the baseline.",
+      "label": "unsupported"
+    }
+  ]
+}

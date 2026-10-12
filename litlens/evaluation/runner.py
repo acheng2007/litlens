@@ -9,10 +9,12 @@ from sqlalchemy import select
 
 from litlens.config import settings
 from litlens.db.models import Chunk, Document, Evaluation, Job, Library
-from litlens.generation.answer import PROMPT_VERSION, answer, normalize
+from litlens.generation.answer import PROMPT_VERSION, normalize
+from litlens.generation.research import PROMPTS, WORKFLOW_VERSION
+from litlens.generation.workflow import execute
 from litlens.ingestion.chunking import CHUNKING_VERSION
 from litlens.ingestion.pdf import EXTRACTION_VERSION
-from litlens.retrieval.search import search
+from litlens.retrieval.search import Hit, search
 
 from .corpus import load_corpus
 from .datasets import evidence_text, group_recall, load_real_corpus, resolve_real_questions
@@ -22,12 +24,16 @@ def percentile(values, fraction):
     return sorted(values)[min(int((len(values) - 1) * fraction), len(values) - 1)] if values else 0
 
 
-def evaluate(session, library_id, owner_id, dataset="synthetic"):
+def evaluate(session, library_id, owner_id, dataset="synthetic", workflow="direct"):
     library = session.get(Library, library_id)
     if not library or library.owner_id != owner_id:
         raise ValueError("Library not available")
     if dataset not in {"synthetic", "real-papers"}:
         raise ValueError("Unknown evaluation dataset")
+    if workflow not in {"direct", "research"}:
+        raise ValueError("Unknown workflow")
+    if workflow == "research" and settings.llm_provider == "extractive":
+        raise ValueError("Research requires LLM_PROVIDER=ollama or openai")
     corpus = load_corpus()
     rows = session.execute(
         select(Chunk, Document)
@@ -68,6 +74,28 @@ def evaluate(session, library_id, owner_id, dataset="synthetic"):
     answerable_count = sum(bool(q["gold"]) for q in questions)
     refusal_count = len(questions) - answerable_count
     metrics = {
+        "workflow": workflow,
+        "workflow_version": WORKFLOW_VERSION if workflow == "research" else "direct-v1",
+        "answer_mode": "synthesis" if workflow == "research" else settings.answer_mode,
+        "models": {
+            "planner": settings.planner_model or settings.model_name,
+            "verifier": settings.verifier_model or settings.model_name,
+        },
+        "bounds": {
+            "evidence_rounds": 2 if workflow == "research" else 1,
+            "logical_model_calls": 6 if workflow == "research" else 1,
+            "deadline_seconds": settings.research_deadline_seconds
+            if workflow == "research"
+            else None,
+        },
+        "pricing": {k: v.model_dump() for k, v in settings.model_prices.items()},
+        "metric_definitions": {
+            "recall_at_5": "Gold evidence groups covered by final ranked top five passages.",
+            "mrr_at_5": "First gold passage reciprocal rank in final ranked top five.",
+            "latency_ms": "Workflow execution including request-summary persistence; excludes auxiliary raw retrieval and HTTP overhead.",
+            "first_round_recall_at_5": "Gold evidence groups covered by first-round ranked top five passages.",
+        },
+        "semantic_support_measurement": "Runtime verifier judgments are model-assessed, not independent hallucination labels.",
         "dataset": dataset,
         "dataset_version": corpus["version"],
         "questions": len(questions),
@@ -77,7 +105,9 @@ def evaluate(session, library_id, owner_id, dataset="synthetic"):
         "embedding_space": settings.embedding_space,
         "provider": settings.llm_provider,
         "model": settings.model_name if settings.llm_provider != "extractive" else None,
-        "prompt_version": PROMPT_VERSION,
+        "prompt_version": PROMPTS
+        if workflow == "research"
+        else ("evidence-synthesis-v1" if settings.answer_mode == "synthesis" else PROMPT_VERSION),
         "chunking_version": CHUNKING_VERSION,
         "extraction_version": EXTRACTION_VERSION,
         "python": platform.python_version(),
@@ -109,12 +139,28 @@ def evaluate(session, library_id, owner_id, dataset="synthetic"):
         citation_valid, citation_count, faithful, claims_count = 0, 0, 0, 0
         unsupported_answers, false_refusals, input_tokens, output_tokens = 0, 0, 0, 0
         cases = []
+        first_recalls, first_rrs = [], []
         for question in questions:
             started = time.perf_counter()
             raw = search(session, library_id, question["query"], 5, mode, owner_id, rerank=False)
-            hits = search(session, library_id, question["query"], 5, mode, owner_id, rerank=True)
-            response = answer(question["query"], hits)
-            elapsed = (time.perf_counter() - started) * 1000
+            request_started = time.perf_counter()
+            response = execute(session, library_id, owner_id, question["query"], workflow, mode)
+            request_elapsed = (time.perf_counter() - request_started) * 1000
+            by_id = {c.id: (c, d) for c, d in rows}
+            final = [
+                Hit(by_id[k][0], by_id[k][1], 0, "")
+                for k in response["final_evidence"]
+                if k in by_id
+            ]
+            first_ids = response["first_round_evidence"]
+            hits = final
+            if question["gold"]:
+                first_recalls.append(group_recall(question["gold_groups"], first_ids))
+                first_rrs.append(
+                    next((1 / i for i, k in enumerate(first_ids, 1) if k in question["gold"]), 0)
+                )
+            evaluation_elapsed = (time.perf_counter() - started) * 1000
+            elapsed = request_elapsed
             latencies.append(elapsed)
             if question["gold"]:
                 recalls.append(group_recall(question["gold_groups"], [h.chunk.id for h in raw]))
@@ -122,7 +168,14 @@ def evaluate(session, library_id, owner_id, dataset="synthetic"):
                     group_recall(question["gold_groups"], [h.chunk.id for h in hits])
                 )
                 reciprocal_ranks.append(
-                    next((1 / i for i, h in enumerate(raw, 1) if h.chunk.id in question["gold"]), 0)
+                    next(
+                        (
+                            1 / i
+                            for i, h in enumerate(hits[:5], 1)
+                            if h.chunk.id in question["gold"]
+                        ),
+                        0,
+                    )
                 )
                 false_refusals += not response["supported"]
             else:
@@ -143,10 +196,39 @@ def evaluate(session, library_id, owner_id, dataset="synthetic"):
                 citation_valid += valid
                 claims_count += 1
                 faithful += bool(valid and normalize(citation["quote"]) in normalize(chunk.text))
-            input_tokens += response["usage"]["input_tokens"]
-            output_tokens += response["usage"]["output_tokens"]
+            input_tokens = (
+                input_tokens + response["usage"]["input_tokens"]
+                if input_tokens is not None and response["usage"]["input_tokens"] is not None
+                else None
+            )
+            output_tokens = (
+                output_tokens + response["usage"]["output_tokens"]
+                if output_tokens is not None and response["usage"]["output_tokens"] is not None
+                else None
+            )
             cases.append(
                 {
+                    "request_id": response["request_id"],
+                    "stage_timings_ms": response["stage_timings_ms"],
+                    "usage": response["usage"],
+                    "estimated_cost_usd": response["estimated_cost_usd"],
+                    "cost_complete": response["cost_complete"],
+                    "claim_verification": response.get("claim_verification", []),
+                    "verification_history": response.get("verification_history", []),
+                    "first_round_chunk_ids": first_ids,
+                    "final_chunk_ids": response["final_evidence"],
+                    "first_round_recall_at_5": group_recall(question["gold_groups"], first_ids),
+                    "final_recall_at_5": group_recall(
+                        question["gold_groups"], response["final_evidence"]
+                    ),
+                    "final_mrr_at_5": next(
+                        (
+                            1 / i
+                            for i, k in enumerate(response["final_evidence"], 1)
+                            if k in question["gold"]
+                        ),
+                        0,
+                    ),
                     "id": question.get("id"),
                     "category": question["category"],
                     "query": question["query"],
@@ -182,10 +264,25 @@ def evaluate(session, library_id, owner_id, dataset="synthetic"):
                         else None
                     ),
                     "latency_ms": round(elapsed, 2),
+                    "workflow_latency_ms": response["stage_timings_ms"]["total"],
+                    "evaluation_latency_ms": round(evaluation_elapsed, 2),
                 }
             )
         metrics["modes"][mode] = {
-            "recall_at_5": statistics.mean(recalls),
+            "recall_at_5": statistics.mean(reranked_recalls),
+            "raw_recall_at_5": statistics.mean(recalls),
+            "first_round_recall_at_5": statistics.mean(first_recalls),
+            "first_round_mrr_at_5": statistics.mean(first_rrs),
+            "estimated_cost_usd": sum(c["estimated_cost_usd"] for c in cases)
+            if all(c["cost_complete"] for c in cases)
+            else None,
+            "cost_complete": all(c["cost_complete"] for c in cases),
+            "model_assessed_unsupported_claim_rate": (
+                sum(v["status"] != "supported" for c in cases for v in c["claim_verification"])
+                / len(verdicts)
+                if (verdicts := [v for c in cases for v in c["claim_verification"]])
+                else None
+            ),
             "reranked_recall_at_5": statistics.mean(reranked_recalls),
             "mrr_at_5": statistics.mean(reciprocal_ranks),
             "citation_correctness": citation_valid / citation_count if citation_count else None,
@@ -207,7 +304,7 @@ def evaluate(session, library_id, owner_id, dataset="synthetic"):
                     "recall_at_5": statistics.mean(values)
                     if (
                         values := [
-                            c["evidence_recall_at_5"] for c in selected if c["expected_supported"]
+                            c["final_recall_at_5"] for c in selected if c["expected_supported"]
                         ]
                     )
                     else None,

@@ -28,6 +28,7 @@ class SearchRequest(Input):
 
 
 class AnswerRequest(SearchRequest):
+    workflow: Literal["direct", "research"] = "direct"
     limit: int = Field(default=5, ge=1, le=10)
 
 
@@ -37,7 +38,12 @@ class ArxivRequest(Input):
     max_results: int = Field(default=5, ge=1, le=20)
 
 
+class VerifierEvaluationRequest(Input):
+    library_id: str = Field(min_length=1, max_length=36)
+
+
 class EvaluationRequest(Input):
+    workflow: Literal["direct", "research"] = "direct"
     library_id: str
     dataset: Literal["synthetic", "real-papers"] = "synthetic"
 
@@ -106,11 +112,28 @@ class Citation(BaseModel):
 
 
 class Usage(BaseModel):
-    input_tokens: int
-    output_tokens: int
+    input_tokens: int | None
+    output_tokens: int | None
+    available: bool | None = None
 
 
 class AnswerResponse(BaseModel):
+    workflow: Literal["direct", "research"] = "direct"
+    workflow_version: str | None = None
+    research_plan: dict | None = None
+    evidence_gaps: list[str] = []
+    claim_verification: list[dict] = []
+    verification_history: list[dict] = []
+    request_id: str | None = None
+    stage_timings_ms: dict[str, float] = {}
+    estimated_cost_usd: float | None = None
+    cost_complete: bool = False
+    retry_count: int = 0
+    logical_model_calls: int = 0
+    provider_attempts: list[dict] = []
+    first_round_evidence: list[str] = []
+    final_evidence: list[str] = []
+    evidence_rounds: int = 0
     answer: str
     supported: bool
     citations: list[Citation]
@@ -129,3 +152,11 @@ class EvaluationView(BaseModel):
 
 class Health(BaseModel):
     status: str
+
+
+class RequestDetail(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: str
+    library_id: str
+    created_at: datetime
+    summary: dict

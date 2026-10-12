@@ -17,7 +17,7 @@ def client():
     return httpx.Client(
         base_url=os.getenv("LITLENS_API_URL", "http://localhost:8000"),
         headers={"Authorization": "Bearer " + os.getenv("LITLENS_API_TOKEN", "local-dev-token")},
-        timeout=600,
+        timeout=float(os.getenv("LITLENS_API_TIMEOUT_SECONDS", "600")),
     )
 
 
@@ -87,13 +87,26 @@ def retry(job_id: str, wait: bool = False):
 
 
 @app.command()
-def ask(question: str, library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID")):
-    emit(request("POST", "/api/v1/answers", json={"library_id": library_id, "query": question}))
+def ask(
+    question: str,
+    library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
+    workflow: str = "direct",
+):
+    if workflow not in {"direct", "research"}:
+        raise typer.BadParameter("Choose direct or research", param_hint="--workflow")
+    emit(
+        request(
+            "POST",
+            "/api/v1/answers",
+            json={"library_id": library_id, "query": question, "workflow": workflow},
+        )
+    )
 
 
 @app.command()
 def evaluate(
     library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"),
+    workflow: str = "direct",
     dataset: str = typer.Option("synthetic", help="synthetic or real-papers"),
     output: Path | None = typer.Option(None, help="Save the complete JSON report to a new file."),
 ):
@@ -102,10 +115,14 @@ def evaluate(
 
     if dataset not in get_args(DatasetName):
         raise typer.BadParameter("Choose synthetic or real-papers", param_hint="--dataset")
+    if workflow not in {"direct", "research"}:
+        raise typer.BadParameter("Choose direct or research", param_hint="--workflow")
     if output and output.exists():
         raise typer.BadParameter("Output already exists; choose a new path", param_hint="--output")
     report = request(
-        "POST", "/api/v1/evaluations", json={"library_id": library_id, "dataset": dataset}
+        "POST",
+        "/api/v1/evaluations",
+        json={"library_id": library_id, "dataset": dataset, "workflow": workflow},
     )
     if output:
         with output.open("x") as stream:
@@ -182,6 +199,20 @@ def demo():
     for job in jobs:
         wait_job(job["job_id"])
     emit(library)
+
+
+@app.command("evaluate-verifier")
+def evaluate_verifier_cmd(
+    library_id: str = typer.Option(..., envvar="LITLENS_LIBRARY_ID"), output: Path | None = None
+):
+    """Measure the semantic verifier against the versioned claim-support challenge."""
+    if output and output.exists():
+        raise typer.BadParameter("Output already exists; choose a new path", param_hint="--output")
+    report = request("POST", "/api/v1/evaluations/claim-support", json={"library_id": library_id})
+    if output:
+        with output.open("x") as stream:
+            stream.write(json.dumps(report, indent=2) + "\n")
+    emit(report)
 
 
 if __name__ == "__main__":

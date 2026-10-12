@@ -23,12 +23,14 @@ from litlens.api.schemas import (
     JobView,
     LibraryCreate,
     LibraryView,
+    RequestDetail,
     SearchRequest,
     SearchResponse,
+    VerifierEvaluationRequest,
 )
 from litlens.config import settings
-from litlens.db.models import Chunk, Document, Evaluation, Job, Library
-from litlens.generation.answer import answer
+from litlens.db.models import Chunk, Document, Evaluation, Job, Library, RequestSummary
+from litlens.generation.workflow import execute
 from litlens.observability import event, trace_id
 from litlens.retrieval.search import search
 from litlens.worker import redis_client, wake
@@ -69,12 +71,12 @@ async def provider_error(request, exc):
 @app.exception_handler(ValueError)
 async def configuration_error(request, exc):
     event("configuration.error", error_type=type(exc).__name__)
-    return JSONResponse(
-        status_code=409,
-        content={
-            "detail": "Configuration or provider output is incompatible; check embedding settings and service logs"
-        },
-    )
+    detail = "Configuration or provider output is incompatible; check embedding settings and service logs"
+    if str(exc).startswith(
+        ("Research requires", "Verifier evaluation requires", "Synthesis requires")
+    ):
+        detail = str(exc)
+    return JSONResponse(status_code=409, content={"detail": detail})
 
 
 @app.get("/health", response_model=Health)
@@ -85,7 +87,7 @@ def health():
 @app.get("/ready", response_model=Health)
 def ready(session=Depends(db)):
     try:
-        if session.execute(text("SELECT version_num FROM alembic_version")).scalar() != "0001":
+        if session.execute(text("SELECT version_num FROM alembic_version")).scalar() != "0002":
             raise RuntimeError("Migration required")
         dimensions = session.execute(
             text(
@@ -262,7 +264,41 @@ def do_search(payload: SearchRequest, session=Depends(db), user=Depends(owner)):
 
 @app.post("/api/v1/answers", response_model=AnswerResponse)
 def do_answer(payload: AnswerRequest, session=Depends(db), user=Depends(owner)):
-    return answer(payload.query, retrieve(payload, session, user))
+    library_or_404(session, payload.library_id, user)
+    result = execute(
+        session,
+        payload.library_id,
+        user,
+        payload.query,
+        payload.workflow,
+        payload.mode,
+        payload.limit,
+        request_id=trace_id.get(),
+    )
+    if result["reason"] in {"upstream_error", "deadline_exhausted"}:
+        return JSONResponse(
+            status_code=502 if result["reason"] == "upstream_error" else 504,
+            content=AnswerResponse.model_validate(result).model_dump(),
+        )
+    return result
+
+
+@app.get("/api/v1/requests/{request_id}", response_model=RequestDetail)
+def request_detail(request_id: str, library_id: str, session=Depends(db), user=Depends(owner)):
+    library_or_404(session, library_id, user)
+    record = session.scalar(
+        select(RequestSummary)
+        .join(Library)
+        .where(
+            RequestSummary.id == request_id,
+            RequestSummary.library_id == library_id,
+            RequestSummary.owner_id == user,
+            Library.owner_id == user,
+        )
+    )
+    if not record:
+        raise HTTPException(404, "Request not found")
+    return record
 
 
 @app.get("/api/v1/jobs/{job_id}", response_model=JobView)
@@ -332,7 +368,7 @@ def run_evaluation(payload: EvaluationRequest, session=Depends(db), user=Depends
 
     library_or_404(session, payload.library_id, user)
     try:
-        return evaluate(session, payload.library_id, user, payload.dataset)
+        return evaluate(session, payload.library_id, user, payload.dataset, payload.workflow)
     except ValueError as exc:
         # Dataset diagnostics contain only public label IDs and configuration guidance.
         # Provider errors retain the existing generic handler.
@@ -341,3 +377,13 @@ def run_evaluation(payload: EvaluationRequest, session=Depends(db), user=Depends
         ):
             raise HTTPException(409, str(exc)) from None
         raise
+
+
+@app.post("/api/v1/evaluations/claim-support", response_model=EvaluationView, status_code=201)
+def verifier_evaluation(
+    payload: VerifierEvaluationRequest, session=Depends(db), user=Depends(owner)
+):
+    from litlens.evaluation.claim_support import evaluate_verifier
+
+    library_or_404(session, payload.library_id, user)
+    return evaluate_verifier(session, payload.library_id, user)

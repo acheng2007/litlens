@@ -94,6 +94,15 @@ class Evaluation(Base):
     metrics: Mapped[dict] = mapped_column(JSON)
 
 
+class RequestSummary(Base):
+    __tablename__ = "request_summaries"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uid)
+    library_id: Mapped[str] = mapped_column(ForeignKey("libraries.id"), index=True)
+    owner_id: Mapped[str] = mapped_column(String(200), index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    summary: Mapped[dict] = mapped_column(JSON)
+
+
 engine = create_engine(settings.database_url, pool_pre_ping=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
 
