@@ -58,3 +58,11 @@ docker compose exec api litlens evaluate --library-id LIBRARY_ID
 Keep the seeded library separate from uploaded papers so the corpus stays comparable.
 Read stored reports with `GET /api/v1/evaluations?library_id=LIBRARY_ID` using your bearer token.
 See the [API reference](api.md) and [metric definitions](architecture.md#evaluation-and-observability).
+
+## Research and semantic verification
+
+Select `--workflow direct` or `--workflow research` to record separate reports for either dataset.
+Research reports include first-round and final-ranked retrieval metrics, stage latency, token availability, cost completeness, and model-assessed claim verdicts.
+Use `litlens evaluate-verifier --library-id LIBRARY_ID` for the separate labeled claim-support challenge.
+See [the research guide](research.md) for reproduction commands and the distinction between fixture-label evaluation and runtime model judgments.
+Existing historical reports retain their original metric definitions and are unchanged.

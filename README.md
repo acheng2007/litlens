@@ -137,3 +137,9 @@ See [methodology and failure cases](docs/evaluation.md) and the [recorded JSON r
 See [setup and verification](docs/setup.md) for the development environment and test commands.
 The stack binds to loopback and uses the public development token `local-dev-token`.
 Configure private tokens using the [authentication guide](docs/setup.md#authentication-and-libraries) for your own data.
+
+### Opt-in research
+
+Use `litlens ask "QUESTION" --library-id LIBRARY_ID --workflow research` with Ollama or a hosted provider for bounded planning, cited synthesis, and semantic claim verification with one revision.
+Direct quotation remains the default.
+See [the research workflow guide](docs/research.md) for configuration, observability, separate workflow evaluations, and current verification limits.

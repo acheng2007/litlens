@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-12",
+  "research_workflow_version": "research-v1",
+  "langgraph_version": "1.2.14",
+  "research_bounds": {
+    "evidence_rounds": 2,
+    "logical_model_calls": 6,
+    "deadline_seconds": 180
+  },
+  "pricing_assumptions": {},
+  "live_model_comparison": {
+    "status": "not_run",
+    "reason": "No Ollama installation/service or hosted-model credentials available.",
+    "datasets": [
+      "synthetic",
+      "real-papers"
+    ],
+    "quality": null,
+    "latency_ms": null,
+    "usage": null,
+    "estimated_cost_usd": null
+  },
+  "verifier_challenge": {
+    "dataset_version": "claim-support-v1",
+    "cases": 15,
+    "live_model_accuracy": null,
+    "annotation": "Original synthetic passages with agent-reviewed labels, without independent human review."
+  },
+  "verification": {
+    "container_tests_passed": 76,
+    "container_tests_skipped": 1,
+    "skipped_test": "Pinned-paper live acceptance passed separately on the host against the same API and workers.",
+    "research_http_model": "Controlled responses, not real-model quality evaluation.",
+    "scenarios": [
+      "success",
+      "corrected draft",
+      "final refusal"
+    ]
+  },
+  "direct": {
+    "synthetic": {
+      "report": "evaluation-direct-synthetic-v1.json",
+      "workflow_version": "direct-v1",
+      "answer_mode": "quotes",
+      "provider": "extractive",
+      "embedding_space": "hash:sha256-v1:384",
+      "questions": 60,
+      "modes": {
+        "vector": {
+          "recall_at_5": 0.9,
+          "mrr_at_5": 0.9,
+          "first_round_recall_at_5": 0.9,
+          "false_refusal_rate": 0.1,
+          "unsupported_answer_rate": 0.0,
+          "latency_p50_ms": 4.019791999780864,
+          "latency_p95_ms": 4.845958999794675,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": null,
+          "cost_complete": false
+        },
+        "keyword": {
+          "recall_at_5": 0.84,
+          "mrr_at_5": 0.84,
+          "first_round_recall_at_5": 0.84,
+          "false_refusal_rate": 0.16,
+          "unsupported_answer_rate": 0.0,
+          "latency_p50_ms": 1.6049589994509006,
+          "latency_p95_ms": 3.5039579997828696,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": null,
+          "cost_complete": false
+        },
+        "hybrid": {
+          "recall_at_5": 0.98,
+          "mrr_at_5": 0.98,
+          "first_round_recall_at_5": 0.98,
+          "false_refusal_rate": 0.02,
+          "unsupported_answer_rate": 0.0,
+          "latency_p50_ms": 4.957290999300312,
+          "latency_p95_ms": 8.28741599980276,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": null,
+          "cost_complete": false
+        }
+      }
+    },
+    "real-papers": {
+      "report": "evaluation-direct-real-papers-v1.json",
+      "workflow_version": "direct-v1",
+      "answer_mode": "quotes",
+      "provider": "extractive",
+      "embedding_space": "hash:sha256-v1:384",
+      "questions": 36,
+      "modes": {
+        "vector": {
+          "recall_at_5": 0.5740740740740741,
+          "mrr_at_5": 0.35432098765432096,
+          "first_round_recall_at_5": 0.5740740740740741,
+          "false_refusal_rate": 0.5185185185185185,
+          "unsupported_answer_rate": 0.3333333333333333,
+          "latency_p50_ms": 4.393707999952312,
+          "latency_p95_ms": 6.5017500000976725,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": null,
+          "cost_complete": false
+        },
+        "keyword": {
+          "recall_at_5": 0.0,
+          "mrr_at_5": 0,
+          "first_round_recall_at_5": 0.0,
+          "false_refusal_rate": 1.0,
+          "unsupported_answer_rate": 0.2222222222222222,
+          "latency_p50_ms": 1.2971669993930846,
+          "latency_p95_ms": 2.387083000030543,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": null,
+          "cost_complete": false
+        },
+        "hybrid": {
+          "recall_at_5": 0.5740740740740741,
+          "mrr_at_5": 0.3358024691358025,
+          "first_round_recall_at_5": 0.5740740740740741,
+          "false_refusal_rate": 0.5185185185185185,
+          "unsupported_answer_rate": 0.3333333333333333,
+          "latency_p50_ms": 4.303708000406914,
+          "latency_p95_ms": 5.914541000493045,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "estimated_cost_usd": null,
+          "cost_complete": false
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The real-paper six-PDF, 36-question annotations were agent-reviewed without independent human review.",
+    "The recorded direct provider is deterministic extraction, not a live language model.",
+    "Approximate retrieval rankings can vary with the shared HNSW index; these fresh reports do not establish quality improvement.",
+    "Runtime semantic verifier judgments are not independent hallucination measurements.",
+    "Estimated monetary cost is unknown without explicit model prices."
+  ]
+}

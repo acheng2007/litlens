@@ -32,14 +32,14 @@ Suggested completion evidence:
 
 ## Prioritized improvements
 
-Priority 1 is complete; priority 5 has an experimental implementation, and priorities 2-4 and 6 remain proposed.
+Priority 1 is complete; priorities 3 and 5 have experimental implementations, and priorities 2, 4, and 6 remain proposed.
 The larger single-paper interface milestone above is not yet complete.
 
 | Priority | Improvement | Intended outcome and verification |
 | --- | --- | --- |
 | 1 | Evaluate on real papers - complete | Six revision- and checksum-pinned PDFs, 36 source-checked questions, 26 evidence labels, CLI/API selection, and a separate [recorded evaluation](real-paper-evaluation.md). |
 | 2 | Improve retrieval quality | Compare learned embeddings and a cross-encoder reranker with hash embeddings and lexical reranking; measure recall, ranking quality, latency, and resource use before changing defaults. |
-| 3 | Assess evidence sufficiency | Test whether evidence answers the question with its qualifications intact; measure relevance, contradictions, false refusals, and unsupported answers in addition to exact-quote validity. |
+| 3 | Assess evidence sufficiency - experimental | Opt-in research workflow verifies complete claims against cited passage context, permits one revision, and includes a separate labeled verifier challenge; live-model quality remains unmeasured. |
 | 4 | Build a research interface | Add the planned Next.js client with library management, ingestion progress, search, and a PDF viewer; clicking a citation should open its page and highlight its passage. |
 | 5 | Introduce cited synthesis - experimental | Add a separately evaluated mode for explanations and comparisons across papers; retain quotation mode and check claim-level support and citation provenance. |
 | 6 | Improve document understanding | Evaluate OCR, multi-column reading order, tables, and equations; preserve passage coordinates and test extraction on representative difficult pages. |
@@ -82,6 +82,31 @@ Provider tests exercised both transports with simulated model responses, includi
 No local Ollama service was available, so this is not a live-model quality result.
 The next milestone is to run synthesis on the pinned real-paper questions with an available model, inspect support and refusals, and improve semantic retrieval against that measured baseline.
 Existing real-paper labels were agent-reviewed and have not received independent human review.
+
+### Bounded research implementation - October 12, 2026
+
+The [opt-in research workflow](research.md) now implements a typed LangGraph graph, library-only query planning, reciprocal rank fusion, citation provenance validation, semantic claim verification, and one bounded revision.
+Direct quotation and synthesis workflows retain their defaults.
+The graph limits execution to two evidence rounds, six logical generation calls, and a configurable 180-second deadline, propagated through query embeddings, provider retries, and retrieval SQL.
+Research responses expose public plans and claim verdicts with request IDs, stage timings, usage availability, and estimated cost completeness.
+Migration `0002` stores owner/library-scoped summaries, available through an authenticated request-detail endpoint, without document bodies or prompts in routine persistence or traces.
+
+Evaluation accepts separate direct/research runs on both existing datasets, measures final-ranked Recall@5 and MRR@5 alongside first-round ranking, and records latency, tokens, and cost assumptions.
+The separate 15-case `claim-support-v1` challenge measures verifier decisions against synthetic fixture labels.
+Runtime verifier unsupported-claim rates are explicitly model-assessed and are not independent hallucination measurements.
+The challenge and six-paper/36-question real dataset remain agent-reviewed without independent human review.
+Historical benchmark reports were preserved.
+Fresh direct runs on both datasets are recorded in the [verification summary](research-verification.json) and linked full reports.
+The hybrid real-paper run measured 57.4% final Recall@5, 51.9% false refusals, and 33.3% unsupported answers on known refusal cases, with median/p95 execution latency of 4.3/5.9 ms and unknown monetary cost.
+Approximate retrieval can vary with the shared HNSW index, so differences from historical reports are not evidence of improvement.
+
+Verification: 76 tests passed inside the Python 3.12 containers with PostgreSQL, pgvector, Redis, and true HTTP API/CLI acceptance using a controlled model endpoint, including first-pass success, corrected synthesis, and final refusal.
+The pinned-paper live acceptance test passed separately on the host against the same API and workers.
+Docker build and dependency consistency checks passed.
+Ruff passed.
+These controlled responses test orchestration and accounting, not model quality.
+No Ollama service or hosted-model credentials were available, so the live-model pinned-paper comparison and actual verifier accuracy remain outstanding.
+No claim of quality improvement is made, and research remains opt-in.
 
 ## Architecture follow-ups
 
