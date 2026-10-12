@@ -1,8 +1,13 @@
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field
+from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class ModelPrice(BaseModel):
+    input: float = Field(ge=0, allow_inf_nan=False)
+    output: float = Field(ge=0, allow_inf_nan=False)
 
 
 class Settings(BaseSettings):
@@ -13,6 +18,10 @@ class Settings(BaseSettings):
     data_dir: Path = Path("data")
     llm_provider: Literal["extractive", "openai", "ollama"] = "extractive"
     answer_mode: Literal["quotes", "synthesis"] = "quotes"
+    planner_model: str | None = None
+    verifier_model: str | None = None
+    research_deadline_seconds: float = Field(180, gt=0, le=600)
+    model_prices: dict[str, ModelPrice] = {}
     embedding_provider: Literal["hash", "openai", "ollama"] = "hash"
     model_base_url: str = "http://localhost:11434"
     model_api_key: str = ""

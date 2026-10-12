@@ -6,6 +6,7 @@ from sqlalchemy import select, text
 from litlens.config import settings
 from litlens.db.models import Chunk, Document, Library
 from litlens.observability import event, span
+from litlens.providers.tracking import active_request
 
 from .embeddings import embed_many
 
@@ -41,9 +42,21 @@ def search(
     owner_id: str = "local",
     rerank: bool = True,
 ) -> list[Hit]:
-    library = session.scalar(
+    def execute(statement, params=None):
+        accounting = active_request.get()
+        if accounting:
+            session.execute(
+                text("SELECT set_config('statement_timeout', :timeout, true)"),
+                {"timeout": str(max(1, int(accounting.remaining() * 1000)))},
+            )
+        result = session.execute(statement, params or {})
+        if accounting:
+            accounting.remaining()
+        return result
+
+    library = execute(
         select(Library).where(Library.id == library_id, Library.owner_id == owner_id)
-    )
+    ).scalar()
     if library is None:
         raise PermissionError("Library not found")
     if library.embedding_space != settings.embedding_space:
@@ -65,9 +78,9 @@ def search(
             vector = embed_many([query])[0]
             params["vector"] = "[" + ",".join(str(x) for x in vector) + "]"
             # Iterative HNSW scanning avoids starvation after tenant/library filtering.
-            session.execute(text("SET LOCAL hnsw.iterative_scan = 'strict_order'"))
+            execute(text("SET LOCAL hnsw.iterative_scan = 'strict_order'"))
             rankings.append(
-                session.execute(
+                execute(
                     text(
                         "SELECT c.id "
                         + scope
@@ -80,7 +93,7 @@ def search(
             )
         if mode in {"keyword", "hybrid"}:
             rankings.append(
-                session.execute(
+                execute(
                     text(
                         "SELECT c.id "
                         + scope
@@ -98,9 +111,7 @@ def search(
                 fused[chunk_id] = fused.get(chunk_id, 0) + 1 / (60 + rank)
         if not fused:
             return []
-        rows = session.execute(
-            select(Chunk, Document).join(Document).where(Chunk.id.in_(fused))
-        ).all()
+        rows = execute(select(Chunk, Document).join(Document).where(Chunk.id.in_(fused))).all()
         hits = [
             Hit(
                 c,
