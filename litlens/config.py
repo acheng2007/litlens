@@ -26,6 +26,9 @@ class Settings(BaseSettings):
     model_base_url: str = "http://localhost:11434"
     model_api_key: str = ""
     model_name: str = "llama3.2"
+    model_max_tokens: int = Field(1000, ge=1, le=131072)
+    model_json_mode: bool = False
+    model_min_request_interval_seconds: float = Field(0, ge=0, le=60)
     completion_token_parameter: Literal["max_completion_tokens", "max_tokens"] = (
         "max_completion_tokens"
     )

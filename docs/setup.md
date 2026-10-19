@@ -62,9 +62,12 @@ Generation changes do not require re-ingestion.
 | `ANSWER_MODE` | `quotes` | `quotes` or experimental `synthesis`; synthesis requires a model provider |
 | `LLM_PROVIDER` | `extractive` | `extractive`, `openai`, or `ollama` |
 | `EMBEDDING_PROVIDER` | `hash` | `hash`, `openai`, or `ollama` |
-| `MODEL_BASE_URL` | Host Ollama URL in Compose | Hosted base URL includes `/v1`; Ollama base URL does not |
+| `MODEL_BASE_URL` | Host Ollama URL in Compose | Provider-specific API base URL; hosted calls append `/chat/completions` |
 | `MODEL_API_KEY` | Empty | Hosted credential, supplied only through environment |
 | `MODEL_NAME` | `llama3.2` | Model selected for answering |
+| `MODEL_MAX_TOKENS` | `1000` | Output budget per call, including reasoning tokens when counted by the provider |
+| `MODEL_JSON_MODE` | `false` | Request `response_format: {"type":"json_object"}` from hosted providers that support JSON mode |
+| `MODEL_MIN_REQUEST_INTERVAL_SECONDS` | `0` | Minimum time between outbound model requests in one API process |
 | `EMBEDDING_MODEL` | `nomic-embed-text` | Learned embedding model, unused by hash baseline |
 | `EMBEDDING_DIMENSIONS` | `384` | Fixed vector dimensions established by the initial migration |
 | `EMBEDDING_BASE_URL` | Empty | Optional separate embedding service; otherwise use the model base URL |
@@ -73,10 +76,16 @@ Generation changes do not require re-ingestion.
 
 For Ollama generation, install and start Ollama on the host, pull your chosen chat model, and set `LLM_PROVIDER=ollama`.
 For learned Ollama embeddings, also pull an embedding model and match the database vector dimension to that model's output.
-For a hosted service, set `LLM_PROVIDER=openai`, its `/v1` base URL, credential, and a chat model supporting the Chat Completions contract.
+For a hosted service, set `LLM_PROVIDER=openai`, its provider-specific base URL, credential, and a chat model supporting the Chat Completions contract.
 The adapter omits optional temperature by default and uses the current completion-token parameter documented by [OpenAI](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create).
 Hosted embedding providers must support the configured [embedding dimensions](https://developers.openai.com/api/reference/resources/embeddings/methods/create).
 Ollama uses its native `/api/chat` and [`/api/embed`](https://docs.ollama.com/api/embed) endpoints.
+
+For Z.ai's standard API, use `MODEL_BASE_URL=https://api.z.ai/api/paas/v4` and `COMPLETION_TOKEN_PARAMETER=max_tokens`.
+Set `MODEL_JSON_MODE=true` to request JSON without Markdown fences, and consider `MODEL_MAX_TOKENS=4096` for models that spend output tokens on reasoning.
+If a free tier is rate limited, set `MODEL_MIN_REQUEST_INTERVAL_SECONDS=15`; HTTP 429 retries wait at least 15 seconds and honor a longer `Retry-After` value.
+The larger budget remains subject to the research workflow's total deadline.
+Confirm model access and current pricing in your provider account before evaluation.
 
 Each library records its embedding provider, model, and dimensions.
 Changing that embedding space requires a new library and re-ingestion; changing dimensions also requires a separately initialized database or an explicit migration.
