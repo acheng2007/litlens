@@ -105,7 +105,9 @@ The pinned-paper live acceptance test passed separately on the host against the 
 Docker build and dependency consistency checks passed.
 Ruff passed.
 These controlled responses test orchestration and accounting, not model quality.
-No Ollama service or hosted-model credentials were available, so the live-model pinned-paper comparison and actual verifier accuracy remain outstanding.
+One paced live-model pilot on Z.ai GLM-4.7-Flash answered the first pinned real-paper question with four supported claims after provider retries; see the [pilot record](evaluation-zai-pilot-v1.json).
+The single case does not establish benchmark quality.
+The full 36-question comparison and actual verifier challenge accuracy remain outstanding.
 No claim of quality improvement is made, and research remains opt-in.
 
 ## Architecture follow-ups

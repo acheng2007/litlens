@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-12",
+  "date": "2026-10-18",
   "research_workflow_version": "research-v1",
   "langgraph_version": "1.2.14",
   "research_bounds": {
@@ -9,8 +9,10 @@
   },
   "pricing_assumptions": {},
   "live_model_comparison": {
-    "status": "not_run",
-    "reason": "No Ollama installation/service or hosted-model credentials available.",
+    "status": "one_question_pilot_only",
+    "pilot_report": "evaluation-zai-pilot-v1.json",
+    "model": "glm-4.7-flash",
+    "provider": "z.ai",
     "datasets": [
       "synthetic",
       "real-papers"

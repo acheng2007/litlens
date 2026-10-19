@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-18",
+  "report_type": "paced_live_model_pilot",
+  "workflow": "research",
+  "workflow_version": "research-v1",
+  "provider": "z.ai",
+  "model": "glm-4.7-flash",
+  "dataset": "real-papers",
+  "dataset_version": "1.0.0",
+  "case_id": "attention-1",
+  "question_count": 1,
+  "expected_supported": true,
+  "request_id": "179be714-3706-4b4a-b3ab-2c52f4243199",
+  "outcome": "semantically_verified",
+  "supported": true,
+  "claim_count": 4,
+  "claims_supported": 4,
+  "claims_unsupported_or_contradicted": 0,
+  "logical_model_calls": 3,
+  "provider_attempts": 6,
+  "retry_count": 3,
+  "latency_ms": 110791.1,
+  "stage_timings_ms": {
+    "plan": 45429.4,
+    "retrieve": 51.8,
+    "synthesize": 45537.7,
+    "provenance": 0.8,
+    "verify": 19755.9,
+    "finalize": 0.2,
+    "total": 110791.1
+  },
+  "successful_attempt_usage": {
+    "input_tokens": 4002,
+    "output_tokens": 4682
+  },
+  "request_total_usage": null,
+  "usage_complete": false,
+  "estimated_cost_usd": null,
+  "cost_complete": false,
+  "limitations": [
+    "A single answer is a smoke test and cannot establish benchmark quality.",
+    "Three transient upstream failures required retries; failed attempts have unknown token usage.",
+    "The provider usage and cost totals are incomplete.",
+    "The benchmark labels are agent-reviewed and have not received independent human review."
+  ]
+}

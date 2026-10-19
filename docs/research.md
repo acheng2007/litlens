@@ -94,8 +94,11 @@ Implementation verification on October 12, 2026: 76 tests passed inside the Pyth
 The HTTP CLI acceptance covered a successful answer, a corrected draft, and a final refusal.
 Controlled responses establish routing, transport, citation checking, and accounting behavior; they do not measure real-model semantic quality.
 Tests also cover malformed outputs, invalid provenance and evidence references, revision bounds, wall-clock cancellation, embedding usage, unknown costs, persisted failures, and owner/library isolation.
-No Ollama installation/service or hosted credentials were available for a live-model comparison.
-Research quality, latency, token usage, estimated cost on the pinned real papers, and actual verifier challenge accuracy remain unmeasured until a model is configured.
+One paced live pilot now uses Z.ai GLM-4.7-Flash on the first pinned real-paper question.
+All four generated claims passed semantic verification after three logical model calls and three retries across six provider attempts.
+The request took 110.8 seconds, including 45.4 seconds in planning, 45.5 seconds in synthesis, and 19.8 seconds in verification.
+The provider returned token usage for successful attempts, but the request-wide total and estimated cost remain unknown because failed attempts did not report usage.
+This single answer is a smoke test, not a quality benchmark; the full 36-question comparison and live verifier challenge remain outstanding.
 
 ```bash
 DATABASE_URL=postgresql+psycopg://litlens:litlens@localhost:55433/litlens \
